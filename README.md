@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# 1. 팀 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+### 팀 명을 작성해주세요
 
-In the project directory, you can run:
+Just Do It
 
-### `npm start`
+### 팀원 소개를 작성해주세요
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+이승훈, 박영태, 이유진, 배규남, 정윤아, 조경찬, 이윤승
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 2. 서비스 소개
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 우리 서비스의 핵심 강점을 강조하여, 소개 문구를 작성합니다
 
-### `npm run build`
+<aside>
+👉 전세계 대표 스포츠 의류 브랜드 나이키의 온라인 쇼핑몰
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</aside>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 제공하는 메인 서비스를 소개해주세요
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<aside>
+👉 나이키의 다양한 상품들을 소개하고, 장바구니를 통해 본인의 희망 상품목록을 만들 수 있다.
 
-### `npm run eject`
+</aside>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 3. 필수 구현 사항
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 이번 프로젝트에서 꼭 구현하고 싶은 기능을 정리해주세요
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<aside>
+👉 0.  메뉴 Nav Bar
 
-## Learn More
+- 무엇을 클릭해도 하나의 상품목록 페이지로
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. 사용자 회원가입 페이지 구현
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ID (6자 이상)
 
-### Code Splitting
+- P/W (영문, 대 소문 + 숫자+특수문자 8~16자리)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 주소 (텍스트로 자유형식)
 
-### Analyzing the Bundle Size
+- 핸드폰 번호
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 이름
 
-### Making a Progressive Web App
+- 성별 (남/여)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 생년월일(0000.00.00)
 
-### Advanced Configuration
+2. 사용자 로그인 페이지 구현(비회원 로그인 X)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- 로그인 유지
 
-### Deployment
+3. 메인페이지 구현
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- 상품 이미지 클릭 시 해당상품의 상품상세 페이지 이동
 
-### `npm run build` fails to minify
+———————————————————-—————————————————————————
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. 상품 목록 페이지 구현
+   - 상품 목록
+   - 정렬
+   - 필터(색상, 사이즈, 브랜드)
+5. 상품 상세 페이지 구현
+
+   - 상품 상세 정보 랜더링
+
+   - 상품의 색상 별 사이즈 별 수량 파악하여 구매가능여부 확인.
+
+5-1. 리뷰
+
+    - 리뷰(별점 + 텍스트리뷰)
+
+———————————————————-————————————————————————— 6. 장바구니 페이지
+
+- 장바구니에 상품 등록
+- 장바구니에 상품 삭제
+- 장바구니에 상품 목록 조회
+
+- 장바구니 수정
+
+</aside>
+
+# 4. 추가 구현 사항
+
+---
+
+### 핵심 기능 외에 추가적으로 구현하고 싶은 기능을 정리해주세요
+
+<aside>
+👉 0. 검색기능
+
+1. 리뷰에 사진 게시
+2. 프로모션 코드 입력 후 가격 변동(할인가격 적용)
+3. 로그아웃
+</aside>
+
+# 5. 개선 사항
+
+---
+
+### 현재 서비스에서 개선하고자 하는 점을 작성해주세요
+
+<aside>
+👉 1. 결재 요청 시 해당 상품의 수량을 확인 후 상품의 수량이 차감되는 방식으로 기획을 바꾸려한다.
+
+</aside>
+
+<aside>
+🧭 **[Example]**
+1. 개별 작품 소개 페이지로 진입할 때, 로딩 이미지가 없어서 지루하다고 생각해서 로딩될 때를 알려주는 아이콘을 넣고 싶다.
+2. 작품 찜하기를 상세 페이지에서만 할 수 있는데, 리스트에서도 할 수 있도록 만들고싶다.
+3. 결제를 구현하기 어려우니, 유저가 가입하면 기본 포인트를 주고, 결제를 하면 포인트가 차감되는 형식으로 기획을 바꾸고 싶다.
+
+</aside>
+
+# 주의사항
+
+존중과 배려와 즐거움.
+
+결과물에 너무 집착하지 말자.
+
+배운점을 어떻게 활용할지에 집중하자.
+
+내 코드를 어떻게 더 잘 짤지에 대해 집중. (양질의 코드를 만들자)
+
+코드리뷰는 너무 한방에 하지 말고 작은 단위로(PR 잘 활용)
+
+모든 멘토님께 질문하자.
+
+외부 라이브러리는 사용하지 않는다.(직접 구현)
