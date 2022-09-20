@@ -9,5 +9,6 @@
   "javascript.format.enable": false,
   "eslint.alwaysShowStatus": true,
   "files.autoSave": "onFocusChange",
-  "cSpell.languageSettings": []
+  "cSpell.languageSettings": [],
+  "cSpell.words": ["Kakao"]
 }
