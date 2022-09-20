@@ -4,16 +4,24 @@ import { useState } from 'react';
 import ModalPortal from '../../Portal';
 import Modal from '../../Modal';
 import './Nav.scss';
+import Login from '../Login/Login';
 
 function Nav() {
   const [modalOn, setModalOn] = useState(false);
 
-  const handleModal = () => {
-    setModalOn(!modalOn);
+  const handleToggleModal = () => {
+    setModalOn(prev => !prev);
   };
+
   return (
     <>
-      <ModalPortal>{modalOn && <Modal onClose={handleModal} />}</ModalPortal>
+      {modalOn && (
+        <ModalPortal>
+          <Modal>
+            <Login />
+          </Modal>
+        </ModalPortal>
+      )}
       <div className="navTop">
         <div className="navTopLeft">
           <p className="navTopLeftItem">조던</p>
@@ -26,7 +34,7 @@ function Nav() {
           <Link to="/sign-in" className="navTopRightItem">
             멤버 가입
           </Link>
-          <button className="navTopRightItem" onClick={handleModal}>
+          <button className="navTopRightItem" onClick={handleToggleModal}>
             로그인
           </button>
         </div>

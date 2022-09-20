@@ -37,12 +37,21 @@
     .fa-solid {
       padding: 10px;
       font-size: 16px;
+      &:hover {
+        padding: 10px;
+        border-radius: 50%;
+        background-color: lightgrey;
+      }
     }
   }
   .loginHelp {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .checkBox {
+      transform: scale(2);
+      margin-right: 15px;
+    }
   }
 
   .loginButton {

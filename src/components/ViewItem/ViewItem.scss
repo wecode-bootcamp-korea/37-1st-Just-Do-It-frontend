@@ -1,0 +1,20 @@
+@import '/src/styles/variables.scss';
+
+.ViewItemWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 40px 300px;
+  .blockTitle {
+    display: block;
+    padding: 10px;
+    color: $font-color-black;
+    font-size: $font-size-lg;
+  }
+  .block {
+    display: block;
+    padding: 10px;
+    color: $font-color-grey;
+    font-size: $font-size-base;
+  }
+}

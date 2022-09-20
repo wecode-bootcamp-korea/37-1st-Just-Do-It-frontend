@@ -16,7 +16,7 @@ function Login() {
           <input className="loginPw block" type="text" placeholder="비밀번호" />
           <div className="loginHelp">
             <button className="block">
-              <input type="checkbox" />
+              <input type="checkbox" className="checkBox" />
               로그인 유지하기
             </button>
             <button className="block">아이디/비밀번호 찾기</button>

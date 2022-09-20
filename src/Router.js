@@ -6,6 +6,8 @@ import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
 import SignIn from './pages/SignIn/SignIn';
 import Login from './components/Login/Login';
+import SearchModal from './components/SearchModal/SearchModal';
+import ViewItem from './components/ViewItem/ViewItem';
 
 function Router() {
   return (
@@ -16,6 +18,8 @@ function Router() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
         <Route path="/item-list" element={<ItemList />} />
+        <Route path="/search-modal" element={<SearchModal />} />
+        <Route path="/view-item" element={<ViewItem />} />
       </Routes>
       <Footer />
     </BrowserRouter>
