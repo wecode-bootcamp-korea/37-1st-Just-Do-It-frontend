@@ -1,7 +1,7 @@
 import React from 'react';
 
-import './Modal.scss';
+import './NavModal.scss';
 
-export default function Modal({ children }) {
+export default function NavModal({ children }) {
   return <div className="modalContainer">{children}</div>;
 }
