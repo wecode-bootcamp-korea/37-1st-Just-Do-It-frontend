@@ -1,0 +1,69 @@
+@import '/src/styles/variables.scss';
+@import '/src/pages/ItemsList/variablesForItemList.scss';
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+.contentItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .contentItem {
+    width: 30%;
+    margin: 10px;
+    margin-bottom: 50px;
+
+    .itemImg {
+      img {
+        width: 100%;
+      }
+    }
+
+    .itemDetails {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-top: 10px;
+
+      .detail {
+        margin-bottom: 7px;
+      }
+
+      .itemDetailLeft {
+        .itemName {
+          font-size: 15px;
+          font-weight: 900;
+        }
+
+        .dragon {
+          color: gray;
+        }
+
+        .type {
+          color: gray;
+        }
+
+        .colors {
+          color: gray;
+        }
+      }
+
+      .itemDetailRight {
+        display: flex;
+        justify-content: flex-end;
+
+        .discountRatio {
+          color: #ff6600;
+          font-size: 20px;
+        }
+
+        .price {
+          margin-left: 15px;
+
+          .originalPrice {
+            color: gray;
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+}

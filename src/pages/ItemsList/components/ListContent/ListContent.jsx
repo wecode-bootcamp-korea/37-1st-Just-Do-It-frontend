@@ -1,6 +1,7 @@
 import React from 'react';
-import ContentHeader from './components/ContentHeader';
-import ContentList from './components/ContentList';
+import ContentHeader from './components/ContentHeader/ContentHeader';
+import ContentList from './components/ContentList/ContentList';
+import './listContent.scss';
 
 function ListContent(props) {
   return (

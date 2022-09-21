@@ -1,4 +1,5 @@
 import React from 'react';
+import './listHeader.scss';
 
 function ListHeader(props) {
   return (

@@ -1,14 +1,28 @@
 import React from 'react';
-import FilterBarCheckList from './components/FilterBarCheckList';
+import FilterBarCheckList from './components/FilterBarCheckList/FilterBarCheckList';
 import FilterBarColor from './components/FilterBarColor/FilterBarColor';
-import FilterBarSize from './components/FilterBarSize';
+import FilterBarSize from './components/FilterBarSize/FilterBarSize';
 
-function FilterBar(props) {
+import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/filterBarItems';
+
+import './filterBar.scss';
+
+function FilterBar({ sizeSelector }) {
   return (
     <div className="filterBar">
-      <FilterBarSize />
+      <FilterBarSize sizeSelector={sizeSelector} />
       <FilterBarColor />
-      <FilterBarCheckList
+      {FILTER_BAR_CHECKLIST.map(list => {
+        return (
+          <FilterBarCheckList
+            category={list.category}
+            listArr={list.listArr}
+            key={list.category}
+          />
+        );
+      })}
+      {/* <FilterBarCheckList /> */}
+      {/* <FilterBarCheckList
         category="브랜드"
         listArr={['ACG', 'NikeLab', '나이키 스포츠웨어', '조던']}
       />
@@ -65,7 +79,7 @@ function FilterBar(props) {
       <FilterBarCheckList
         category="성별"
         listArr={['여성', '남성', '성인공용']}
-      />
+      /> */}
     </div>
   );
 }

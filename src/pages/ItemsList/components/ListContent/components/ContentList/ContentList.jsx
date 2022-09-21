@@ -1,9 +1,44 @@
 import React from 'react';
+import CONTENTS_MOCK from './mockData/contentMock';
+import './contentList.scss';
 
 function ContentList(props) {
   return (
     <div className="contentItems">
-      <div className="contentItem">
+      {CONTENTS_MOCK.map(content => {
+        return (
+          <div className="contentItem" key={Math.random()}>
+            <div className="itemImg">
+              <img src={content.img} />
+            </div>
+            <div className="itemDetails">
+              <div className="itemDetailLeft">
+                <div className="itemName detail">{content.itemName}</div>
+                <div className="dragon detail">{content.dragon}</div>
+                <div className="type detail">{content.type}</div>
+                <div className="colors detail">{content.colors}</div>
+              </div>
+              <div className="itemDetailRight">
+                <div className="discountRatio detail">
+                  {Math.floor(
+                    (1 - content.discountPrice / content.originalPrice) * 100
+                  )}
+                  %
+                </div>
+                <div className="price detail">
+                  <div className="discountPrice detail">
+                    {content.discountPrice.toLocaleString()}원
+                  </div>
+                  <div className="originalPrice detail">
+                    {content.originalPrice.toLocaleString()}원
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      {/* <div className="contentItem">
         <div className="itemImg">
           <img src="./image/itemList/nikeShoes.jpeg" />
         </div>
@@ -122,7 +157,7 @@ function ContentList(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

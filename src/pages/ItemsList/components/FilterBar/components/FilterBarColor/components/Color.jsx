@@ -1,4 +1,5 @@
 import React from 'react';
+import './color.scss';
 
 function Color({ name, code }) {
   return (

@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+@import '/src/pages/ItemsList/variablesForItemList.scss';
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+
+  .color {
+    height: 70px;
+    width: 59px;
+    padding: 4px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .colorCircle {
+      height: 30px;
+      width: 30px;
+      border: 1px solid #d1d1d1;
+      border-radius: 45px;
+
+      &:hover {
+        border: 1px solid black;
+        cursor: pointer;
+      }
+    }
+
+    .colorName {
+      font-size: 12px;
+      margin-top: 12px;
+    }
+  }
+}

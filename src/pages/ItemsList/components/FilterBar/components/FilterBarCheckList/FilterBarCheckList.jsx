@@ -1,4 +1,5 @@
 import React from 'react';
+import './filterBarCheckList.scss';
 
 function FilterBarCheckList({ category, listArr }) {
   return (

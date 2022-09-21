@@ -1,0 +1,40 @@
+@import '/src/styles/variables.scss';
+@import '/src/pages/ItemsList/variablesForItemList.scss';
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+.category {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 15px;
+  margin-bottom: 15px;
+
+  .categoryHeader {
+    @include flexSort(space-between, center);
+    font-weight: 1000;
+
+    .categoryText {
+      padding-top: 7px;
+    }
+    .categoryIcon {
+      height: 14px;
+      margin-right: 9px;
+    }
+  }
+
+  .CheckList {
+    margin-top: 30px;
+
+    .list {
+      margin-top: 15px;
+
+      :hover {
+        cursor: pointer;
+      }
+
+      label {
+        &:hover {
+          color: gray;
+        }
+      }
+    }
+  }
+}
