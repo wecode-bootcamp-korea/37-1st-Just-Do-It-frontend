@@ -1,20 +1,35 @@
 @import '/src/styles/variables.scss';
 
-.ViewItemWrapper {
+.viewitem {
   display: flex;
-  align-items: center;
   justify-content: space-around;
-  margin: 40px 300px;
-  .blockTitle {
+  margin: 40px 70px;
+
+  .clothesBox {
+    .defaultText {
+      &:nth-child(8) {
+        color: $font-color-black;
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  .categoryText {
     display: block;
     padding: 10px;
     color: $font-color-black;
     font-size: $font-size-lg;
   }
-  .block {
+
+  .defaultText {
     display: block;
     padding: 10px;
     color: $font-color-grey;
     font-size: $font-size-base;
+
+    &:first-child {
+      color: $font-color-black;
+      font-size: $font-size-lg;
+    }
   }
 }
