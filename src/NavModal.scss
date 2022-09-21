@@ -1,4 +1,4 @@
-.modalContainer {
+.modalLoginContainer {
   position: fixed;
   inset: 0;
   display: flex;
@@ -6,6 +6,31 @@
   justify-content: center;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.modalSearchContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.modalItemContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  top: 70px;
+  height: 600px;
+  background-color: white;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   z-index: 999;
