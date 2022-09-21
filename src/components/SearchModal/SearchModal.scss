@@ -1,0 +1,55 @@
+@import '/src/styles/variables.scss';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
+
+.searchModalWrapper {
+  .searchModal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 50px;
+
+    .searchModalCenter {
+      .searchModalCenterIcon {
+        position: absolute;
+        padding: 6px;
+        font-size: 36px;
+        &:hover {
+          border-radius: 50%;
+          background-color: lightgrey;
+        }
+      }
+      .searchModalCenterInput {
+        width: 600px;
+        padding: 10px 10px 10px 50px;
+        font-size: $font-size-xl;
+        border-radius: 20px;
+        border: 1px solid $font-color-white;
+        &:hover {
+          border-radius: 25px;
+          background-color: lightgrey;
+        }
+      }
+    }
+    .searchModalRight {
+      .searchModalRightIcon {
+        font-size: 24px;
+        padding: 10px;
+
+        &:hover {
+          padding: 10px;
+          border-radius: 50%;
+          background-color: lightgrey;
+        }
+      }
+    }
+  }
+  .searchInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    color: $background-color-grey;
+    font-size: $font-size-lg;
+  }
+}
