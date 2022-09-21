@@ -2,6 +2,16 @@
 
 .mainFirstImgWrapper {
   margin: 50px;
+  .categoryText {
+    font-size: $font-size-xl;
+    color: $font-color-black;
+    margin: 20px 0;
+  }
+  .defaultText {
+    font-size: $font-size-lg;
+    color: $font-color-grey;
+    margin: 10px 0;
+  }
   .mainFirstImgTitle {
     margin-bottom: 20px;
   }
@@ -13,7 +23,7 @@
     .mainFirstImgBox {
       width: 50%;
       height: 1020px;
-      margin: 20px 20px 20px 0;
+      margin: 20px 20px 0 0;
       background-image: url(https://cdn.pixabay.com/photo/2019/08/19/07/45/corgi-4415649_1280.jpg);
       background-repeat: no-repeat;
       background-size: cover;
@@ -42,7 +52,7 @@
   }
 
   .mainSecondImgTitle {
-    margin-bottom: 20px;
+    margin: 40px 0;
   }
   .mainSecondImgContainer {
     display: flex;
@@ -66,6 +76,23 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+    }
+  }
+  .mainThirdImgTitle {
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 40px 0;
+  }
+  .thirdTitle {
+    display: flex;
+    overflow: hidden;
+    .thirdImgBox {
+      margin-right: 20px;
+      .thirdImg {
+        width: 650px;
+        height: 500px;
+      }
     }
   }
 }
