@@ -9,21 +9,6 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState([]);
   const [selectedColor, setSelectedColor] = useState([]);
 
-  const sizeSelector = event => {
-    const size = Number(event.nativeEvent.path[0].textContent);
-    let sizeArr = selectedSize;
-
-    sizeArr.indexOf(size) === -1
-      ? sizeArr.push(size)
-      : (sizeArr = sizeArr.filter(element => element !== size));
-
-    event.target.className === ''
-      ? event.nativeEvent.path[1].classList.toggle('selected')
-      : event.target.classList.toggle('selected');
-
-    setSelectedSize([...sizeArr]);
-  };
-
   const colorSelector = event => {
     // asd
   };
@@ -32,7 +17,10 @@ function ItemList() {
     <section className="itemList">
       <ListHeader />
       <div className="itemListMain">
-        <FilterBar sizeSelector={sizeSelector} />
+        <FilterBar
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+        />
         <ListContent />
       </div>
     </section>

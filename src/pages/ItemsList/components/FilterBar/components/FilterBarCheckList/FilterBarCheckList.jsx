@@ -6,9 +6,13 @@ function FilterBarCheckList({ category, listArr }) {
     <div className="category">
       <div className="categoryHeader">
         <div className="categoryText">{category}</div>
-        <img className="categoryIcon" src="./image/itemList/upArrow.png" />
+        <img
+          className="categoryIcon"
+          src="./image/itemList/upArrow.png"
+          alt="메뉴펼치기"
+        />
       </div>
-      <div className="CheckList">
+      <div className="checkList">
         {listArr.map(list => {
           return (
             <div className="list" key={list}>

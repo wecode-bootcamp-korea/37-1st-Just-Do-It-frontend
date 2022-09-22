@@ -10,7 +10,11 @@ function FilterBarColor(props) {
     <div className="filterBarColor">
       <div className="colorHeader">
         <div className="colorText">색상</div>
-        <img className="colorIcon" src="./image/itemList/upArrow.png" />
+        <img
+          className="colorIcon"
+          src="./image/itemList/upArrow.png"
+          alt="숨기기"
+        />
       </div>
       <div className="colors">
         {COLORS.map(color => {

@@ -3,65 +3,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
 
 .contentItems {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  .contentItem {
-    width: 30%;
-    margin: 10px;
-    margin-bottom: 50px;
+  width: 100%;
 
-    .itemImg {
-      img {
-        width: 100%;
-      }
-    }
+  .contentItemContainor {
+    display: flex;
+    // justify-content: center;
+    flex-wrap: wrap;
+    margin: -10px;
 
-    .itemDetails {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      margin-top: 10px;
+    .contentItem {
+      width: 33.333%;
+      // height: 70vh;
+      padding: 10px;
+      margin-bottom: 50px;
 
-      .detail {
-        margin-bottom: 7px;
+      &:nth-child(1) {
+        height: 0px;
       }
 
-      .itemDetailLeft {
-        .itemName {
-          font-size: 15px;
-          font-weight: 900;
-        }
+      &:nth-child(2) {
+        order: -1;
+      }
 
-        .dragon {
-          color: gray;
-        }
-
-        .type {
-          color: gray;
-        }
-
-        .colors {
-          color: gray;
+      .itemImg {
+        img {
+          width: 100%;
         }
       }
 
-      .itemDetailRight {
+      .itemDetails {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-top: 10px;
 
-        .discountRatio {
-          color: #ff6600;
-          font-size: 20px;
+        .detail {
+          margin-bottom: 7px;
         }
 
-        .price {
-          margin-left: 15px;
-
-          .originalPrice {
-            color: gray;
-            text-decoration: line-through;
+        .itemDetailLeft {
+          .productName {
+            font-size: 15px;
+            font-weight: 900;
           }
+
+          .description {
+            color: gray;
+          }
+
+          .brandName {
+            color: gray;
+          }
+
+          .color {
+            color: gray;
+          }
+        }
+
+        .itemDetailRight {
+          display: flex;
+          justify-content: flex-end;
+
+          .discountRatio {
+            color: #ff6600;
+            font-size: 20px;
+          }
+
+          .price {
+            margin-left: 15px;
+
+            .retailPrice {
+              color: gray;
+              text-decoration: line-through;
+            }
+          }
+        }
+      }
+
+      .video {
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        video {
+          min-width: 300%;
+          max-height: 80%;
+        }
+
+        .videoText {
+          z-index: 999;
         }
       }
     }

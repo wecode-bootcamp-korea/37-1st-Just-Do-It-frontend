@@ -8,11 +8,11 @@ function ListHeader(props) {
       <div className="headerRight">
         <div className="headerFilter">
           <div className="text">필터</div>
-          <img src="./image/itemList/filterWhite.png" />
+          <img src="./image/itemList/filterWhite.png" alt="필터 가리기" />
         </div>
         <div className="headerSetOrder">
           <div className="text">신상품순</div>
-          <img src="./image/itemList/downArrow.png" />
+          <img src="./image/itemList/downArrow.png" alt="정렬목록 펼치기" />
         </div>
       </div>
     </header>

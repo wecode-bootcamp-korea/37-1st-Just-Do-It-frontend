@@ -14,8 +14,8 @@
       font-weight: 1000;
     }
     .sizeIcon {
-      height: 14px;
       margin-right: 9px;
+      height: 14px;
     }
   }
 
@@ -25,14 +25,14 @@
     margin-top: 17px;
 
     .sizeNumber {
+      @include flexCenter;
+      width: 46px;
+      height: 37px;
+      margin: 2px;
+      padding: 4px;
       border: 1px solid #e5e5e5;
       border-radius: 7px;
-      height: 37px;
-      width: 46px;
-      padding: 4px;
-      margin: 2px;
       font-size: 12px;
-      @include flexCenter;
 
       &:hover {
         border: 2px solid black;
