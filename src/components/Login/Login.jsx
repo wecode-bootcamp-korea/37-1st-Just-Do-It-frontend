@@ -1,8 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 function Login() {
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState({
+    username: '',
+    password: '',
+  });
+  const handleChangeInput = e => {
+    const { name, value } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+  const handleLogin = e => {
+    e.preventDefault();
+
+    fetch('http://192.168.14.221:8000/users/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        username: inputValue.username,
+        password: inputValue.password,
+      }),
+    })
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('에러 발생!');
+      })
+      // .catch((error) => console.log(error))
+      .then(data => {
+        localStorage.setItem('TOKEN', data.accessToken);
+
+        navigate('/src/pages/Main/Main.jsx');
+      });
+  };
   return (
     <div className="loginWrapper">
       <div className="formContainer">
@@ -12,8 +47,25 @@ function Login() {
           </button>
           <p className="loginIcon">나이키</p>
           <h1 className="loginTitle">나이키 로그인</h1>
-          <input className="loginId block" type="text" placeholder="아이디" />
-          <input className="loginPw block" type="text" placeholder="비밀번호" />
+          <input
+            className="loginId block"
+            name="username"
+            type="text"
+            placeholder="아이디"
+            onChange={handleChangeInput}
+            value={inputValue.username}
+          />
+          <input
+            className="loginPw block"
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+            onChange={handleChangeInput}
+            value={inputValue.password}
+          />
+          <button className="loginButton block" onClick={handleLogin}>
+            로그인
+          </button>
           <div className="loginHelp">
             <button className="block">
               <input type="checkbox" className="checkBox" />
@@ -21,7 +73,7 @@ function Login() {
             </button>
             <button className="block">아이디/비밀번호 찾기</button>
           </div>
-          <button className="loginButton block">로그인</button>
+
           <button className="loginKakao block">
             <i className="fa-solid fa-message" />
             카카오계정 로그인
