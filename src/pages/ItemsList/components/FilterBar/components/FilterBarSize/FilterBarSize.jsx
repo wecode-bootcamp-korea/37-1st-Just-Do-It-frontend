@@ -4,8 +4,6 @@ import './filterBarSize.scss';
 import SizeButton from './SizeButton';
 
 function FilterBarSize({ selectedSize, setSelectedSize }) {
-  console.log(selectedSize);
-
   return (
     <div className="filterSize">
       <div className="sizeHeader">

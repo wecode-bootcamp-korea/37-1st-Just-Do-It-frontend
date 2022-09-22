@@ -7,13 +7,11 @@
 
   .contentItemContainor {
     display: flex;
-    // justify-content: center;
     flex-wrap: wrap;
     margin: -10px;
 
     .contentItem {
       width: 33.333%;
-      // height: 70vh;
       padding: 10px;
       margin-bottom: 50px;
 
@@ -26,10 +24,15 @@
       }
 
       .itemImg {
+        @include flexCenter;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         background-size: cover;
 
         &:hover {
-          opacity: 0.4;
+          background-image: none;
         }
 
         img {
