@@ -24,13 +24,16 @@ function ContentList(props) {
           }) => {
             return (
               <div className="contentItem" key={styleCode}>
-                <div className="itemImg">
+                <div
+                  className="itemImg"
+                  style={{ backgroundImage: `url(${thumbnail})` }}
+                >
                   <img src={thumbnail} alt={productName} />
                 </div>
                 <div className="itemDetails">
                   <div className="itemDetailLeft">
                     <div className="productName detail">{productName}</div>
-                    <div className="description detail">{description}</div>
+                    {/* <div className="description detail">{description}</div> */}
                     <div className="brandName detail">{brandName}</div>
                     <div className="color detail">{color}</div>
                   </div>
