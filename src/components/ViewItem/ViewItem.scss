@@ -1,10 +1,9 @@
 @import '/src/styles/variables.scss';
 
-.viewitem {
+.viewItem {
   display: flex;
   justify-content: space-around;
   margin: 40px 70px;
-
   .clothesBox {
     .defaultText {
       &:nth-child(8) {
@@ -19,6 +18,9 @@
     padding: 10px;
     color: $font-color-black;
     font-size: $font-size-lg;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .defaultText {
@@ -26,6 +28,10 @@
     padding: 10px;
     color: $font-color-grey;
     font-size: $font-size-base;
+
+    &:hover {
+      text-decoration: underline;
+    }
 
     &:first-child {
       color: $font-color-black;
