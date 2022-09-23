@@ -5,20 +5,6 @@ import './Cart.scss';
 
 function Cart() {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const [count, setCount] = useState(0);
-  //서버통신 useEffect
-  // useEffect(() => {
-  //   fetch('http://192.168.14.221:8000/cart/1')
-  //     .then(response => {
-  //       if (response.ok === true) {
-  //         return response.json();
-  //       }
-  //       throw new Error('에러발생');
-  //     })
-  //     .catch(error => alert(error))
-  //     .then(data => setCartItems(data));
-  // }, []);
-  //Mock data useEffect
   const [getItems, setGetItems] = useState('');
   useEffect(() => {
     fetch('./data/cart.json')
@@ -47,8 +33,6 @@ function Cart() {
                   setIsOpenModal={setIsOpenModal}
                   key={cartItem.cartId}
                   cartItem={cartItem}
-                  // cartItemQuantity={cartItemQuantity}
-                  // setCartItems={setCartItems}
                 />
               ))}
           </ul>

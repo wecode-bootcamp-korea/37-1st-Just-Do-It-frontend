@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './OptModal.scss';
 
-// function OptModal({ count, setCount }) {
 function OptModal({ setIsOpenModal }) {
   const [optCount, setOptCount] = useState(1);
 
