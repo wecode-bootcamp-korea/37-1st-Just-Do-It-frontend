@@ -1,0 +1,47 @@
+@import '/src/styles/variables.scss';
+@import '/src/pages/ItemsList/variablesForItemList.scss';
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+.listHeader {
+  @include flexSort(space-between, center);
+  width: 100%;
+  background-color: white;
+  height: 61px;
+  z-index: 999;
+
+  .headerLeft {
+    font-size: 20px;
+    font-weight: $font-weight-title;
+  }
+
+  .headerRight {
+    display: flex;
+
+    .headerFilter {
+      @include flexCenter;
+      margin-left: 30px;
+
+      .text {
+        padding-top: 5px;
+      }
+
+      img {
+        height: $font-size-base;
+        margin-left: 5px;
+      }
+    }
+    .headerSetOrder {
+      @include flexCenter;
+      margin-left: 30px;
+
+      .text {
+        padding-top: 5px;
+      }
+
+      img {
+        height: $font-size-base;
+        margin-left: 5px;
+      }
+    }
+  }
+}
