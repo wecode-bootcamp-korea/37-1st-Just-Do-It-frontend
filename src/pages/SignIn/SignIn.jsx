@@ -31,22 +31,29 @@ function SignIn() {
     const birthReg =
       /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
     const mobileReg = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/;
-    const today = new Date();
-    const todayTime = today.getTime();
-    const birthTime = new Date(inputValue.birth);
-    const ageReg = Math.floor(
-      (todayTime - birthTime) / (1000 * 60 * 60 * 24 * 365)
-    );
 
-    // if (!idReg.test(inputValue.userName))
-    //   return alert('아이디 양식에 맞지 않음');
-    // if (!(inputValue.userName.length > 6)) return alert('ID가 짧음');
-    // if (!pwReg.test(inputValue.password)) return alert('비밀번호가 잘못됨');
-    // if (!(inputValue.password === inputValue.passwordForCheck))
-    //   return alert('비밀번호가 안같음');
-    // if (!mobileReg.test(inputValue.phoneNumber)) return alert('폰번호 똑바로');
-    // if (!birthReg.test(inputValue.birth)) return alert('양식에 맞지 않아');
-    // if (inputValue.gender === '2') return alert('성별도 체크');
+    const isAllowedAge = birth => {
+      const today = new Date();
+      const todayTime = today.getTime();
+      const birthTime = new Date(inputValue.birth);
+      const ageReg = Math.floor(
+        (todayTime - birthTime) / (1000 * 60 * 60 * 24 * 365)
+      );
+
+      const minAllowedAge = 15;
+      return ageReg >= minAllowedAge;
+    };
+
+    if (!idReg.test(inputValue.userName))
+      return alert('아이디 양식에 맞지 않음');
+    if (!(inputValue.userName.length > 6)) return alert('ID가 짧음');
+    if (!pwReg.test(inputValue.password)) return alert('비밀번호가 잘못됨');
+    if (!(inputValue.password === inputValue.passwordForCheck))
+      return alert('비밀번호가 안같음');
+    if (!mobileReg.test(inputValue.phoneNumber)) return alert('폰번호 똑바로');
+    if (!birthReg.test(inputValue.birth)) return alert('양식에 맞지 않아');
+    if (!isAllowedAge(inputValue.birth)) return alert('나이는 15살 이상~~');
+    if (inputValue.gender === '2') return alert('성별도 체크');
 
     const submitData = {
       userName: inputValue.userName,
