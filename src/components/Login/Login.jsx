@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, loginConfig } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
@@ -10,20 +10,17 @@ function Login() {
   });
   const handleChangeInput = e => {
     const { name, value } = e.target;
-    setInputValue({ ...inputValue, [name]: value });
+    setInputValue(prev => ({ ...prev, [name]: value }));
   };
   const handleLogin = e => {
     e.preventDefault();
 
-    fetch('http://192.168.14.221:8000/users/signin', {
+    fetch(`${loginConfig.api}/Login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        username: inputValue.username,
-        password: inputValue.password,
-      }),
+      body: JSON.stringify(inputValue),
     })
       .then(response => {
         if (response.ok === true) {
@@ -35,7 +32,7 @@ function Login() {
       .then(data => {
         localStorage.setItem('TOKEN', data.accessToken);
 
-        navigate('/src/pages/Main/Main.jsx');
+        navigate('/Main');
       });
   };
   return (

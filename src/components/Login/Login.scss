@@ -10,33 +10,41 @@
   padding: 20px 20px 50px 20px;
   background-color: white;
   order: 2;
+
   .loginIcon {
     margin: 20px;
     font-size: $font-size-xl;
   }
+
   .loginTitle {
     margin-bottom: 30px;
     font-size: $font-size-xl;
   }
+
   .loginId {
     width: 450px;
     padding: 10px 10px;
   }
+
   .loginPw {
     width: 450px;
     padding: 10px 10px;
   }
+
   .block {
     display: block;
     margin: auto;
     margin-bottom: 30px;
     font-size: $font-size-lg;
   }
+
   .loginModalDelete {
     margin: 0 0 10px 480px;
+
     .fa-solid {
       padding: 10px;
       font-size: 16px;
+
       &:hover {
         padding: 10px;
         border-radius: 50%;
@@ -44,10 +52,12 @@
       }
     }
   }
+
   .loginHelp {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .checkBox {
       transform: scale(2);
       margin-right: 15px;
@@ -61,29 +71,34 @@
     background-color: $background-color-black;
     color: white;
   }
+
   .loginKakao {
     width: 450px;
     padding: 10px;
     border-radius: 5px;
     background-color: rgb(251, 237, 93);
+
     .fa-message {
       position: absolute;
       display: flex;
       padding-top: 3px;
     }
   }
+
   .loginFacebook {
     width: 450px;
     padding: 10px 10px;
     border-radius: 5px;
     background-color: rgb(47, 82, 134);
     color: $font-color-white;
+
     .fa-facebook-f {
       position: absolute;
       display: flex;
       padding-top: 3px;
     }
   }
+
   .signInCheck {
     color: $font-color-grey;
 
