@@ -1,0 +1,37 @@
+{
+  "result": [
+    {
+      "cartId": 3,
+      "productName": "에어 조던 1 레트로 하이 OG",
+      "quantity": 1,
+      "size": "240",
+      "retailPrice": "209000",
+      "stock": 5,
+      "styleCode": "555088-161",
+      "discountPrice": "167200",
+      "thumbnail": "https://raw.githubusercontent.com/whrod/1stprojectImages/main/555088-161_1.jpg"
+    },
+    {
+      "cartId": 10,
+      "productName": "나이키 블레이저 로우 x sacai",
+      "quantity": 2,
+      "size": "275",
+      "retailPrice": "139000",
+      "stock": 20,
+      "styleCode": "DM6443-001",
+      "discountPrice": "90400",
+      "thumbnail": "https://raw.githubusercontent.com/whrod/1stprojectImages/main/DM6443-001_1.jpg"
+    },
+    {
+      "cartId": 17,
+      "productName": "나이키 ACG 에어 데슈츠+ SE",
+      "quantity": 1,
+      "size": "360",
+      "retailPrice": "99000",
+      "stock": 20,
+      "styleCode": "DR1020-400",
+      "discountPrice": null,
+      "thumbnail": "https://raw.githubusercontent.com/whrod/1stprojectImages/main/DR1020-400_1.jpg"
+    }
+  ]
+}

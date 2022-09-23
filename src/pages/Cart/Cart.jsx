@@ -1,40 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import OptModal from '../Commponent/OptModal';
+import CartItem from '../Commponent/CartItem';
 import './Cart.scss';
 
 function Cart() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  // const [count, setCount] = useState(0);
+  //서버통신 useEffect
+  // useEffect(() => {
+  //   fetch('http://192.168.14.221:8000/cart/1')
+  //     .then(response => {
+  //       if (response.ok === true) {
+  //         return response.json();
+  //       }
+  //       throw new Error('에러발생');
+  //     })
+  //     .catch(error => alert(error))
+  //     .then(data => setCartItems(data));
+  // }, []);
+  //Mock data useEffect
+  const [getItems, setGetItems] = useState('');
+  useEffect(() => {
+    fetch('./data/cart.json')
+      .then(response => response.json())
+      .then(data => setGetItems(data));
+  }, []);
+  const cartItems = getItems;
+
   return (
-    <>
+    <div className="cart">
       <div className="cartHeader">
         <h2 className="cartTitle">장바구니</h2>
-        <p className="cartItemNum">
+        <p className="cartItemsCounts">
           <span>0</span>개 상품
         </p>
       </div>
-
       <article className="cartWrapper">
         <section className="cartItemsListWrapper">
           <div className="cartItemsListHeader">
             <button className="cartDelItems">전체삭제</button>
           </div>
-          <div className="cartItemsList">
-            <img
-              className="cartItemImg"
-              alt="제품"
-              src={`${process.env.PUBLIC_URL}image/shoe-01.jpg`}
-            />
-            <div className="cartItemInfo">
-              <h6 className="cartItemTitle">나이키코트 리액트 베이퍼</h6>
-              <p className="cartItemDes">스타일 : CV0724-002</p>
-              <p className="cartItemDes">사이즈 : 250</p>
-              <p className="cartItemDes">수량 : 2</p>
-            </div>
-            <button className="cartOptChange">옵션 변경</button>
-            <p className="cartItemPrice">189,000</p>
-            <button>
-              <i class="fa-regular fa-trash-can del cartDelItem" />
-            </button>
-          </div>
-          <button className="addWishBtn">위시리스트에 추가</button>
+          <ul className="cartItemsList">
+            {cartItems &&
+              cartItems.result.map(cartItem => (
+                <CartItem
+                  setIsOpenModal={setIsOpenModal}
+                  key={cartItem.cartId}
+                  cartItem={cartItem}
+                  // cartItemQuantity={cartItemQuantity}
+                  // setCartItems={setCartItems}
+                />
+              ))}
+          </ul>
         </section>
         <article className="cartRight">
           <section className="cartRightWrapper">
@@ -81,7 +98,10 @@ function Cart() {
           </div>
         </article>
       </article>
-    </>
+      {isOpenModal && (
+        <OptModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      )}
+    </div>
   );
 }
 
