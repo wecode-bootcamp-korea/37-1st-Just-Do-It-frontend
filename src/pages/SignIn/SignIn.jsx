@@ -34,30 +34,19 @@ function SignIn() {
     const today = new Date();
     const todayTime = today.getTime();
     const birthTime = new Date(inputValue.birth);
-    let ageReg = Math.floor(
+    const ageReg = Math.floor(
       (todayTime - birthTime) / (1000 * 60 * 60 * 24 * 365)
     );
-    console.log('age', ageReg);
 
-    if (!idReg.test(inputValue.userName))
-      return alert('아이디 양식에 맞지 않음');
-    if (!(inputValue.userName.length > 6)) return alert('ID가 짧음');
-    if (!pwReg.test(inputValue.password)) return alert('비밀번호가 잘못됨');
-    if (!(inputValue.password === inputValue.passwordForCheck))
-      return alert('비밀번호가 안같음');
-    if (!mobileReg.test(inputValue.phoneNumber)) return alert('폰번호 똑바로');
-    if (!birthReg.test(inputValue.birth)) return alert('양식에 맞지 않아');
-    if (inputValue.gender === '2') return alert('성별도 체크');
-
-    // const formData = new FormData();
-    // formData.append('username', inputValue.userName);
-    // formData.append('password', inputValue.password);
-    // formData.append('passwordForCheck', inputValue.passwordForCheck);
-    // formData.append('address', inputValue.address);
-    // formData.append('fullname', inputValue.fullName);
-    // formData.append('phone_number', inputValue.phoneNumber);
-    // formData.append('birth', inputValue.birth);
-    // formData.append('gender', Number(inputValue.gender));
+    // if (!idReg.test(inputValue.userName))
+    //   return alert('아이디 양식에 맞지 않음');
+    // if (!(inputValue.userName.length > 6)) return alert('ID가 짧음');
+    // if (!pwReg.test(inputValue.password)) return alert('비밀번호가 잘못됨');
+    // if (!(inputValue.password === inputValue.passwordForCheck))
+    //   return alert('비밀번호가 안같음');
+    // if (!mobileReg.test(inputValue.phoneNumber)) return alert('폰번호 똑바로');
+    // if (!birthReg.test(inputValue.birth)) return alert('양식에 맞지 않아');
+    // if (inputValue.gender === '2') return alert('성별도 체크');
 
     const submitData = {
       userName: inputValue.userName,
@@ -68,32 +57,14 @@ function SignIn() {
       birth: inputValue.birth,
       gender: inputValue.gender,
     };
-    console.log(submitData);
 
-    // const signInForm = document.getElementById('signInForm');
-
-    // for (let key of formData.keys()) {
-    //   console.log(key, ':', formData.get(key));
-    // }
-    // fetch('http://172.20.10.3:8000/users/signup', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify(submitData),
-    // }).then(response => console.log(response));
-    // .then(response => {
-    //   console.log('0', response);
-
-    //   if (response.ok === true) {
-    //     console.log('1');
-    //     console.log('2', response.json());
-
-    //     navigate('../Login/Login.jsx');
-    //   }
-    //   throw new Error('에러 발생!');
-    // })
-    // .catch(error => console.log('3', error));
+    fetch('http://172.20.10.3:8000/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(submitData),
+    }).then(response => response);
   };
 
   return (
