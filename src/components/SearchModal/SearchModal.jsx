@@ -3,21 +3,17 @@ import './SearchModal.scss';
 
 function SearchModal() {
   return (
-    <div className="searchModalWrapper">
-      <div className="searchModal">
+    <div className="searchModal">
+      <div className="header">
         <div>
-          <p className="searchModalLeftText">나이키</p>
+          <p className="headerLeft">나이키</p>
         </div>
-        <div className="searchModalCenter">
-          <i className="fa-solid fa-magnifying-glass searchModalCenterIcon" />
-          <input
-            type="text"
-            placeholder="검색"
-            className="searchModalCenterInput"
-          />
+        <div className="headerCenter">
+          <i className="fa-solid fa-magnifying-glass headerCenterIcon" />
+          <input type="text" placeholder="검색" className="headerCenterInput" />
         </div>
-        <div className="searchModalRight">
-          <i className="fa-solid fa-x searchModalRightIcon" />
+        <div className="headerRight">
+          <i className="fa-solid fa-x headerRightIcon" />
         </div>
       </div>
       <div className="searchInfo">

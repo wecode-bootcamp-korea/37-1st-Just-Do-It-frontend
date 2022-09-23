@@ -1,15 +1,15 @@
 @import '/src/styles/variables.scss';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
 
-.searchModalWrapper {
-  .searchModal {
+.searchModal {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 50px;
 
-    .searchModalCenter {
-      .searchModalCenterIcon {
+    .headerCenter {
+      .headerCenterIcon {
         position: absolute;
         padding: 6px;
         font-size: 36px;
@@ -18,7 +18,7 @@
           background-color: lightgrey;
         }
       }
-      .searchModalCenterInput {
+      .headerCenterInput {
         width: 600px;
         padding: 10px 10px 10px 50px;
         font-size: $font-size-xl;
@@ -30,8 +30,8 @@
         }
       }
     }
-    .searchModalRight {
-      .searchModalRightIcon {
+    .headerRight {
+      .headerRightIcon {
         font-size: 24px;
         padding: 10px;
 
