@@ -2,7 +2,7 @@ import React from 'react';
 
 import './NavModal.scss';
 
-export default function Modal({
+export default function NavModal({
   children,
   loginModal,
   searchModal,

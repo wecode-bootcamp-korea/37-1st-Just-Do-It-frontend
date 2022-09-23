@@ -1,63 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import ModalPortal from '../../Portal';
-import NavModal from '../../NavModal';
-import Login from '../Login/Login';
-import SearchModal from '../SearchModal/SearchModal';
-import ViewItem from '../ViewItem/ViewItem';
+
 import './Nav.scss';
 
-function Nav() {
-  const [loginModal, setLoginModal] = useState(false);
-  const [searchModal, setSearchModal] = useState(false);
-  const [itemModal, setItemModal] = useState(false);
-
-  const handleToggleLogin = () => {
-    setLoginModal(prev => !prev);
-  };
-  const handleToggleSearch = () => {
-    setSearchModal(prev => !prev);
-  };
-  const handleToggleItem = () => {
-    setItemModal(prev => !prev);
-  };
-
-  const isModalOpen = loginModal || searchModal || itemModal;
-  const getCurrentModal = () => {
-    if (loginModal) {
-      return <Login handleToggleLogin={handleToggleLogin} />;
-    }
-
-    if (searchModal) {
-      return <SearchModal handleToggleSearch={handleToggleSearch} />;
-    }
-
-    if (itemModal) {
-      return <ViewItem />;
-    }
-
-    return null;
-  };
-
+function Nav({ handleToggleLogin, handleToggleSearch, handleToggleItem }) {
   return (
     <>
-      {isModalOpen && (
-        <ModalPortal>
-          <NavModal
-            loginModal={loginModal}
-            searchModal={searchModal}
-            itemModal={itemModal}
-          >
-            {getCurrentModal()}
-          </NavModal>
-        </ModalPortal>
-      )}
-      <Nav
-        handleToggleLogin={handleToggleLogin}
-        handleToggleSearch={handleToggleSearch}
-        handleToggleItem={handleToggleItem}
-      />
       <div className="navTop">
         <div className="navTopLeft">
           <p className="navTopLeftItem">조던</p>
