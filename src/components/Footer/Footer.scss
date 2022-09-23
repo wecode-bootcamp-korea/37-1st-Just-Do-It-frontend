@@ -1,28 +1,37 @@
 @import '/src/styles/variables.scss';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
 
-.footerWrapper {
+.footer {
   border-top: 2px solid grey;
   background-color: $font-color-black;
 
-  .footerTextWhite {
+  .categoryText {
     display: block;
     color: white;
     padding: 20px 10px;
   }
 
-  .footerTextGrey {
+  .defaultText {
     display: block;
     color: $font-color-grey;
     padding: 10px;
   }
 
-  .footerTop {
+  .top {
     display: flex;
     justify-content: space-around;
     margin: 0 200px;
 
-    .footerTopIconBox {
+    .topItem {
+      .defaultText {
+        &:first-child {
+          padding: 20px 10px;
+          color: $font-color-white;
+        }
+      }
+    }
+
+    .topIconBox {
       display: flex;
 
       .fa-brands {
@@ -40,39 +49,39 @@
     }
   }
 
-  .footerCenter {
+  .center {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-top: 2px solid grey;
     border-bottom: 2px solid grey;
 
-    .footerCenterBox {
+    .centerBox {
       display: flex;
       align-items: center;
       margin: 0 50px;
     }
   }
 
-  .footerBottom {
+  .bottom {
     display: flex;
     justify-content: center;
     border-bottom: 2px solid grey;
 
-    .footerBottomBox {
+    .bottomBox {
       width: 500px;
       margin: 20px;
 
-      .footerBottomTextWhite {
+      .bottomCategoryText {
         color: white;
         padding: 10px 10px;
       }
 
-      .footerBottomTextGrey {
+      .bottomDefaultText {
         color: $font-color-grey;
         padding: 10px 0 10px 0;
 
-        .footerBottomTextWhiteMargin {
+        .textUnderBar {
           text-decoration: underline;
         }
       }

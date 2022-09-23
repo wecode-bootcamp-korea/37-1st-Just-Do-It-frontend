@@ -10,13 +10,11 @@ import ItemList from './pages/ItemsList/ItemsList';
 function Router() {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
         <Route path="/view-item" element={<ViewItem />} />
         <Route path="/" element={<Main />} />
         <Route path="/itemList" element={<ItemList />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }
