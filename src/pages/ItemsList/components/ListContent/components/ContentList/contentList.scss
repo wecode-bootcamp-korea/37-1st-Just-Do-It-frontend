@@ -25,20 +25,38 @@
 
       .itemImg {
         @include flexCenter;
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
         background-size: cover;
-
-        &:hover {
-          background-image: none;
-        }
 
         img {
           width: 100%;
+          vertical-align: middle;
           cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .itemDecription {
+          position: absolute;
+          top: 5%;
+          left: 1%;
+          width: 100%;
           opacity: 0;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          img {
+            opacity: 0.4;
+          }
+
+          .itemDecription {
+            opacity: 1;
+          }
         }
       }
 

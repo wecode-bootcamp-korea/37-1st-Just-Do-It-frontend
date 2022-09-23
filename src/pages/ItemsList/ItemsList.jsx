@@ -9,9 +9,14 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState([]);
   const [selectedColor, setSelectedColor] = useState([]);
   const [products, setProducts] = useState({});
+  const [filterHider, setFilterHider] = useState(true);
 
   const colorSelector = event => {
     // asd
+  };
+
+  const filterController = () => {
+    setFilterHider(prev => !prev);
   };
 
   useEffect(() => {
@@ -22,13 +27,22 @@ function ItemList() {
 
   return (
     <section className="itemList">
-      <ListHeader />
+      <ListHeader
+        filterController={filterController}
+        filterHider={filterHider}
+      />
       <div className="itemListMain">
         <FilterBar
           selectedSize={selectedSize}
           setSelectedSize={setSelectedSize}
+          filterHider={filterHider}
         />
-        <ListContent products={products} setProducts={setProducts} />
+
+        <ListContent
+          products={products}
+          setProducts={setProducts}
+          filterHider={filterHider}
+        />
       </div>
     </section>
   );

@@ -10,8 +10,8 @@ function ContentList({ products }) {
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {products.length !== undefined
-          ? products.map(
+        {CONTENTS_MOCK.length !== undefined
+          ? CONTENTS_MOCK.map(
               ({
                 id,
                 styleCode,
@@ -28,8 +28,32 @@ function ContentList({ products }) {
                   <div className="contentItem" key={id}>
                     <div
                       className="itemImg"
-                      style={{ backgroundImage: `url(${thumbnail})` }}
+                      style={{ backgroundColor: `white` }}
                     >
+                      <div className="itemDecription">
+                        <p>
+                          상품 상세 설명 엄ㅊ어길다 엄청 긴 상품리스티이다.
+                          이것은 엄청 길기 때문에 엄청 길게 보일것이다. 왜냐하면
+                          엄청 길기 때문이다. 길다길어 마치 나의 다리길이처럼
+                          말이지 상품 상세 설명 엄ㅊ어길다 엄청 긴
+                          상품리스티이다. 이것은 엄청 길기 때문에 엄청 길게
+                          보일것이다. 왜냐하면 엄청 길기 때문이다. 길다길어 마치
+                          나의 다리길이처럼 말이지 상품 상세 설명 엄ㅊ어길다
+                          엄청 긴 상품리스티이다. 이것은 엄청 길기 때문에 엄청
+                          길게 보일것이다. 왜냐하면 엄청 길기 때문이다. 길다길어
+                          마치 나의 다리길이처럼 말이지 상품 상세 설명
+                          엄ㅊ어길다 엄청 긴 상품리스티이다. 이것은 엄청 길기
+                          때문에 엄청 길게 보일것이다. 왜냐하면 엄청 길기
+                          때문이다. 길다길어 마치 나의 다리길이처럼 말이지 상품
+                          상세 설명 엄ㅊ어길다 엄청 긴 상품리스티이다. 이것은
+                          엄청 길기 때문에 엄청 길게 보일것이다. 왜냐하면 엄청
+                          길기 때문이다. 길다길어 마치 나의 다리길이처럼 말이지
+                          상품 상세 설명 엄ㅊ어길다 엄청 긴 상품리스티이다.
+                          이것은 엄청 길기 때문에 엄청 길게 보일것이다. 왜냐하면
+                          엄청 길기 때문이다. 길다길어 마치 나의 다리길이처럼
+                          말이지
+                        </p>
+                      </div>
                       <img src={thumbnail} alt={productName} />
                     </div>
                     <div className="itemDetails">

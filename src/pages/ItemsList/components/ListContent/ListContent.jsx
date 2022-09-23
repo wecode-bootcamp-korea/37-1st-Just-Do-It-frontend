@@ -4,9 +4,12 @@ import ContentNext from './components/ContentList/components/ContentNext/Content
 import ContentList from './components/ContentList/ContentList';
 import './listContent.scss';
 
-function ListContent({ products, setProducts }) {
+function ListContent({ products, setProducts, filterHider }) {
   return (
-    <div className="listContent">
+    <div
+      className="listContent"
+      style={filterHider !== true ? { marginLeft: 0 } : null}
+    >
       <ContentHeader />
       <ContentList products={products} />
       <ContentNext products={products} setProducts={setProducts} />

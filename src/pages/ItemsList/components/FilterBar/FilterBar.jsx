@@ -7,9 +7,16 @@ import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/f
 
 import './filterBar.scss';
 
-function FilterBar({ selectedSize, setSelectedSize }) {
+function FilterBar({ selectedSize, setSelectedSize, filterHider }) {
+  console.log(filterHider);
+
   return (
-    <div className="filterBar">
+    <div
+      className="filterBar"
+      style={
+        filterHider !== true ? { width: 0, minWidth: 0, opacity: 0 } : null
+      }
+    >
       <FilterBarSize
         selectedSize={selectedSize}
         setSelectedSize={setSelectedSize}

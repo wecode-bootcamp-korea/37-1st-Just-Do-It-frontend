@@ -4,6 +4,11 @@
 
 .listHeader {
   @include flexSort(space-between, center);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding-left: 35px;
+  padding-right: 45px;
   width: 100%;
   background-color: white;
   height: 61px;
@@ -20,6 +25,7 @@
     .headerFilter {
       @include flexCenter;
       margin-left: 30px;
+      cursor: pointer;
 
       .text {
         padding-top: 5px;
@@ -33,6 +39,7 @@
     .headerSetOrder {
       @include flexCenter;
       margin-left: 30px;
+      cursor: pointer;
 
       .text {
         padding-top: 5px;
