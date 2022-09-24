@@ -6,21 +6,20 @@ import ListHeader from './components/listHeader/ListHeader';
 import './itemList.scss';
 
 function ItemList() {
+  const [products, setProducts] = useState({});
+  const [sortStandard, setSortStandard] = useState('신상품순');
   const [selectedSize, setSelectedSize] = useState([]);
   const [selectedColor, setSelectedColor] = useState([]);
-  const [products, setProducts] = useState({});
   const [filterHider, setFilterHider] = useState(true);
 
   const colorSelector = event => {
     // asd
   };
 
-  const filterController = () => {
-    setFilterHider(prev => !prev);
-  };
-
   useEffect(() => {
-    fetch('http://172.20.10.12:8000/products?offset=0&limit=5')
+    fetch(
+      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandard}`
+    )
       .then(response => response.json())
       .then(result => setProducts(result.list));
   }, []);
@@ -28,8 +27,10 @@ function ItemList() {
   return (
     <section className="itemList">
       <ListHeader
-        filterController={filterController}
         filterHider={filterHider}
+        setFilterHider={setFilterHider}
+        sortStandard={sortStandard}
+        setSortStandard={setSortStandard}
       />
       <div className="itemListMain">
         <FilterBar
@@ -42,6 +43,7 @@ function ItemList() {
           products={products}
           setProducts={setProducts}
           filterHider={filterHider}
+          sortStandard={sortStandard}
         />
       </div>
     </section>

@@ -4,7 +4,7 @@ import ContentNext from './components/ContentList/components/ContentNext/Content
 import ContentList from './components/ContentList/ContentList';
 import './listContent.scss';
 
-function ListContent({ products, setProducts, filterHider }) {
+function ListContent({ products, setProducts, filterHider, sortStandard }) {
   return (
     <div
       className="listContent"
@@ -12,7 +12,11 @@ function ListContent({ products, setProducts, filterHider }) {
     >
       <ContentHeader />
       <ContentList products={products} />
-      <ContentNext products={products} setProducts={setProducts} />
+      <ContentNext
+        products={products}
+        setProducts={setProducts}
+        sortStandard={sortStandard}
+      />
     </div>
   );
 }

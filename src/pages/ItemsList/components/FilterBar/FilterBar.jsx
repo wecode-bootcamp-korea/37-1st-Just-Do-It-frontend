@@ -8,8 +8,6 @@ import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/f
 import './filterBar.scss';
 
 function FilterBar({ selectedSize, setSelectedSize, filterHider }) {
-  console.log(filterHider);
-
   return (
     <div
       className="filterBar"

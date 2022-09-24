@@ -27,6 +27,12 @@
       margin-left: 30px;
       cursor: pointer;
 
+      &:hover {
+        .text {
+          opacity: 0.5;
+        }
+      }
+
       .text {
         padding-top: 5px;
       }
@@ -34,6 +40,7 @@
       img {
         height: $font-size-base;
         margin-left: 5px;
+        margin-top: 2px;
       }
     }
     .headerSetOrder {
@@ -41,6 +48,12 @@
       margin-left: 30px;
       cursor: pointer;
 
+      &:hover {
+        .text {
+          opacity: 0.5;
+        }
+      }
+
       .text {
         padding-top: 5px;
       }
@@ -48,6 +61,7 @@
       img {
         height: $font-size-base;
         margin-left: 5px;
+        margin-top: 2px;
       }
     }
   }
