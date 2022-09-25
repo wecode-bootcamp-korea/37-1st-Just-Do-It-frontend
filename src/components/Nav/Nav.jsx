@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Nav.scss';
 
-function Nav({ handleToggleLogin, handleToggleSearch, handleToggleItem }) {
+function Nav({ showTargetModal }) {
+  const [fullName, setFullName] = useState(null);
+  const [token, setToken] = useState(null);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   const fullName = localStorage.getItem('fullName');
+
+  //   if (token && fullName) {
+  //     // alert(`token: ${token}, fullName: ${fullName}`);
+  //     setToken(token);
+  //     setFullName(fullName);
+  //   }
+  // }, [localStorage.getItem('token')]);
+
+  const handleLogout = () => {
+    alert('로그아웃');
+    localStorage.clear();
+    setToken(null);
+    setFullName(null);
+  };
+
   return (
     <>
       <div className="navTop">
@@ -15,12 +35,26 @@ function Nav({ handleToggleLogin, handleToggleSearch, handleToggleItem }) {
           <Link to="/item-list" className="navTopRightItem">
             고객센터
           </Link>
-          <Link to="/sign-in" className="navTopRightItem">
-            멤버 가입
-          </Link>
-          <button className="navTopRightItem" onClick={handleToggleLogin}>
-            로그인
-          </button>
+          {token && fullName ? (
+            <>
+              <p className="navTopRightItem">{fullName}</p> |
+              <button className="navTopRightItem" onClick={handleLogout}>
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/sign-in" className="navTopRightItem">
+                멤버 가입
+              </Link>
+              <button
+                className="navTopRightItem"
+                onClick={() => showTargetModal('login')}
+              >
+                로그인
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="navBottom">
@@ -29,7 +63,10 @@ function Nav({ handleToggleLogin, handleToggleSearch, handleToggleItem }) {
             나이키
           </Link>
         </div>
-        <div className="navBottomCenter" onMouseEnter={handleToggleItem}>
+        <div
+          className="navBottomCenter"
+          onMouseEnter={() => showTargetModal('viewItem')}
+        >
           <Link to="/item-list" className="navBottomCenterItem">
             New Releases
           </Link>
@@ -52,7 +89,7 @@ function Nav({ handleToggleLogin, handleToggleSearch, handleToggleItem }) {
           </div>
           <div className="navBottomRightInput">
             <input
-              onClick={handleToggleSearch}
+              onClick={() => showTargetModal('search')}
               type="text"
               placeholder="검색"
               className="navBottomRightInputBar"
