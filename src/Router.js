@@ -2,77 +2,71 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-// import Main from './pages/Main/Main';
+import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
-// import SignIn from './pages/SignIn/SignIn';
-// import Login from './components/Login/Login';
-// import SearchModal from './components/SearchModal/SearchModal';
-import ViewItem from './components/ViewItem/ViewItem';
+import SignIn from './pages/SignIn/SignIn';
+import LoginModal from './components/Login/LoginModal';
+import SearchModal from './components/SearchModal/SearchModal';
+import ViewItemModal from './components/ViewItem/ViewItemModal';
 
 import ModalPortal from './Portal';
-import NavModal from './NavModal';
 
 function Router() {
-  const [loginModal, setLoginModal] = useState(false);
-  const [searchModal, setSearchModal] = useState(false);
-  const [itemModal, setItemModal] = useState(false);
+  const [modalState, setModalState] = useState({
+    login: false,
+    search: false,
+    viewItem: false,
+  });
 
-  const handleToggleLogin = () => {
-    setLoginModal(prev => !prev);
-  };
-  const handleToggleSearch = () => {
-    setSearchModal(prev => !prev);
-  };
-  const handleToggleItem = () => {
-    setItemModal(prev => !prev);
-  };
-
-  const isModalOpen = loginModal || searchModal || itemModal;
-  const getCurrentModal = () => {
-    if (loginModal) {
-      return <Login handleToggleLogin={handleToggleLogin} />;
+  const showTargetModal = modalName => {
+    if (!['login', 'search', 'viewItem'].includes(modalName)) {
+      return;
     }
 
-    if (searchModal) {
-      return <SearchModal handleToggleSearch={handleToggleSearch} />;
+    setModalState(prev => ({
+      ...prev,
+      [modalName]: true,
+    }));
+  };
+
+  const closeTargetModal = modalName => {
+    if (!['login', 'search', 'viewItem'].includes(modalName)) {
+      return;
     }
 
-    if (itemModal) {
-      return <ViewItem />;
-    }
-
-    return null;
+    setModalState(prev => ({
+      ...prev,
+      [modalName]: false,
+    }));
   };
 
   return (
     <BrowserRouter>
-      {isModalOpen && (
+      {modalState.login && (
         <ModalPortal>
-          <NavModal
-            loginModal={loginModal}
-            searchModal={searchModal}
-            itemModal={itemModal}
-          >
-            {getCurrentModal()}
-          </NavModal>
+          <LoginModal closeTargetModal={closeTargetModal} />
         </ModalPortal>
       )}
-      <Nav
-        handleToggleLogin={handleToggleLogin}
-        handleToggleSearch={handleToggleSearch}
-        handleToggleItem={handleToggleItem}
-      />
+      {modalState.search && (
+        <ModalPortal>
+          <SearchModal closeTargetModal={closeTargetModal} />
+        </ModalPortal>
+      )}
+      {modalState.viewItem && (
+        <ModalPortal>
+          <ViewItemModal closeTargetModal={closeTargetModal} />
+        </ModalPortal>
+      )}
+
+      <Nav showTargetModal={showTargetModal} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/item-list" element={<ItemList />} />
-        <Route path="/search-modal" element={<SearchModal />} />
-        <Route path="/view-item" element={<ViewItem />} />
+        <Route path="/view" element={<viewItem />} />
       </Routes>
       <Footer />
     </BrowserRouter>
   );
 }
-
 export default Router;
