@@ -1,0 +1,54 @@
+@import '/src/styles/variables.scss';
+
+.viewItemWrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  top: 61px;
+  height: 600px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 999;
+
+  .viewItem {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 70px;
+    .clothesBox {
+      .defaultText {
+        &:nth-child(8) {
+          color: $font-color-black;
+          font-size: $font-size-lg;
+        }
+      }
+    }
+
+    .categoryText {
+      display: block;
+      padding: 10px;
+      color: $font-color-black;
+      font-size: $font-size-lg;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .defaultText {
+      display: block;
+      padding: 10px;
+      color: $font-color-grey;
+      font-size: $font-size-base;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:first-child {
+        color: $font-color-black;
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}
