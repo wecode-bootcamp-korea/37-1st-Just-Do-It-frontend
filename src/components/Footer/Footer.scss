@@ -4,6 +4,8 @@
 .footer {
   border-top: 2px solid grey;
   background-color: $font-color-black;
+  z-index: 9000;
+  position: relative;
 
   .categoryText {
     display: block;

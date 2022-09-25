@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FilterBarCheckList from './components/FilterBarCheckList/FilterBarCheckList';
 import FilterBarColor from './components/FilterBarColor/FilterBarColor';
 import FilterBarSize from './components/FilterBarSize/FilterBarSize';
 
 import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/filterBarItems';
-
 import './filterBar.scss';
 
-function FilterBar({ selectedSize, setSelectedSize, filterHider }) {
+function FilterBar({ filterHider }) {
+  const [checkList, setCheckList] = useState({});
   return (
     <div
       className="filterBar"
       style={
-        filterHider !== true ? { width: 0, minWidth: 0, opacity: 0 } : null
+        filterHider !== true
+          ? {
+              transition: '0.4s',
+              transform: 'translateX(-100%)',
+              overflow: 'hidden',
+            }
+          : null
       }
     >
-      <FilterBarSize
-        selectedSize={selectedSize}
-        setSelectedSize={setSelectedSize}
-      />
+      <FilterBarSize />
       <FilterBarColor />
       {FILTER_BAR_CHECKLIST.map(list => {
         return (
@@ -26,6 +29,8 @@ function FilterBar({ selectedSize, setSelectedSize, filterHider }) {
             category={list.category}
             listArr={list.listArr}
             key={list.category}
+            checkList={checkList}
+            setCheckList={setCheckList}
           />
         );
       })}

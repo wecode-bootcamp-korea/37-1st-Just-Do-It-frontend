@@ -8,21 +8,29 @@ import './itemList.scss';
 function ItemList() {
   const [products, setProducts] = useState({});
   const [sortStandard, setSortStandard] = useState('신상품순');
-  const [selectedSize, setSelectedSize] = useState([]);
-  const [selectedColor, setSelectedColor] = useState([]);
   const [filterHider, setFilterHider] = useState(true);
 
-  const colorSelector = event => {
-    // asd
+  const standardObject = {
+    신상품순: '',
+    판매순: 'salescount desc',
+    '리뷰 많은 순': 'reviewcount desc',
+    할인순: 'discountRate desc',
+    '높은 가격순': 'price desc',
+    '낮은 가격순': 'price asc',
   };
 
+  const sortStandardForSubmit = standardObject[sortStandard];
+
+  console.log(products);
+
   useEffect(() => {
+    setProducts([]);
     fetch(
-      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandard}`
+      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandardForSubmit}`
     )
       .then(response => response.json())
       .then(result => setProducts(result.list));
-  }, []);
+  }, [sortStandard]);
 
   return (
     <section className="itemList">
@@ -31,19 +39,18 @@ function ItemList() {
         setFilterHider={setFilterHider}
         sortStandard={sortStandard}
         setSortStandard={setSortStandard}
+        sortStandardForSubmit={sortStandardForSubmit}
+        setProducts={setProducts}
       />
       <div className="itemListMain">
-        <FilterBar
-          selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
-          filterHider={filterHider}
-        />
+        <FilterBar filterHider={filterHider} />
 
         <ListContent
           products={products}
           setProducts={setProducts}
           filterHider={filterHider}
           sortStandard={sortStandard}
+          sortStandardForSubmit={sortStandardForSubmit}
         />
       </div>
     </section>

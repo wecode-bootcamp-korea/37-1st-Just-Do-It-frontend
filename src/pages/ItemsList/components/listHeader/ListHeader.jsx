@@ -8,16 +8,10 @@ function ListHeader({
   setFilterHider,
   sortStandard,
   setSortStandard,
+  sortStandardForSubmit,
+  setProducts,
 }) {
   const [sortSetter, setSortSetter] = useState(false);
-  const standardObject = {
-    신상품순: '',
-    판매순: 'salescount desc',
-    '리뷰 많은 순': 'reviewcount desc',
-    할인순: 'discountRate desc',
-    '높은 가격순': 'price desc',
-    '낮은 가격순': 'price asc',
-  };
 
   const filterController = () => {
     setFilterHider(prev => !prev);
@@ -31,12 +25,12 @@ function ListHeader({
   };
 
   useEffect(() => {
-    const standardForSubmit = standardObject[sortStandard];
-    console.log('sortStandard : ', sortStandard);
-    console.log('standardForSubmit : ', standardForSubmit);
-
-    fetch(`http://172.20.10.12:8000/products?`);
-  }, [sortStandard]);
+    fetch(
+      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandardForSubmit}`
+    )
+      .then(response => response.json())
+      .then(result => setProducts(result.list));
+  }, []);
 
   return (
     <header className="listHeader">

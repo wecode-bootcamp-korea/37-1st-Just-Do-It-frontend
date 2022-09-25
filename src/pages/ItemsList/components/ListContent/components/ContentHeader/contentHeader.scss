@@ -16,6 +16,10 @@
       border-radius: 10px;
       @include flexCenter;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       .textContainer {
         color: #787878;
       }

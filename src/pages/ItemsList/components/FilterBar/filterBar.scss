@@ -14,6 +14,7 @@
   padding-bottom: 120px;
   overflow-y: scroll;
   transition: 0.4s;
+  transform: translateX(0);
 
   /* 스크롤바 설정*/
   &::-webkit-scrollbar {
