@@ -1,7 +1,37 @@
 @import '/src/styles/variables.scss';
 
-.mainFirstImgWrapper {
+.main {
   margin: 50px;
+  .video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .videoTextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    .infoHeader {
+      margin: 20px;
+    }
+    .videoInfo {
+      margin: 20px;
+    }
+    .videoButton {
+      margin: 20px;
+      .btn {
+        padding: 10px 40px;
+        border-radius: 20px;
+        background-color: black;
+        color: white;
+      }
+      .buyButton {
+        margin-right: 20px;
+      }
+    }
+  }
   .categoryText {
     font-size: $font-size-xl;
     color: $font-color-black;
@@ -12,15 +42,15 @@
     color: $font-color-grey;
     margin: 10px 0;
   }
-  .mainFirstImgTitle {
+  .firstImgTitle {
     margin-bottom: 20px;
   }
-  .mainFristImgContainer {
+  .firstImgContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    .mainFirstImgBox {
+    .firstImgBox {
       width: 50%;
       height: 1020px;
       margin: 20px 20px 0 0;
@@ -29,9 +59,9 @@
       background-size: cover;
       background-position: center;
     }
-    .mainSecondImgBox {
+    .secondImgBox {
       width: 50%;
-      .mainSecondImg {
+      .secondImg {
         background-image: url(https://cdn.pixabay.com/photo/2015/07/09/19/32/dog-838281_1280.jpg);
         background-repeat: no-repeat;
         background-size: cover;
@@ -51,15 +81,15 @@
     }
   }
 
-  .mainSecondImgTitle {
+  .secondImgTitle {
     margin: 40px 0;
   }
-  .mainSecondImgContainer {
+  .secondImgContainer {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .mainFirstImgBox {
+    .firstImgBox {
       width: 50%;
       height: 800px;
       margin-right: 20px;
@@ -69,7 +99,7 @@
       background-position: center;
     }
 
-    .mainSecondImgBox {
+    .secondImgBox {
       width: 50%;
       height: 800px;
       background-image: url(https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg);
@@ -78,7 +108,7 @@
       background-position: center;
     }
   }
-  .mainThirdImgTitle {
+  .thirdImgTitle {
     display: flex;
     overflow: auto;
     white-space: nowrap;
@@ -88,9 +118,9 @@
     display: flex;
     overflow: auto;
     white-space: nowrap;
-    cursor: grab;
+
     &::-webkit-scrollbar {
-      height: 10px;
+      height: 20px;
     } /* 스크롤 바 */
 
     &::-webkit-scrollbar-track {
@@ -108,7 +138,7 @@
         margin-bottom: 40px;
       }
       .thirdImg {
-        width: 650px;
+        width: 550px;
         height: 500px;
       }
     }
