@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './SignIn.scss';
 
 function SignIn() {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     userName: '',
     password: '',
@@ -23,7 +21,6 @@ function SignIn() {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const signInForm = document.getElementById('signInForm');
   const handleSignUp = e => {
     e.preventDefault();
     const idReg = /^[a-zA-Z0-9_-]{6,99}$/;
@@ -75,24 +72,24 @@ function SignIn() {
   };
 
   return (
-    <div className="SignInWrapper">
+    <div className="signIn">
       <h1 className="SignInTitle">나이키 멤버 가입</h1>
       <p className="SignInInfo">
         멤버가 되어 나이키가 제공하는
         <br />
         최고의 제품과 혜택을 만나보세요.
       </p>
-      <form id="signInForm" onSubmit={handleSignUp}>
+      <div id="signInContainer">
         <input
-          className="SignInInput"
+          className="signInInput"
           name="userName"
           type="text"
           placeholder="사용하실 ID를 입력해주세요."
           onChange={handleChangeInput}
-          value={inputValue.username}
+          value={inputValue.userName}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           name="password"
           type="password"
           placeholder="영문 대 소문+숫자+특수문자 8~16자리((),<> 사용불가)"
@@ -100,7 +97,7 @@ function SignIn() {
           value={inputValue.password}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           name="passwordForCheck"
           type="password"
           placeholder="패스워드를 다시 입력해 주세요."
@@ -108,15 +105,15 @@ function SignIn() {
           value={inputValue.passwordForCheck}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           name="fullName"
           type="text"
           placeholder="이름을 입력해 주세요."
           onChange={handleChangeInput}
-          value={inputValue.fullname}
+          value={inputValue.fullName}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           name="address"
           type="text"
           placeholder="주소를 입력해 주세요."
@@ -124,45 +121,51 @@ function SignIn() {
           value={inputValue.address}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           name="phoneNumber"
           type="text"
           placeholder="휴대폰 번호 '-'표 없이 입력해 주세요."
           onChange={handleChangeInput}
-          value={inputValue.phone_number}
+          value={inputValue.phoneNumber}
         />
         <input
-          className="SignInInput"
+          className="signInInput"
           type="text"
           placeholder="생년월일 예)2020.02.02"
           name="birth"
           onChange={handleChangeInput}
           value={inputValue.birth}
         />
-        <div>
-          <input
-            className="SignInButtonMan"
-            name="gender"
-            type="radio"
-            placeholder="남성"
-            value="1"
-            checked={inputValue.gender === '1'}
-            onChange={handleRadioInput}
-          />
-          <input
-            className="SignInButtonWoman"
-            name="gender"
-            type="radio"
-            placeholder="여성"
-            value="0"
-            checked={inputValue.gender === '0'}
-            onChange={handleRadioInput}
-          />
+        <div className="genderCheckBox">
+          <button className="manCheckBtn">
+            <input
+              className="SignInButtonMan"
+              name="gender"
+              type="radio"
+              placeholder="남성"
+              value="1"
+              checked={inputValue.gender === '1'}
+              onChange={handleRadioInput}
+            />
+            <p className="man">남성</p>
+          </button>
+          <button className="womanCheckBtn">
+            <input
+              className="SignInButtonWoman"
+              name="gender"
+              type="radio"
+              placeholder="여성"
+              value="0"
+              checked={inputValue.gender === '0'}
+              onChange={handleRadioInput}
+            />
+            <p className="woman">여성</p>
+          </button>
         </div>
-        <button className="SignInButtonSignIn" type="submit">
+        <button className="SignInButtonSignIn" onClick={handleSignUp}>
           회원가입하기 (만 14세 이상)
         </button>
-      </form>
+      </div>
     </div>
   );
 }
