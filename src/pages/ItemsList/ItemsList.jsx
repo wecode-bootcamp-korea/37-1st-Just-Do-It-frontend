@@ -2,35 +2,40 @@ import React, { useEffect, useState } from 'react';
 import FilterBar from './components/FilterBar/FilterBar';
 import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
+import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
 
 function ItemList() {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState([]);
   const [sortStandard, setSortStandard] = useState('신상품순');
   const [filterHider, setFilterHider] = useState(true);
-
-  const standardObject = {
-    신상품순: '',
-    판매순: 'salescount desc',
-    '리뷰 많은 순': 'reviewcount desc',
-    할인순: 'discountRate desc',
-    '높은 가격순': 'price desc',
-    '낮은 가격순': 'price asc',
-  };
-
-  const sortStandardForSubmit = standardObject[sortStandard];
-
-  console.log(products);
+  const [checkList, setCheckList] = useState({});
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [selectedSize, setSelectedSize] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(5);
 
   useEffect(() => {
-    setProducts([]);
-    fetch(
-      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandardForSubmit}`
-    )
+    const sortStandardForSubmit = standardObject[sortStandard];
+    let urlForSubmit = `http://172.20.10.12:8000/products/?offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
+
+    selectedSize.map(size => (urlForSubmit = urlForSubmit + `size=${size}&`));
+    selectedColor.map(
+      color => (urlForSubmit = urlForSubmit + `color=${color}&`)
+    );
+    for (const checkListName in checkList) {
+      checkList[checkListName].map(
+        // eslint-disable-next-line no-loop-func
+        checkedList =>
+          (urlForSubmit = urlForSubmit + `${checkListName}=${checkedList}&`)
+      );
+    }
+
+    fetch(urlForSubmit)
       .then(response => response.json())
-      .then(result => setProducts(result.list));
-  }, [sortStandard]);
+      .then(result => setProducts(prev => [...result.list]));
+  }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
   return (
     <section className="itemList">
@@ -39,18 +44,26 @@ function ItemList() {
         setFilterHider={setFilterHider}
         sortStandard={sortStandard}
         setSortStandard={setSortStandard}
-        sortStandardForSubmit={sortStandardForSubmit}
-        setProducts={setProducts}
+        products={products}
       />
       <div className="itemListMain">
-        <FilterBar filterHider={filterHider} />
+        <FilterBar
+          filterHider={filterHider}
+          checkList={checkList}
+          setCheckList={setCheckList}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+        />
 
         <ListContent
           products={products}
           setProducts={setProducts}
           filterHider={filterHider}
           sortStandard={sortStandard}
-          sortStandardForSubmit={sortStandardForSubmit}
+          setOffset={setOffset}
+          setLimit={setLimit}
         />
       </div>
     </section>

@@ -10,11 +10,10 @@ function ContentList({ products }) {
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {CONTENTS_MOCK.length !== undefined
-          ? CONTENTS_MOCK.map(
+        {products.length !== undefined
+          ? products.map(
               ({
                 id,
-                styleCode,
                 thumbnail,
                 productName,
                 description,
@@ -22,7 +21,6 @@ function ContentList({ products }) {
                 color,
                 discountPrice,
                 retailPrice,
-                releaseDate,
               }) => {
                 return (
                   <div className="contentItem" key={id}>

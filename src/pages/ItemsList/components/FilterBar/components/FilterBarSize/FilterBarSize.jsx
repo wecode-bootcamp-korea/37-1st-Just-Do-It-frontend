@@ -3,8 +3,7 @@ import SIZES from './constantData/sizes';
 import './filterBarSize.scss';
 import SizeButton from './SizeButton';
 
-function FilterBarSize() {
-  const [selectedSize, setSelectedSize] = useState([]);
+function FilterBarSize({ selectedSize, setSelectedSize }) {
   const [isHide, setIsHide] = useState(false);
 
   const hideController = () => {

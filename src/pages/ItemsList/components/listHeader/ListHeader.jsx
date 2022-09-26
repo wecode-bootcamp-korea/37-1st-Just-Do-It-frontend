@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
@@ -8,8 +8,7 @@ function ListHeader({
   setFilterHider,
   sortStandard,
   setSortStandard,
-  sortStandardForSubmit,
-  setProducts,
+  products,
 }) {
   const [sortSetter, setSortSetter] = useState(false);
 
@@ -24,17 +23,9 @@ function ListHeader({
     if (event.target.className === 'sortStandard') setSortStandard(newStandard);
   };
 
-  useEffect(() => {
-    fetch(
-      `http://172.20.10.12:8000/products?offset=0&limit=5&sort=${sortStandardForSubmit}`
-    )
-      .then(response => response.json())
-      .then(result => setProducts(result.list));
-  }, []);
-
   return (
     <header className="listHeader">
-      <div className="headerLeft">Nike's 신발 (신발수)</div>
+      <div className="headerLeft">Nike's 신발 ({products.length})</div>
       <div className="headerRight">
         <div className="headerFilter" onClick={filterController}>
           <div className="text">필터</div>

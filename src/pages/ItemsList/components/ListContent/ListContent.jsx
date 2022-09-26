@@ -8,7 +8,8 @@ function ListContent({
   products,
   setProducts,
   filterHider,
-  sortStandardForSubmit,
+  setOffset,
+  setLimit,
 }) {
   return (
     <div
@@ -20,7 +21,8 @@ function ListContent({
       <ContentNext
         products={products}
         setProducts={setProducts}
-        sortStandardForSubmit={sortStandardForSubmit}
+        setOffset={setOffset}
+        setLimit={setLimit}
       />
     </div>
   );

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import './filterBarCheckList.scss';
 
-function FilterBarCheckList({ category, listArr, checkList, setCheckList }) {
+function FilterBarCheckList({
+  category,
+  categoryCode,
+  listArr,
+  checkList,
+  setCheckList,
+}) {
   const [isHide, setIsHide] = useState(false);
 
   const hideController = () => {
@@ -12,11 +18,10 @@ function FilterBarCheckList({ category, listArr, checkList, setCheckList }) {
     const selectedCheckList = event.nativeEvent.path[2].elements;
     const arrayForSubmit = [];
     for (let i = 0; i < selectedCheckList.length; i++) {
-      if (selectedCheckList[i].checked === true)
-        arrayForSubmit.push(selectedCheckList[i].id);
+      if (selectedCheckList[i].checked === true) arrayForSubmit.push(i + 1);
     }
 
-    checkList[category] = arrayForSubmit;
+    checkList[categoryCode] = arrayForSubmit;
     setCheckList({ ...checkList });
   };
 

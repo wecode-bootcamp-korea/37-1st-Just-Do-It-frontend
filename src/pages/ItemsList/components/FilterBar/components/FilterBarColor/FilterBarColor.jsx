@@ -5,8 +5,7 @@ import COLORS from './constantData/colorsForFilter';
 
 import './filterBarColor.scss';
 
-function FilterBarColor() {
-  const [selectedColor, setSelectedColor] = useState([]);
+function FilterBarColor({ selectedColor, setSelectedColor }) {
   const [isHide, setIsHide] = useState(false);
 
   const hideController = () => {
@@ -43,7 +42,7 @@ function FilterBarColor() {
               name={color.name}
               key={color.code}
               code={color.code}
-              nameEng={color.nameEng}
+              colorNumber={color.colorNumber}
               selectedColor={selectedColor}
               setSelectedColor={setSelectedColor}
             />

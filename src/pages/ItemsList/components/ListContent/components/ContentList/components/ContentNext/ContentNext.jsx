@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './contentNext.scss';
 
-function ContentNext({ products, setProducts, sortStandardForSubmit }) {
-  const offset = products.length !== undefined ? products.length : null;
-
+function ContentNext({ products, setOffset, setLimit }) {
+  const offset = products.length !== undefined ? products.length : 0;
   const nextItemGetter = () => {
-    fetch(
-      `http://172.20.10.12:8000/products?offset=${offset}&limit=6&sort=${sortStandardForSubmit}`
-    )
-      .then(response => response.json())
-      .then(result => setProducts(prev => [...prev, ...result.list]));
-    // .then(result => console.log(result));
+    setOffset(0);
+    setLimit(offset + 6);
   };
   return (
     <button className="contentNext" onClick={nextItemGetter}>
