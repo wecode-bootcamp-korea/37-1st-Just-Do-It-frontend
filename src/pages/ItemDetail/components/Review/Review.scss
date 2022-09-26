@@ -1,0 +1,18 @@
+.itemSideReview {
+  padding: 27px 0 5.5px 6px;
+  border-bottom: 1px solid lightgray;
+}
+
+.reviewContents {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.reviewBox {
+  width: 50%;
+  font-size: 13px;
+  color: darkgray;
+  display: flex;
+  justify-content: space-between;
+  line-height: 50px;
+}
