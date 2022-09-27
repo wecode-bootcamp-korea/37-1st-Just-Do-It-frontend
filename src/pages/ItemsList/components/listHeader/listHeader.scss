@@ -4,9 +4,6 @@
 
 .listHeader {
   @include flexSort(space-between, center);
-  position: fixed;
-  top: 0px;
-  left: 0px;
   padding-left: 35px;
   padding-right: 45px;
   width: 100%;

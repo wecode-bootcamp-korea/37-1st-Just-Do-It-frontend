@@ -10,7 +10,6 @@ import Nav from './components/Nav/Nav';
 import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
-import ViewItemModal from './components/ViewItem/ViewItemModal';
 
 function Router() {
   const [modalState, setModalState] = useState({
@@ -51,11 +50,6 @@ function Router() {
       {modalState.search && (
         <ModalPortal>
           <SearchModal closeTargetModal={closeTargetModal} />
-        </ModalPortal>
-      )}
-      {modalState.viewItem && (
-        <ModalPortal>
-          <ViewItemModal closeTargetModal={closeTargetModal} />
         </ModalPortal>
       )}
 

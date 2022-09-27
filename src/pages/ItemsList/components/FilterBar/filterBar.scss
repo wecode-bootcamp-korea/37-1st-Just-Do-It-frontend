@@ -3,12 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
 
 .filterBar {
-  position: fixed;
-  top: $navHeight;
-  left: $mainLeftMargin;
+  position: absolute;
+  top: 15px;
+  left: 0px;
   width: $fixedWidth;
   min-width: 274px;
-  height: 100vh;
+  height: 100%;
   padding-top: 15px;
   padding-right: 30px;
   padding-bottom: 120px;
