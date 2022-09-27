@@ -1,14 +1,5 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
-
-.optOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-}
 
 .optContainer {
   display: flex;
@@ -30,8 +21,8 @@
     .optImg {
       width: 230px;
       height: 230px;
-    } //이미지들
-  } //왼쪽 컨테이너
+    }
+  }
 
   .optRight {
     display: flex;
@@ -50,14 +41,17 @@
         font-weight: $font-weight-semibold;
       }
     }
+
     .optItemTitle {
       margin: 25px 0 50px 0;
       font-size: 30px;
       font-weight: $font-weight-title;
     }
+
     .optSeletSize {
       font-weight: $font-weight-semibold;
     }
+
     .optSizeContainer {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -77,6 +71,7 @@
         }
       }
     }
+
     .optChangeCount {
       display: flex;
       padding-bottom: 15px;
@@ -98,6 +93,7 @@
         }
       }
     }
+
     .optChangeBtn {
       width: 100%;
       margin: 10px 0 20px 0;
@@ -107,6 +103,7 @@
       font-size: $font-size-xl;
       font-weight: $font-weight-semibold;
     }
+
     .optShipInfo {
       @include flexSort(null, center);
       padding: 20px 0;

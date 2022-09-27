@@ -1,89 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import OptModal from '../Commponent/OptModal';
-import CartItem from '../Commponent/CartItem';
+import CartIsNull from './Commponent/CartIsNull';
+import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
 
 function Cart() {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [getItems, setGetItems] = useState('');
+  const [cartItems, setCartItems] = useState([]);
+
+  //통신용
+  // useEffect(() => {
+  //   fetch('http://192.168.243.221:8000/carts/', {
+  //     mehtod: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization:
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY0MjQwNzI2LCJleHAiOjE2NjUwMTgzMjZ9.4q9S_mW3KnqXinRL0N_0uMQHdMyZSc-IJbj8ERkzo4c',
+  //     },
+  //   })
+  //     .then(response => {
+  //       if (response.ok === true) {
+  //         return response.json();
+  //       }
+  //       throw new Error('에러발생');
+  //     })
+  //     .catch(error => console.log(error))
+  //     .then(data =>
+  //       // setCartItems(data.result));
+  //       console.log(data.result)
+  //     );
+  // }, []);
+  //Mock data
   useEffect(() => {
-    fetch('./data/cart.json')
-      .then(response => response.json())
-      .then(data => setGetItems(data));
+    fetch('data/cart.json')
+      .then(res => res.json())
+      .then(res => setCartItems(res.result));
   }, []);
-  const cartItems = getItems;
 
   return (
     <div className="cart">
       <div className="cartHeader">
         <h2 className="cartTitle">장바구니</h2>
-        <p className="cartItemsCounts">
+        <p className="cartItemsCount">
           <span>0</span>개 상품
         </p>
       </div>
-      <article className="cartWrapper">
-        <section className="cartItemsListWrapper">
-          <div className="cartItemsListHeader">
-            <button className="cartDelItems">전체삭제</button>
-          </div>
-          <ul className="cartItemsList">
-            {cartItems &&
-              cartItems.result.map(cartItem => (
-                <CartItem
-                  setIsOpenModal={setIsOpenModal}
-                  key={cartItem.cartId}
-                  cartItem={cartItem}
-                />
-              ))}
-          </ul>
-        </section>
-        <article className="cartRight">
-          <section className="cartRightWrapper">
-            <div className="checkoutTitle">주문예정금액</div>
-            <div className="checkoutDetail">
-              <div className="checkoutPrice detail">
-                <span>상품금액</span>
-                <span>238,000원</span>
-              </div>
-              <div className="checkout" />
-              <div className="checkoutShippingPrice detail">
-                <span>예상배송비</span>
-                <span>0원</span>
-              </div>
-              <div className="checkoutDiscountedItem detail">
-                <span>상품 할인 금액</span>
-                <span>0원</span>
-              </div>
-              <div className="checkoutDiscountedPrice detail">
-                <span>주문 할인 금액</span>
-                <span>0원</span>
-              </div>
-              <div className="totalPrice">총 결제 예정 금액</div>
-              <button className="checkoutOrderBtn">주문하기</button>
-            </div>
-          </section>
-          <p className="coupon">
-            *오퍼코드 : <span className="couponNum">2209welcome2nike</span>
-          </p>
-          <p className="couponDes">
-            *사용 가능한 신규가입 쿠폰이 있습니다(1만원 할인 적용되며 장바구니
-            전체에 5만원 이상 구매 시 적용됩니다.
-          </p>
-          <div className="inputCoupon">
-            <form>
-              <input
-                className="couponCode"
-                name="couponCode"
-                type="text"
-                placeholder="프로모션 코드 입력"
-              />
-              <button className="couponBtn">적용</button>
-            </form>
-          </div>
-        </article>
-      </article>
-      {isOpenModal && (
-        <OptModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      {cartItems[0]?.cartId ? (
+        <CartIsNotNull cartItems={cartItems} setCartItems={setCartItems} />
+      ) : (
+        <CartIsNull />
       )}
     </div>
   );
