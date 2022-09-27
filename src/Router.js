@@ -9,9 +9,7 @@ function Router() {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Main />} />
-        <Route path="/itemList" element={<ItemList />} />
       </Routes>
       <Footer />
     </BrowserRouter>
