@@ -1,0 +1,17 @@
+@import '/src/styles/variables.scss';
+@import '/src/pages/ItemsList/variablesForItemList.scss';
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+.itemList {
+  position: relative;
+  font-family: 'Gothic A1', sans-serif;
+  padding-left: 48px;
+  padding-right: 48px;
+  font-size: 18px;
+
+  .itemListMain {
+    display: flex;
+    position: relative;
+    margin-left: $mainLeftMargin;
+  }
+}
