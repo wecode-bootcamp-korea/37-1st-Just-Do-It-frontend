@@ -2,77 +2,95 @@
 
 .main {
   margin: 50px;
+
   .video {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
   }
+
   .videoTextContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
     flex-direction: column;
     margin: 20px;
+
     .infoHeader {
+      font-size: 60px;
+      font-weight: $font-weight-bold;
       margin: 20px;
     }
-    .videoInfo {
+
+    .infoMain {
+      font-size: 30px;
       margin: 20px;
     }
+
     .videoButton {
-      margin: 20px;
+      margin: 40px 20px;
+
       .btn {
         padding: 10px 40px;
-        border-radius: 20px;
-        background-color: black;
-        color: white;
+        border-radius: 40px;
+        background-color: $font-color-black;
+        color: $font-color-white;
+        font-size: 30px;
+        &:hover {
+          background-color: $font-color-grey;
+          color: $font-color-black;
+        }
       }
+
       .buyButton {
         margin-right: 20px;
       }
     }
   }
+
   .categoryText {
     font-size: $font-size-xl;
     color: $font-color-black;
     margin: 20px 0;
   }
+
   .defaultText {
     font-size: $font-size-lg;
     color: $font-color-grey;
     margin: 10px 0;
   }
+
   .firstImgTitle {
     margin-bottom: 20px;
   }
+
   .firstImgContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
     margin-bottom: 20px;
+
     .firstImgBox {
       width: 50%;
       height: 1020px;
       margin: 20px 20px 0 0;
-      background-image: url(https://cdn.pixabay.com/photo/2019/08/19/07/45/corgi-4415649_1280.jpg);
-      background-repeat: no-repeat;
+      background-image: url(../../../public/image/hahaha.png);
       background-size: cover;
+      background-repeat: no-repeat;
       background-position: center;
     }
+
     .secondImgBox {
+      margin-top: 20px;
       width: 50%;
+
       .secondImg {
-        background-image: url(https://cdn.pixabay.com/photo/2015/07/09/19/32/dog-838281_1280.jpg);
-        background-repeat: no-repeat;
+        background-image: url(../../../public/image/niceseunghoon.png);
         background-size: cover;
+        background-repeat: no-repeat;
         background-position: center;
         width: 100%;
         height: 500px;
       }
+
       .mainThirdImg {
-        background-image: url(https://cdn.pixabay.com/photo/2018/03/27/21/57/animal-3267564_1280.jpg);
-        background-repeat: no-repeat;
+        background-image: url(../../../public/image/just.png);
         background-size: cover;
+        background-repeat: no-repeat;
         background-position: center;
         width: 100%;
         height: 500px;
@@ -84,10 +102,9 @@
   .secondImgTitle {
     margin: 40px 0;
   }
+
   .secondImgContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
 
     .firstImgBox {
       width: 50%;
@@ -113,7 +130,10 @@
     overflow: auto;
     white-space: nowrap;
     margin: 40px 0;
+    color: $font-color-black;
+    font-size: 30px;
   }
+
   .thirdTitle {
     display: flex;
     overflow: auto;
@@ -134,9 +154,11 @@
 
     .thirdImgBox {
       margin-right: 20px;
+
       .mb40 {
         margin-bottom: 40px;
       }
+
       .thirdImg {
         width: 550px;
         height: 500px;
