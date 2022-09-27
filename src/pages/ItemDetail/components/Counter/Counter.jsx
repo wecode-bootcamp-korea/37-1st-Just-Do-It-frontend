@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 import './Counter.scss';
 
-const Counter = () => {
-  const [count, setCount] = useState(1);
-
-  const onIncrease = () => {
-    setCount(prevCount => prevCount + 1);
-  };
-  const onDecrease = () => {
-    setCount(prevCount => prevCount - 1);
-  };
+function Counter({ onDecrease, onIncrease, quantity, stock }) {
+  const [] = useState('');
   return (
     <div className="Counter">
-      <h1 className="countStart">{count}</h1>
+      <h1 className="countStart">{quantity}</h1>
       <div className="count">
-        <button className="countOn" onClick={onDecrease} disabled={count <= 1}>
+        <button
+          className="countOn"
+          onClick={onDecrease}
+          disabled={quantity <= 1}
+        >
           -
         </button>
-        <button className="countOn" onClick={onIncrease} disabled={count >= 10}>
+        <button
+          className="countOn"
+          onClick={onIncrease}
+          disabled={quantity >= 10}
+        >
           +
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default Counter;

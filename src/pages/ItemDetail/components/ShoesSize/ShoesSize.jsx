@@ -11,6 +11,7 @@ function ShoesSize({ footSize, setShooseSize }) {
             data={data}
             key={data.productOptionId}
             setShooseSize={setShooseSize}
+            itemstock={data.stock}
           />
         ))}
         {/* <li>

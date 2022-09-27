@@ -7,6 +7,7 @@ import Modal from './components/Modal/Modal';
 import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
+import { useParams } from 'react-router-dom';
 // import ShoesModal from './components/ShoesModal/ShoesModal';
 /* eslint-disable */
 
@@ -14,6 +15,12 @@ function ItemDetail() {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState({});
   const [shooseSize, setShooseSize] = useState('');
+  const [shoesModal, setShoesModal] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [quantity, setquantity] = useState(1);
+
+  const params = useParams();
+  console.log(params);
   // const [discount, setDiscount] = useState('');
 
   const openModal = () => {
@@ -26,7 +33,6 @@ function ItemDetail() {
     document.body.style.overflow = 'unset';
   };
 
-  const [shoesModal, setShoesModal] = useState(false);
   const openShoesModal = () => {
     setShoesModal(prev => !prev);
     document.body.style.overflow = 'hidden';
@@ -36,10 +42,22 @@ function ItemDetail() {
     document.body.style.overflow = 'unset';
   };
 
-  const [reviewOpen, setReviewOpen] = useState(false);
   const openReview = () => {
     setReviewOpen(prev => !prev);
   };
+
+  const onIncrease = () => {
+    setquantity(prevquantity => prevquantity + 1);
+  };
+  const onDecrease = () => {
+    setquantity(prevquantity => prevquantity - 1);
+  };
+
+  // const params = usePrams();
+  // const userId = params.id;
+
+  // const [user, setUser] = useState();
+
   useEffect(() => {
     fetch('./data/Mock.json')
       .then(res => res.json())
@@ -54,6 +72,7 @@ function ItemDetail() {
         product={product}
         getThumbnail={product.getThumbnail}
         shooseSize={shooseSize}
+        quantity={quantity}
       />
       <ShoesModal
         closeShoesModal={closeShoesModal}
@@ -68,18 +87,33 @@ function ItemDetail() {
             openShoesModal={openShoesModal}
           />
         </div>
-
+        <span>{params.id}</span>
         <div className="detailInfo">
           <div className="detailOption">
-            <div className="detailName">
+            <div
+              className={`detailName ${
+                product.discountPrice === '' ? 'price0' : ''
+              }`}
+            >
               <div className="namePrice">
                 <div>{product.brandName}</div>
-                <div>{Number(product.retailPrice)}원</div>
+                <div className="discounted">
+                  {Number(product.retailPrice)}원
+                </div>
               </div>
               <div>
                 <div className="discountPrice">
                   {Number(product.discountPrice)}원
                 </div>
+              </div>
+              <div className="discountPercent">
+                {Math.floor(
+                  (1 -
+                    Number(product.discountPrice) /
+                      Number(product.retailPrice)) *
+                    100
+                )}
+                % off
               </div>
               <div className="shoesName">{product.productName}</div>
             </div>
@@ -99,6 +133,7 @@ function ItemDetail() {
               <ShoesSize
                 footSize={product.productOptions}
                 setShooseSize={setShooseSize}
+                stock={product.productOptions}
               />
             </div>
             <p>
@@ -107,7 +142,12 @@ function ItemDetail() {
             <div className="itemCount">
               <span>수량</span>
               <span>
-                <Counter />
+                <Counter
+                  quantity={quantity}
+                  onIncrease={onIncrease}
+                  onDecrease={onDecrease}
+                  stock={product.productOptions}
+                />
               </span>
             </div>
             <div className="itemPurchaseWrap">
@@ -143,7 +183,7 @@ function ItemDetail() {
               <img src="/image/open.png" alt="open" className="open" />
             </div>
             <div className="itemSideReview">
-              <div className="asdf">
+              <div className="review">
                 리뷰
                 <button onClick={openReview}>
                   <img src="/image/open.png" alt="open" className="open" />

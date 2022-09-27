@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-function SizeButton({ data, setShooseSize }) {
+import './SizeButton.scss';
+function SizeButton({ data, setShooseSize, itemstock }) {
   const { size } = data;
   const [button, setButton] = useState(false);
 
@@ -18,6 +18,7 @@ function SizeButton({ data, setShooseSize }) {
         className="sizeButton"
         onClick={pushButton}
         id={size}
+        disabled={itemstock === 0}
       />
       <label htmlFor={size}>{data.size}</label>
     </li>

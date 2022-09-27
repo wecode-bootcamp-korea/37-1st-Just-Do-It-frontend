@@ -12,7 +12,7 @@ function Router() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/ItemDetail" element={<ItemDetail />} />
+        <Route path="/itemdetail/:id" element={<ItemDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

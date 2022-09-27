@@ -185,9 +185,32 @@ html {
   }
 }
 
-.asdf {
+.review {
   width: 100%;
 
   display: flex;
   justify-content: space-between;
+}
+.discountPercent {
+  color: coral;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.discounted {
+  text-decoration: line-through;
+}
+
+.detailName.price0 {
+  .discountPrice {
+    display: none;
+  }
+
+  .discountPercent {
+    display: none;
+  }
+
+  .discounted {
+    text-decoration: none;
+  }
 }

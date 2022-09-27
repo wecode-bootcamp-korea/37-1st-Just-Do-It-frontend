@@ -7,8 +7,8 @@ function Review({ product, reviewOpen, styleCode }) {
         <div>
           <div>별점</div>
           <div className="reviewBox">
-            <div>박영태</div>
-            <div>2022.09.26</div>
+            <div>{product.fullName}</div>
+            <div>{product.createdAt}</div>
             <div>{styleCode.styleCode}</div>
           </div>
           {product.content}

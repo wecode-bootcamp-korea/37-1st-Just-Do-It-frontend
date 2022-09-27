@@ -2,12 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import './Modal.scss';
 
-function Modal({ closeModal, modal, product, getThumbnail, shooseSize }) {
+function Modal({
+  closeModal,
+  modal,
+  product,
+  getThumbnail,
+  shooseSize,
+  quantity,
+}) {
   const [ItemDelete, setItemDelete] = useState('');
 
   const shoesDelete = () => {
     setItemDelete(prev => !prev);
-    console.log(shoesDelete);
   };
   return (
     <div>
@@ -27,9 +33,9 @@ function Modal({ closeModal, modal, product, getThumbnail, shooseSize }) {
                     alt="나이키"
                   />
                 </div>
-                <div className="modalInfo">
+                <div className="modalInfo" ItemDelete={ItemDelete}>
                   <div className="modal">
-                    <p>{product.productName}</p>
+                    <p className="productName">{product.productName}</p>
                     <button onClick={shoesDelete}>
                       <img
                         src="/image/x.png"
@@ -40,14 +46,16 @@ function Modal({ closeModal, modal, product, getThumbnail, shooseSize }) {
                   </div>
                   <div>스타일 : {product.styleCode}</div>
                   <div>사이즈 : {shooseSize}</div>
-                  <div>수량: 1</div>
+                  <div>수량: {quantity}</div>
                   <div>{Number(product.retailPrice)} 원</div>
                 </div>
               </div>
               <div className="modalPurchase">
                 <div className="modalPrice">
                   <div className="modaItemPrice">총 상품금액</div>
-                  <div className="modalShoesPrice">189,000원</div>
+                  <div className="modalShoesPrice">
+                    {product.retailPrice * quantity}원
+                  </div>
                 </div>
                 <div className="modaItemPrice">
                   배송비는 주문서에서 확인이 가능합니다.
