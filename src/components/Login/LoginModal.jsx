@@ -1,73 +1,53 @@
 import React, { useState } from 'react';
-// import { loginConfig } from '../../config';
+import { LOGIN_CONFIG } from '../../config';
 import { Link } from 'react-router-dom';
 import './LoginModal.scss';
 
 function Login({ closeTargetModal }) {
-  // const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState({
+  const [inputs, setInputs] = useState({
     userName: '',
     password: '',
   });
 
-  // useEffect(() => {
-  //   localStorage.setItem('token', '이거슨 토큰이요');
-  //   localStorage.setItem('userInfo', '이거슨 유저이름이다.');
-  // }, []);
+  const handleChangeInputs = ({ target: { name, value } }) =>
+    setInputs(prev => ({ ...prev, [name]: value }));
 
-  const handleChangeInput = e => {
-    const { name, value } = e.target;
-    setInputValue(prev => ({ ...prev, [name]: value }));
+  const validateLogin = ({ userName, password }) => {
+    if (!(userName.length && password.length < 1)) {
+      throw new Error('아이디 혹은 비밀번호를 입력해주세요. ');
+    }
   };
-  const handleLogin = e => {
-    e.preventDefault();
 
-    // localStorage.setItem(
-    //   'token',
-    //   'token-dwqdwqkdnjqwlkfjklqwjflqwkjfqwldjqwljdwq'
-    // );
-    // localStorage.setItem('fullName', '이윤승');
+  const handleClickLogin = value => {
+    try {
+      validateLogin(value);
 
-    // alert('로그인 성공');
-
-    closeTargetModal('login');
-
-    // // 로그인 요청
-    // `${loginConfig.api}/Login`
-    fetch('http://192.168.243.221:8000/users/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(inputValue),
-    })
-      .then(response => {
-        if (response.ok === true) {
-          return response.json();
-        }
+      fetch(`${LOGIN_CONFIG.api}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(value),
       })
-      .then(data => {
-        // 만약에 로그인을 성공하면
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(data => {
+          localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('fullName', data.fullName);
 
-        // token, fullName을 로컬스토리지에 저장한다.
-        localStorage.setItem('token', data.accessToken);
-        localStorage.setItem('fullName', data.fullName);
-
-        alert('로그인 성공');
-      })
-      .catch(error => {
-        // 만약에 실패하면
-        console.log(error);
-        // 알림을 띄어준다.
-        alert('로그인 실패');
-      });
+          alert('로그인 성공');
+          handleCloseModal();
+        })
+        .catch(e => console.error(e));
+    } catch (e) {
+      alert('아이디 혹은 비밀번호를 확인해주세요.');
+    }
   };
-  // console.log(localStorage.getItem('token'));
-  // console.log(localStorage.getItem('userInfo'));
 
-  const handleCloseModal = () => {
-    closeTargetModal('login');
-  };
+  const handleCloseModal = () => closeTargetModal('login');
 
   return (
     <div
@@ -98,16 +78,16 @@ function Login({ closeTargetModal }) {
             name="userName"
             type="text"
             placeholder="아이디"
-            onChange={handleChangeInput}
-            value={inputValue.username}
+            onChange={handleChangeInputs}
+            value={inputs.userName}
           />
           <input
             className="loginPw block"
             name="password"
             type="password"
             placeholder="비밀번호"
-            onChange={handleChangeInput}
-            value={inputValue.password}
+            onChange={handleChangeInputs}
+            value={inputs.password}
           />
           <div className="loginHelp">
             <button className="block">
@@ -116,7 +96,10 @@ function Login({ closeTargetModal }) {
             </button>
             <button className="block">아이디/비밀번호 찾기</button>
           </div>
-          <button className="loginButton block" onClick={handleLogin}>
+          <button
+            className="loginButton block"
+            onClick={() => handleClickLogin(inputs)}
+          >
             로그인
           </button>
           <button className="loginKakao block">
@@ -130,7 +113,7 @@ function Login({ closeTargetModal }) {
           <p className="signInCheck">
             회원이 아니신가요?
             <Link
-              to="/sign-in"
+              to="/sign-up"
               className="signIn"
               onClick={() => {
                 handleCloseModal();

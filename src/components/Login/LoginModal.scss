@@ -4,9 +4,7 @@
 .loginWrapper {
   position: fixed;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexCenter;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease-in-out;
@@ -14,9 +12,7 @@
   z-index: 999;
 
   .login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
     text-align: center;
     background-color: $font-color-grey;
     padding: 20px 20px 50px 20px;
@@ -66,10 +62,7 @@
     }
 
     .loginHelp {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
+      @include flexSort(space-between, center);
       .checkBox {
         transform: scale(2);
         margin-right: 15px;
