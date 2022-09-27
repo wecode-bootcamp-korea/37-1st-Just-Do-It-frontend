@@ -18,7 +18,7 @@ function Main() {
     <div className="main">
       <div className="video">
         <video muted autoPlay loop width="80%">
-          <source src="/videos/nikeRun33.mp4" type="video/mp4" alt="Nike Run" />
+          <source src="/videos/nikeRun.mp4" type="video/mp4" alt="Nike Run" />
         </video>
       </div>
       <div className="videoTextContainer">
