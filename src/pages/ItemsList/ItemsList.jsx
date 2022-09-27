@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import FilterBar from './components/FilterBar/FilterBar';
 import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
@@ -16,12 +17,13 @@ function ItemList() {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
   const [nextHider, setNextHider] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const itemListCount = useRef();
 
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
-    let urlForSubmit = `http://172.20.10.12:8000/products/?offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
+    let urlForSubmit = `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
 
     selectedSize.map(size => (urlForSubmit = urlForSubmit + `size=${size}&`));
     selectedColor.map(
@@ -35,7 +37,8 @@ function ItemList() {
       );
     }
 
-    fetch(urlForSubmit)
+    setSearchParams(urlForSubmit);
+    fetch('http://172.20.10.12:8000/products/?' + urlForSubmit)
       .then(response => response.json())
       .then(result => {
         const inputItemCount =
