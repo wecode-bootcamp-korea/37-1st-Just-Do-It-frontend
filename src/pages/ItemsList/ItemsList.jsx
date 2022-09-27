@@ -34,7 +34,7 @@ function ItemList() {
 
     fetch(urlForSubmit)
       .then(response => response.json())
-      .then(result => setProducts(prev => [...result.list]));
+      .then(result => setProducts(prev => result.list));
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
   return (
