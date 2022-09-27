@@ -25,7 +25,9 @@ function ListHeader({
 
   return (
     <header className="listHeader">
-      <div className="headerLeft">Nike's 신발 ({products.length})</div>
+      <div className="headerLeft">
+        Nike's Wecode Edition ({products.length})
+      </div>
       <div className="headerRight">
         <div className="headerFilter" onClick={filterController}>
           <div className="text">필터</div>
