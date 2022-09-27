@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+
+import ModalPortal from './ModalPortal';
 import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
-import SignIn from './pages/SignIn/SignIn';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
+import SignUp from './pages/SignUp/SignUp.jsx';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
 import ViewItemModal from './components/ViewItem/ViewItemModal';
-
-import ModalPortal from './Portal';
 
 function Router() {
   const [modalState, setModalState] = useState({
@@ -61,12 +61,12 @@ function Router() {
       <Nav showTargetModal={showTargetModal} />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
-        <Route path="/view" element={<viewItem />} />
       </Routes>
       <Footer />
     </BrowserRouter>
   );
 }
+
 export default Router;
