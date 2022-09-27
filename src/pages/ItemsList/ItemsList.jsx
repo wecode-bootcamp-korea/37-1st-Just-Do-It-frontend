@@ -40,12 +40,6 @@ function ItemList() {
       .then(result => {
         const inputItemCount =
           result.list.length - itemListCount.current.children.length;
-        console.log('result.list.length : ', result.list.length);
-        console.log(
-          'itemListCount.current.children.length : ',
-          itemListCount.current.children.length
-        );
-        console.log(inputItemCount);
         if (inputItemCount < 4) setNextHider(false);
         setProducts(prev => result.list);
       });

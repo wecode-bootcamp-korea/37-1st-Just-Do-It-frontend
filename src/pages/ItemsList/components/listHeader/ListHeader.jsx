@@ -31,19 +31,22 @@ function ListHeader({
       <div className="headerRight">
         <div className="headerFilter" onClick={filterController}>
           <div className="text">필터</div>
-          {filterHider === false ? (
-            <img src="./image/itemList/filterWhite.png" alt="필터 가리기" />
-          ) : (
-            <img src="./image/itemList/filterBlack.png" alt="필터 펼치기" />
-          )}
+          <img
+            src={`./image/itemList/filter${
+              filterHider === false ? 'white' : 'black'
+            }.png`}
+            alt="필터 가리기"
+          />
+          {/* 3항연산자로 부르는 이미지만 왔다갔다하게해주기 위아래 전부 */}
         </div>
         <div className="headerSetOrder" onClick={sortController}>
           <div className="text">{sortStandard}</div>
-          {sortSetter === false ? (
-            <img src="./image/itemList/downArrow.png" alt="정렬목록 펼치기" />
-          ) : (
-            <img src="./image/itemList/upArrow.png" alt="정렬목록 가리기" />
-          )}
+          <img
+            src={`./image/itemList/${
+              sortSetter === false ? 'down' : 'up'
+            }Arrow.png`}
+            alt="정렬목록 펼치기"
+          />
           {sortSetter && (
             <ModarlPortalForItemList>
               <ModalForItemList />
