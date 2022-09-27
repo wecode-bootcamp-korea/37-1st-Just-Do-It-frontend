@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
 import ViewItem from './components/ViewItem/ViewItem';
 import Footer from './components/Footer/Footer';
 import ModalPortal from './ModalPortal';
 import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
 import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
 import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
