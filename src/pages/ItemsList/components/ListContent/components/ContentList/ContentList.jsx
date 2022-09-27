@@ -4,15 +4,15 @@ import './contentList.scss';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
 
-function ContentList({ products }) {
+function ContentList({ products, itemListCount }) {
   return (
     <div className="contentItems">
-      <div className="contentItemContainor">
+      <div className="contentItemContainor" ref={itemListCount}>
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {CONTENTS_MOCK.length !== undefined
-          ? CONTENTS_MOCK.map(
+        {products.length !== undefined
+          ? products.map(
               ({
                 id,
                 thumbnail,

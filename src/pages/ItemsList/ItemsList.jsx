@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FilterBar from './components/FilterBar/FilterBar';
 import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
@@ -15,6 +15,9 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState([]);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
+  const [nextHider, setNextHider] = useState(true);
+
+  const itemListCount = useRef();
 
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
@@ -34,7 +37,18 @@ function ItemList() {
 
     fetch(urlForSubmit)
       .then(response => response.json())
-      .then(result => setProducts(prev => result.list));
+      .then(result => {
+        const inputItemCount =
+          result.list.length - itemListCount.current.children.length;
+        console.log('result.list.length : ', result.list.length);
+        console.log(
+          'itemListCount.current.children.length : ',
+          itemListCount.current.children.length
+        );
+        console.log(inputItemCount);
+        if (inputItemCount < 4) setNextHider(false);
+        setProducts(prev => result.list);
+      });
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
   return (
@@ -64,6 +78,8 @@ function ItemList() {
           sortStandard={sortStandard}
           setOffset={setOffset}
           setLimit={setLimit}
+          itemListCount={itemListCount}
+          nextHider={nextHider}
         />
       </div>
     </section>

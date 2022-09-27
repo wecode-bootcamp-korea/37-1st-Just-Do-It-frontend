@@ -10,6 +10,8 @@ function ListContent({
   filterHider,
   setOffset,
   setLimit,
+  itemListCount,
+  nextHider,
 }) {
   return (
     <div
@@ -17,13 +19,15 @@ function ListContent({
       style={filterHider !== true ? { marginLeft: 0 } : null}
     >
       <ContentHeader />
-      <ContentList products={products} />
-      <ContentNext
-        products={products}
-        setProducts={setProducts}
-        setOffset={setOffset}
-        setLimit={setLimit}
-      />
+      <ContentList products={products} itemListCount={itemListCount} />
+      {nextHider && (
+        <ContentNext
+          products={products}
+          setProducts={setProducts}
+          setOffset={setOffset}
+          setLimit={setLimit}
+        />
+      )}
     </div>
   );
 }
