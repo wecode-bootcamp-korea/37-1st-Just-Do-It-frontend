@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { TOP_DATA, TOP_ITEM_DATA } from './FOOTER_DATA';
+
 import './Footer.scss';
 
 function Footer() {
@@ -7,24 +10,24 @@ function Footer() {
     <div className="footer">
       <div className="top">
         <div>
-          {TOP_DATA.map((e, idx) => {
+          {TOP_DATA.map(({ topKey, name }) => {
             return (
               <Link
-                key={idx}
+                key={topKey}
                 to="/item-list"
                 className="categoryText
               "
               >
-                {e.name}
+                {name}
               </Link>
             );
           })}
         </div>
         <div className="topItem">
-          {TOP_ITEM_DATA.map((e, idx) => {
+          {TOP_ITEM_DATA.map(({ topItemKey, name }) => {
             return (
-              <Link key={idx} to="/item-list" className="defaultText">
-                {e.name}
+              <Link key={topItemKey} to="/item-list" className="defaultText">
+                {name}
               </Link>
             );
           })}
@@ -126,51 +129,3 @@ function Footer() {
 }
 
 export default Footer;
-
-const TOP_DATA = [
-  {
-    name: '매장안내',
-  },
-  {
-    name: '나이키 저널',
-  },
-  {
-    name: '로그인',
-  },
-  {
-    name: '멤버 가입',
-  },
-];
-
-const TOP_ITEM_DATA = [
-  {
-    name: '고객센터',
-  },
-  {
-    name: '080-022-0182',
-  },
-  {
-    name: '주문/결제',
-  },
-  {
-    name: '배송',
-  },
-  {
-    name: '주문배송조회',
-  },
-  {
-    name: '멤버쉽 혜택/서비스',
-  },
-  {
-    name: '공지사항',
-  },
-  {
-    name: '1:1 채팅 문의',
-  },
-  {
-    name: '이용약관',
-  },
-  {
-    name: '공개인정보처리방침지사항',
-  },
-];
