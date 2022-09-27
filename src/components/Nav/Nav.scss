@@ -2,20 +2,26 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
 
 .navTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: $font-color-white;
+  @include flexSort(space-between, center);
+  background-color: $font-color-black;
 
   .navTopLeft {
-    display: flex;
-    margin-left: 50px;
+    width: 150px;
+    height: 80px;
+    margin-left: 70px;
+    background-image: url(../../../public/image/navimage.png);
+    background-size: cover;
+    background-position: center;
+  }
 
-    .navTopLeftItem {
-      padding: 20px;
-      color: $background-color-black;
-    }
+  .topLeftImg {
+    width: 100px;
+    height: 50px;
+  }
+
+  .navTopLeftItem {
+    padding: 20px;
+    color: $background-color-black;
   }
 
   .navTopRight {
@@ -25,16 +31,18 @@
 
     .navTopRightItem {
       padding: 20px;
-      color: $background-color-black;
+      color: $background-color-white;
       font-size: $font-size-lg;
+      &:hover {
+        background-color: $background-color-grey;
+        border-radius: 20px;
+      }
     }
   }
 }
 
 .navBottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flexSort(space-between, center);
   margin: 0 50px;
 
   .navBottomLeft {
@@ -43,6 +51,8 @@
 
     .navBottomLeftItem {
       padding: 20px;
+      font-weight: $font-weight-title;
+      font-size: 30px;
       color: $background-color-black;
     }
   }
@@ -54,15 +64,14 @@
       padding: 30px 20px;
       color: $background-color-black;
       font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
       &:hover {
         text-decoration: underline;
       }
     }
   }
   .navBottomRight {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flexSort(space-between, center);
     width: 450px;
 
     .navBottomRightSearch {
@@ -87,6 +96,7 @@
       border-radius: 25px;
       background-color: $font-color-white;
       font-size: 24px;
+
       &:hover {
         border-radius: 25px;
         background-color: lightgrey;
@@ -98,6 +108,7 @@
       color: $background-color-black;
       padding: 10px;
       font-size: 30px;
+
       &:hover {
         padding: 10px;
         border-radius: 50%;

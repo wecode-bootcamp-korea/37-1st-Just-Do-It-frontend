@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { NAV_ITEM_LIST } from './NAV_ITEM_LIST';
 import './Nav.scss';
 
 function Nav({ showTargetModal }) {
   const [fullName, setFullName] = useState(null);
   const [token, setToken] = useState(null);
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   const fullName = localStorage.getItem('fullName');
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const fullName = localStorage.getItem('fullName');
 
-  //   if (token && fullName) {
-  //     // alert(`token: ${token}, fullName: ${fullName}`);
-  //     setToken(token);
-  //     setFullName(fullName);
-  //   }
-  // }, [localStorage.getItem('token')]);
+    if (token && fullName) {
+      setToken(token);
+      setFullName(fullName);
+    }
+  }, [localStorage.getItem('token')]);
 
   const handleLogout = () => {
     alert('로그아웃');
@@ -27,24 +26,21 @@ function Nav({ showTargetModal }) {
   return (
     <>
       <div className="navTop">
-        <div className="navTopLeft">
-          <p className="navTopLeftItem">조던</p>
-          <p className="navTopLeftItem">컨버스</p>
-        </div>
+        <Link to="/" className="navTopLeft" />
         <div className="navTopRight">
           <Link to="/item-list" className="navTopRightItem">
             고객센터
           </Link>
           {token && fullName ? (
             <>
-              <p className="navTopRightItem">{fullName}</p> |
+              <p className="navTopRightItem">{fullName}</p>
               <button className="navTopRightItem" onClick={handleLogout}>
                 로그아웃
               </button>
             </>
           ) : (
             <>
-              <Link to="/sign-in" className="navTopRightItem">
+              <Link to="/sign-up" className="navTopRightItem">
                 멤버 가입
               </Link>
               <button
@@ -60,28 +56,24 @@ function Nav({ showTargetModal }) {
       <div className="navBottom">
         <div className="navBottomLeft">
           <Link to="/" className="navBottomLeftItem">
-            나이키
+            JUST-DO-IT
           </Link>
         </div>
         <div
           className="navBottomCenter"
           onMouseEnter={() => showTargetModal('viewItem')}
         >
-          <Link to="/item-list" className="navBottomCenterItem">
-            New Releases
-          </Link>
-          <Link to="/item-list" className="navBottomCenterItem">
-            Men
-          </Link>
-          <Link to="/item-list" className="navBottomCenterItem">
-            Women
-          </Link>
-          <Link to="/item-list" className="navBottomCenterItem">
-            Kids
-          </Link>
-          <Link to="/item-list" className="navBottomCenterItem">
-            Sale
-          </Link>
+          {NAV_ITEM_LIST.map(({ navItemKey, name }) => {
+            return (
+              <Link
+                key={navItemKey}
+                to="/item-list"
+                className="navBottomCenterItem"
+              >
+                {name}
+              </Link>
+            );
+          })}
         </div>
         <div className="navBottomRight">
           <div className="navBottomRightSearch">
