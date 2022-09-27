@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentHeader from './components/ContentHeader/ContentHeader';
-import ContentNext from './components/ContentList/components/ContentNext/ContentNext';
+import ContentNext from './components/ContentNext/ContentNext';
 import ContentList from './components/ContentList/ContentList';
 import './listContent.scss';
 
