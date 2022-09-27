@@ -6,7 +6,7 @@ import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import SignUp from './pages/SignUp/SignUp.jsx';
+import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
 import ViewItemModal from './components/ViewItem/ViewItemModal';
