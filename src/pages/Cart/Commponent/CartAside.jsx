@@ -1,7 +1,19 @@
 import React from 'react';
 import './CartAside.scss';
 
-function CartAside({ cartItems }) {
+function CartAside({ cartItems, setCartItems }) {
+  console.log(cartItems);
+  const cartOrder = () => {
+    fetch('http://127.0.0.1:8000/checkout/carts', {
+      method: 'PATCH',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => setCartItems(data));
+  };
+
   const sumCartRetailPrice = cartItems.reduce((sum, num) => {
     return (sum += num.quantity * Number(num.retailPrice));
   }, 0);
@@ -19,31 +31,32 @@ function CartAside({ cartItems }) {
             <span>상품금액</span>
             <span>{sumCartRetailPrice.toLocaleString()}원</span>
           </div>
-          <div className="checkout" />
-          <div className="checkoutShippingPrice detail">
+          <div className="detail">
             <span>예상배송비</span>
             <span>0원</span>
           </div>
-          <div className="checkoutDiscountedItem detail">
+          <div className="detail">
             <span>상품 할인 금액</span>
-            <span>
+            <span className="cartPrice">
               {(sumCartRetailPrice - calCartDiscountedPrice).toLocaleString()}원
             </span>
           </div>
           <div className="checkoutDiscountedPrice detail">
             <span>주문 할인 금액</span>
-            <span>0원</span>
+            <span className="cartPrice">0원</span>
           </div>
           <div className="totalPrice detail">
             <span>총 결제 예정 금액</span>
-            <span>
+            <span className="cartPrice">
               {calCartDiscountedPrice
                 ? calCartDiscountedPrice.toLocaleString()
                 : sumCartRetailPrice.toLocaleString()}
               원
             </span>
           </div>
-          <button className="checkoutOrderBtn">주문하기</button>
+          <button className="checkoutOrderBtn" onClick={cartOrder}>
+            주문하기
+          </button>
         </div>
       </section>
       <div className="coupon">

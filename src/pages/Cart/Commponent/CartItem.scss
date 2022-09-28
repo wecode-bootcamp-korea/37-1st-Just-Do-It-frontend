@@ -3,9 +3,8 @@
 
 .cartItem {
   @include flexSort(null, flex-start);
-  flex: 1 1 auto;
   width: 100%;
-  padding: 15px 25px 30px 25px;
+  padding: 25px 0;
   border-bottom: 1px solid $background-color-darkgrey;
 
   .cartItemImg {
@@ -16,6 +15,8 @@
   }
 
   .cartItemInfo {
+    flex: 1 1 0;
+    max-width: 450px;
     font-size: $font-size-sm;
 
     .cartItemTitle {
@@ -28,14 +29,24 @@
     }
   }
 
-  .cartOptChange {
-    flex: 1 1 auto;
+  .cartDiscountRate {
+    width: 40px;
+    margin: 0 20px;
+    color: $font-color-red;
+    font-weight: $font-weight-semibold;
+  }
+
+  .discountNone {
+    width: 40px;
+    margin: 0 20px;
+    visibility: hidden;
   }
 
   .cartItemPrice {
-    line-height: 1.4em;
+    margin: 0 15 0 15px;
 
     .cartRetailPrice {
+      margin-top: 5px;
       margin-right: 20px;
       color: $font-color-red;
       font-weight: $font-weight-semibold;
@@ -57,9 +68,11 @@
       display: none;
     }
   }
-
+  .cartDelItem {
+    margin: 0 20px;
+    width: 30px;
+  }
   .addWishBtn {
     color: $font-color-grey;
-    margin-left: 25px;
   }
 }

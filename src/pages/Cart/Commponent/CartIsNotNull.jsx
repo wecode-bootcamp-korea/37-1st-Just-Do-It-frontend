@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
 import CartAside from './CartAside';
+import './CartIsNotNull.scss';
 
 function CartIsNotNull({ cartItems, setCartItems }) {
   return (
@@ -20,7 +21,7 @@ function CartIsNotNull({ cartItems, setCartItems }) {
             ))}
         </ul>
       </section>
-      <CartAside cartItems={cartItems} />
+      <CartAside cartItems={cartItems} setCartItems={setCartItems} />
     </article>
   );
 }

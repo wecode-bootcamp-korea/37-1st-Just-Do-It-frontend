@@ -7,22 +7,22 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
 
   //통신용
-  // useEffect(() => {
-  //   fetch('http://192.168.243.221:8000/carts', {
-  //     mehtod: 'GET',
-  //     headers: {
-  //       authorization: localStorage.getItem('token'),
-  //     },
-  //   })
-  //     .then(response => {
-  //       if (response.ok === true) {
-  //         return response.json();
-  //       }
-  //       throw new Error('에러발생');
-  //     })
-  //     .catch(error => console.log(error))
-  //     .then(data => setCartItems(data.result));
-  // }, [cartItems]);
+  useEffect(() => {
+    fetch('http://192.168.243.221:8000/carts', {
+      mehtod: 'GET',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('에러발생');
+      })
+      .catch(error => console.log(error))
+      .then(data => setCartItems(data.result));
+  }, []);
 
   // Mock data
   useEffect(() => {
