@@ -2,7 +2,7 @@ import React from 'react';
 import './ShoesImgs.scss';
 function ShoesImgs({ imageUrl }) {
   return (
-    <ul className="ShoesImgs">
+    <ul className="shoesImgs">
       {imageUrl?.map(e => (
         <li className="shoesProduct" key={e.product_id}>
           <div className="ShoesImgBox">

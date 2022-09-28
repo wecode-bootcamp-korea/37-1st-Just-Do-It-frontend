@@ -1,7 +1,4 @@
-html {
-  scroll-behavior: smooth;
-}
-.ItemDetail {
+.itemDetail {
   .detailContent {
     width: calc(100% - 449px);
     padding: 0 54px;
@@ -51,6 +48,40 @@ html {
       .detailOption {
         width: 385px;
         position: absolute;
+        .itemCount {
+          display: flex;
+          padding: 20px 0 20px 0px;
+          border-bottom: 1px solid lightgray;
+        }
+        .discountPercent {
+          color: coral;
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .discounted {
+          text-decoration: line-through;
+        }
+
+        .detailName.price0 {
+          .discountPrice {
+            display: none;
+          }
+
+          .discountPercent {
+            display: none;
+          }
+
+          .discounted {
+            text-decoration: none;
+          }
+        }
+        .review {
+          width: 100%;
+
+          display: flex;
+          justify-content: space-between;
+        }
       }
       .namePrice {
         display: flex;
@@ -112,6 +143,15 @@ html {
           display: flex;
           justify-content: space-between;
           padding-bottom: 20px;
+          .btn-modal {
+            color: black;
+            border: 1px solid black;
+            text-align: center;
+            border-radius: 30px;
+            width: 49%;
+            margin-top: 10px;
+            font-weight: bold;
+          }
         }
 
         .itemWish,
@@ -143,6 +183,16 @@ html {
           font-size: 12px;
         }
       }
+      .itemSideReview {
+        padding: 27px 0 5.5px 6px;
+        border-bottom: 1px solid lightgray;
+      }
+
+      .reviewContents {
+        padding-top: 20px;
+        width: 100%;
+      }
+
       .shoesInfo {
         border-bottom: 1px solid lightgray;
         padding-bottom: 15px;
@@ -182,35 +232,5 @@ html {
         width: 15px;
       }
     }
-  }
-}
-
-.review {
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-}
-.discountPercent {
-  color: coral;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.discounted {
-  text-decoration: line-through;
-}
-
-.detailName.price0 {
-  .discountPrice {
-    display: none;
-  }
-
-  .discountPercent {
-    display: none;
-  }
-
-  .discounted {
-    text-decoration: none;
   }
 }

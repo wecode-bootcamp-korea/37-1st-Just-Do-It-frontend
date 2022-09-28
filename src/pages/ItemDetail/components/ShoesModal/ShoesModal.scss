@@ -1,4 +1,4 @@
-.ShoesModal {
+.shoesModal {
   position: fixed;
   z-index: 100000;
   background-color: white;
@@ -10,21 +10,20 @@
   justify-content: center;
   opacity: 1;
   animation: Fade 0.5s ease-in;
-}
-
-.overlayWrap {
-  overflow: scroll;
-}
-
-@keyframes Fade {
-  0% {
-    opacity: 0.5;
+  .overlayWrap {
+    overflow: scroll;
   }
-  1% {
-    opacity: 0.5;
-    transform: traslate(100%, 100%);
-  }
-  100% {
-    opacity: 1;
+
+  @keyframes Fade {
+    0% {
+      opacity: 0.5;
+    }
+    1% {
+      opacity: 0.5;
+      transform: traslate(100%, 100%);
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 function ShoesColor({ getThumbnail }) {
   return (
-    <ul className="detailImgs">
+    <ul className="shoesColor">
       {getThumbnail?.map(e => (
         <li className="shoesColor" key={e.id}>
           <button>
@@ -10,37 +10,6 @@ function ShoesColor({ getThumbnail }) {
           </button>
         </li>
       ))}
-
-      {/* <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li> */}
-      {/* <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li>
-      <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li>
-      <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li>
-      <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li>
-      <li className="detailProduct">
-        <div className="detailImg">
-          <img src="/image/nikeshoes.png" alt="나이키" className="shoesImg" />
-        </div>
-      </li> */}
     </ul>
   );
 }

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import './Counter.scss';
 
 function Counter({ onDecrease, onIncrease, quantity, stock }) {
-  const [] = useState('');
   return (
-    <div className="Counter">
+    <div className="counter">
       <h1 className="countStart">{quantity}</h1>
       <div className="count">
         <button

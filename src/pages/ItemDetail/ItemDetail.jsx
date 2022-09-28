@@ -14,20 +14,65 @@ import { useParams } from 'react-router-dom';
 function ItemDetail() {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState({});
+  const [result, setResult] = useState([]);
   const [shooseSize, setShooseSize] = useState('');
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
+  const [deleteItem, setDeleteItem] = useState();
+  const [selectedId, setSelectedId] = useState('');
+  const { stock } = product;
+
+  console.log('result : ', result);
+
+  useEffect(() => {
+    // fetch(`http://10.10.10.10/product/${productId}`)
+    fetch('./data/Mock.json')
+      .then(res => res.json())
+      .then(data => setProduct(...data));
+  }, []);
+
+  const deleteShoesItem = () => {
+    fetch('삭제 API 주소', {
+      method: 'DELETE',
+      headers: {},
+    });
+  };
 
   const params = useParams();
-  console.log(params);
-  // const [discount, setDiscount] = useState('');
+  const { productId } = params;
+
+  const accessToken = localStorage.getItem('accessToken');
 
   const openModal = () => {
-    setModal(prev => !prev);
-    document.body.style.overflow = 'hidden';
-    window.scroll(0, 15);
+    console.log(selectedId);
+    console.log(quantity);
+    if (accessToken === null) {
+      alert('로그인하세요');
+    } else {
+      setModal(prev => !prev);
+      document.body.style.overflow = 'hidden';
+      window.scroll(0, 15);
+      fetch('http://192.168.243.221:8000/carts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          productOptionId: selectedId,
+          quantity: quantity,
+        }),
+      })
+        .then(response => response.json())
+        .then(result => console.log(result));
+
+      fetch('./data/MockTwo.json')
+        .then(response => response.json())
+        .then(data => setResult(data));
+      // .then(data => console.log(data));
+    }
   };
+
   const closeModal = () => {
     setModal(prev => !prev);
     document.body.style.overflow = 'unset';
@@ -47,10 +92,45 @@ function ItemDetail() {
   };
 
   const onIncrease = () => {
-    setquantity(prevquantity => prevquantity + 1);
+    let selectdSizesStock = 0;
+
+    product.productOptions.map(item =>
+      Number(item.size) === Number(shooseSize)
+        ? (selectdSizesStock = item.stock)
+        : null
+    );
+
+    console.log(selectdSizesStock);
+    if (quantity < selectdSizesStock) {
+      setquantity(prevquantity => prevquantity + 1);
+    } else {
+      alert('수량이 부족합니다.');
+    }
   };
   const onDecrease = () => {
     setquantity(prevquantity => prevquantity - 1);
+  };
+
+  const wishSubmit = event => {
+    // fetch('http://172.20.10.9:8000/wishlist/create/19', {
+    fetch('123123123', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTY2NDMzMDIxMSwiZXhwIjoxNjY1MTA3ODExfQ.toFARFL-oMK7aJhd4p1UbEFE4cbMH50tsu-6uZTF-iQ',
+      },
+      body: JSON.stringify({
+        productId: 19,
+      }),
+    })
+      .catch(alert('에러!'))
+      .then(response => response.json())
+      .then(
+        result.message === 'ALREADY_EXIST'
+          ? alert('이미 wishList에 있는 항목입니다.')
+          : null
+      );
   };
 
   // const params = usePrams();
@@ -58,21 +138,16 @@ function ItemDetail() {
 
   // const [user, setUser] = useState();
 
-  useEffect(() => {
-    fetch('./data/Mock.json')
-      .then(res => res.json())
-      .then(data => setProduct(...data));
-  }, []);
-
   return (
-    <section className="ItemDetail">
+    <section className="itemDetail">
       <Modal
         closeModal={closeModal}
         modal={modal}
-        product={product}
-        getThumbnail={product.getThumbnail}
-        shooseSize={shooseSize}
-        quantity={quantity}
+        // product={product}
+        // getThumbnail={product.getThumbnail}
+        // shooseSize={shooseSize}
+        // quantity={quantity}
+        result={result}
       />
       <ShoesModal
         closeShoesModal={closeShoesModal}
@@ -87,7 +162,7 @@ function ItemDetail() {
             openShoesModal={openShoesModal}
           />
         </div>
-        <span>{params.id}</span>
+
         <div className="detailInfo">
           <div className="detailOption">
             <div
@@ -134,6 +209,7 @@ function ItemDetail() {
                 footSize={product.productOptions}
                 setShooseSize={setShooseSize}
                 stock={product.productOptions}
+                setSelectedId={setSelectedId}
               />
             </div>
             <p>
@@ -157,7 +233,9 @@ function ItemDetail() {
                   장바구니
                 </button>
 
-                <button className="itemWish">위시리스트</button>
+                <button className="itemWish" onClick={wishSubmit}>
+                  위시리스트
+                </button>
               </div>
             </div>
             <div className="itemPickUp">

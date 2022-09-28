@@ -5,7 +5,7 @@ function ShoesModal({ closeShoesModal, shoesModal, imageUrl }) {
   return (
     <div>
       {shoesModal && (
-        <div className="ShoesModal">
+        <div className="shoesModal">
           <div onClick={closeShoesModal} className="overlayWrap">
             <ShoesImgs imageUrl={imageUrl} />
           </div>

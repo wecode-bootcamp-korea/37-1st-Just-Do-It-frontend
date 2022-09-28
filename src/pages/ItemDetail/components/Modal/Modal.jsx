@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './Modal.scss';
-
+import ModalContentBox from './ModalContentBox/ModalContentBox';
 function Modal({
   closeModal,
   modal,
@@ -9,12 +9,10 @@ function Modal({
   getThumbnail,
   shooseSize,
   quantity,
+  result,
 }) {
-  const [ItemDelete, setItemDelete] = useState('');
-
-  const shoesDelete = () => {
-    setItemDelete(prev => !prev);
-  };
+  console.log('resultInModal : ', result);
+  console.log(result, 'dd');
   return (
     <div>
       {modal && (
@@ -24,37 +22,28 @@ function Modal({
           <div className="modalContent">
             <div className="modalWrapper">
               <h2 className="modalSmallBasket">미니 장바구니</h2>
-              <div className="modalContentBox">
-                <div>
-                  <img
-                    key={getThumbnail.id}
-                    src={product.thumbnail}
-                    className="modalImg"
-                    alt="나이키"
-                  />
-                </div>
-                <div className="modalInfo" ItemDelete={ItemDelete}>
-                  <div className="modal">
-                    <p className="productName">{product.productName}</p>
-                    <button onClick={shoesDelete}>
-                      <img
-                        src="/image/x.png"
-                        className="modalDelete"
-                        alt="삭제"
-                      />
-                    </button>
-                  </div>
-                  <div>스타일 : {product.styleCode}</div>
-                  <div>사이즈 : {shooseSize}</div>
-                  <div>수량: {quantity}</div>
-                  <div>{Number(product.retailPrice)} 원</div>
-                </div>
+              <div className="modalMap">
+                {result.map(cartItem => {
+                  return (
+                    <ModalContentBox
+                      key={cartItem.productId}
+                      product={cartItem.productName}
+                      getThumbnail={cartItem.thumbnail}
+                      shooseSize={cartItem.size}
+                      quantity={cartItem.quantity}
+                      retailPrice={cartItem.retailPrice}
+                      styleCode={cartItem.styleCode}
+                      discountPrice={cartItem.discountPrice}
+                    />
+                  );
+                })}
               </div>
+
               <div className="modalPurchase">
                 <div className="modalPrice">
                   <div className="modaItemPrice">총 상품금액</div>
                   <div className="modalShoesPrice">
-                    {product.retailPrice * quantity}원
+                    {result.retailPrice * quantity}원
                   </div>
                 </div>
                 <div className="modaItemPrice">
