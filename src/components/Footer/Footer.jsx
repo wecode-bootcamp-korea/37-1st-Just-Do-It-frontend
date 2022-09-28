@@ -12,12 +12,7 @@ function Footer() {
         <div>
           {TOP_DATA.map(({ topKey, name }) => {
             return (
-              <Link
-                key={topKey}
-                to="/item-list"
-                className="categoryText
-              "
-              >
+              <Link key={topKey} to="/item-list" className="categoryText">
                 {name}
               </Link>
             );

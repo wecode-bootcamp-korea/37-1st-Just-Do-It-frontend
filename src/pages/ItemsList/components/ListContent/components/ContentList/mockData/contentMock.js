@@ -1,5 +1,6 @@
 const CONTENTS_MOCK = [
   {
+    id: 1,
     styleCode: 'a',
     thumbnail: './image/itemList/shoesImage/nikeShoes0.jpeg',
     productName: '나이키 리액트 13',
@@ -11,6 +12,7 @@ const CONTENTS_MOCK = [
     releaseDate: '2022-09-01',
   },
   {
+    id: 2,
     styleCode: 'b',
     thumbnail: './image/itemList/shoesImage/nikeShoes1.webp',
     productName: '나이키 리액트 13',
@@ -22,6 +24,7 @@ const CONTENTS_MOCK = [
     releaseDate: '2022-09-01',
   },
   {
+    id: 3,
     styleCode: 'c',
     thumbnail: './image/itemList/shoesImage/nikeShoes2.webp',
     productName: '나이키 리액트 13',
@@ -33,6 +36,7 @@ const CONTENTS_MOCK = [
     releaseDate: '2022-09-01',
   },
   {
+    id: 4,
     styleCode: 'd',
     thumbnail: './image/itemList/shoesImage/nikeShoes3.webp',
     productName: '나이키 리액트 13',
@@ -44,6 +48,7 @@ const CONTENTS_MOCK = [
     releaseDate: '2022-09-01',
   },
   {
+    id: 5,
     styleCode: 'e',
     thumbnail: './image/itemList/shoesImage/nikeShoes4.webp',
     productName: '나이키 리액트 13',
@@ -55,6 +60,7 @@ const CONTENTS_MOCK = [
     releaseDate: '2022-09-01',
   },
   {
+    id: 6,
     styleCode: 'f',
     thumbnail: './image/itemList/shoesImage/nikeShoes5.webp',
     productName: '나이키 리액트 13',

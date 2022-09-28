@@ -11,14 +11,12 @@ import WishList from './pages/wishlist/WishList';
 function Router() {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
         {/* <Route path="/" element={<Main />} /> */}
         <Route path="/wish-list" element={<WishList />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }
