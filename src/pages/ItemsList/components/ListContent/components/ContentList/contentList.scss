@@ -7,13 +7,11 @@
 
   .contentItemContainor {
     display: flex;
-    // justify-content: center;
     flex-wrap: wrap;
     margin: -10px;
 
     .contentItem {
       width: 33.333%;
-      // height: 70vh;
       padding: 10px;
       margin-bottom: 50px;
 
@@ -26,16 +24,39 @@
       }
 
       .itemImg {
+        @include flexCenter;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
         background-size: cover;
-
-        &:hover {
-          opacity: 0.4;
-        }
 
         img {
           width: 100%;
+          vertical-align: middle;
           cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .itemDecription {
+          position: absolute;
+          top: 5%;
+          left: 1%;
+          width: 100%;
           opacity: 0;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          img {
+            opacity: 0.4;
+          }
+
+          .itemDecription {
+            opacity: 1;
+          }
         }
       }
 

@@ -1,60 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CONTENTS_MOCK from './mockData/contentMock';
 import './contentList.scss';
-import AdvertiseItem from './components/AdvertiseItem';
+import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
+import ContentItem from './components/ContentItem/ContentItem';
 
-function ContentList(props) {
+function ContentList({ products, itemListCount }) {
   return (
     <div className="contentItems">
-      <div className="contentItemContainor">
+      <div className="contentItemContainor" ref={itemListCount}>
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {CONTENTS_MOCK.map(
-          ({
-            styleCode,
-            thumbnail,
-            productName,
-            description,
-            brandName,
-            color,
-            discountPrice,
-            retailPrice,
-            releaseDate,
-          }) => {
-            return (
-              <div className="contentItem" key={styleCode}>
-                <div
-                  className="itemImg"
-                  style={{ backgroundImage: `url(${thumbnail})` }}
-                >
-                  <img src={thumbnail} alt={productName} />
-                </div>
-                <div className="itemDetails">
-                  <div className="itemDetailLeft">
-                    <div className="productName detail">{productName}</div>
-                    {/* <div className="description detail">{description}</div> */}
-                    <div className="brandName detail">{brandName}</div>
-                    <div className="color detail">{color}</div>
-                  </div>
-                  <div className="itemDetailRight">
-                    <div className="discountRatio detail">
-                      {Math.floor((1 - discountPrice / retailPrice) * 100)}%
-                    </div>
-                    <div className="price detail">
-                      <div className="discountPrice detail">
-                        {discountPrice.toLocaleString()}원
-                      </div>
-                      <div className="retailPrice detail">
-                        {retailPrice.toLocaleString()}원
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        )}
+        {CONTENTS_MOCK.length !== undefined
+          ? CONTENTS_MOCK.map(
+              ({
+                id,
+                thumbnail,
+                productName,
+                description,
+                brandName,
+                color,
+                discountPrice,
+                retailPrice,
+              }) => {
+                return (
+                  <ContentItem
+                    key={id}
+                    id={id}
+                    thumbnail={thumbnail}
+                    productName={productName}
+                    description={description}
+                    brandName={brandName}
+                    color={color}
+                    discountPrice={discountPrice}
+                    retailPrice={retailPrice}
+                  />
+                );
+              }
+            )
+          : null}
       </div>
     </div>
   );

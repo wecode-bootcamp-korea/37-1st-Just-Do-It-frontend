@@ -17,6 +17,10 @@
     .categoryIcon {
       height: 14px;
       margin-right: 9px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
