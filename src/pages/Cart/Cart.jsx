@@ -11,8 +11,7 @@ function Cart() {
   //   fetch('http://192.168.243.221:8000/carts', {
   //     mehtod: 'GET',
   //     headers: {
-  //       authorization:
-  //          localStorage.getItem('token'),
+  //       authorization: localStorage.getItem('token'),
   //     },
   //   })
   //     .then(response => {
@@ -23,7 +22,7 @@ function Cart() {
   //     })
   //     .catch(error => console.log(error))
   //     .then(data => setCartItems(data.result));
-  // }, []);
+  // }, [cartItems]);
 
   // Mock data
   useEffect(() => {

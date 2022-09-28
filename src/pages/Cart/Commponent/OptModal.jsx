@@ -1,33 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import './OptModal.scss';
 
-function OptModal({ setIsOpenModal, productId, optItemInfo }) {
+function OptModal({ setIsOpenModal, productId, optItemInfo, cartOptItems }) {
   const { retailPrice, discountPrice, quantity, productName } = optItemInfo[0];
-  const [cartOptItems, setCartOptItems] = useState('');
-  const [optCount, setOptCount] = useState(quantity);
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(optCount);
-  // useEffect(() => {
-  //   fetch('data/cartOpt.json', {
-  //     headers: {
-  //       authorization: localStorage.getItem('token'),
-  //     },
-  //   })
-  //     .then(res => {
-  //       if (res === true) {
-  //         return res.json();
-  //       }
-  //       throw new Error('에러가 발생했습니다');
-  //     })
-  //     .catch(error => console.log(error))
-  //     .then(data => setCartOptItems(data));
-  // }, []);
-  useEffect(() => {
-    fetch('data/cartOpt.json')
-      .then(res => res.json())
-      .then(res => setCartOptItems(res));
-  }, []);
+
+  const [optCount, setOptCount] = useState(Number(quantity));
 
   const handleOptInputCount = e => {
     e.preventDefault();
@@ -35,16 +12,17 @@ function OptModal({ setIsOpenModal, productId, optItemInfo }) {
     if (Number.isNaN(toNum)) return;
     setOptCount(toNum);
   };
-  const handleOptPulsBtn = optCount => {
-    console.log(optCount);
-    setOptCount(optCount + 1);
+
+  const handleOptPulsBtn = () => {
+    setOptCount(prev => prev + 1);
   };
 
-  const handleOptMinusBtn = optCount => {
-    setOptCount(optCount - 1);
+  const handleOptMinusBtn = () => {
+    setOptCount(prev => prev - 1);
   };
 
-  const changeOpt = () => {
+  const changeOpt = e => {
+    e.preventDefault();
     setIsOpenModal(prev => !prev);
   };
 

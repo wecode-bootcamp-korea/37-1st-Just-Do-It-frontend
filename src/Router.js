@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-import ModalPortal from './ModalPortal';
-import Main from './pages/Main/Main';
-import ItemList from './pages/ItemsList/ItemsList';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
+import Main from './pages/Main/Main';
 import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
+import ItemList from './pages/ItemsList/ItemsList';
+import ModalPortal from './ModalPortal';
 import SearchModal from './components/SearchModal/SearchModal';
-import ViewItemModal from './components/ViewItem/ViewItemModal';
+import ViewItem from './components/ViewItem/ViewItem';
+import Cart from '../src/pages/Cart/Cart';
 
 function Router() {
   const [modalState, setModalState] = useState({
@@ -54,7 +54,7 @@ function Router() {
       )}
       {modalState.viewItem && (
         <ModalPortal>
-          <ViewItemModal closeTargetModal={closeTargetModal} />
+          <ViewItem closeTargetModal={closeTargetModal} />
         </ModalPortal>
       )}
 

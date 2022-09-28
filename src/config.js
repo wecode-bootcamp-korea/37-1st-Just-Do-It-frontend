@@ -12,3 +12,7 @@ export const MAIN_CONFIG = {
 export const SEARCH_CONFIG = {
   api: '',
 };
+
+export const CART_ORDER = {
+  api: 'https://jsonplaceholder.typicode.com/posts',
+};

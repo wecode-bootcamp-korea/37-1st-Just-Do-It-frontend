@@ -2,7 +2,7 @@ import React from 'react';
 import CartItem from './CartItem';
 import CartAside from './CartAside';
 
-function CartIsNotNull({ cartItems }) {
+function CartIsNotNull({ cartItems, setCartItems }) {
   return (
     <article className="cartWrapper">
       <section className="cartItemsListWrapper">
@@ -12,7 +12,11 @@ function CartIsNotNull({ cartItems }) {
         <ul className="cartItemsList">
           {cartItems &&
             cartItems.map(cartItems => (
-              <CartItem key={cartItems.cartId} cartItems={cartItems} />
+              <CartItem
+                key={cartItems.cartId}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
             ))}
         </ul>
       </section>
