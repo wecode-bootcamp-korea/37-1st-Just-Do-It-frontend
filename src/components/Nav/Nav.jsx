@@ -91,7 +91,7 @@ function Nav({ showTargetModal }) {
             <Link to="#">
               <i className="fa-regular fa-heart navBottomRightItem" />
             </Link>
-            <Link to="#">
+            <Link to="/cart">
               <i className="fa-solid fa-bag-shopping navBottomRightItem" />
             </Link>
           </div>

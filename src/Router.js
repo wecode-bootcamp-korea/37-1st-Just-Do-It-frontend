@@ -10,7 +10,6 @@ import Nav from './components/Nav/Nav';
 import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
-import Main from './pages/Main/Main';
 import Cart from './pages/Cart/Cart';
 
 function Router() {

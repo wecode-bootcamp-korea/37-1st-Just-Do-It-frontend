@@ -37,7 +37,7 @@ function ItemList() {
     }
 
     setSearchParams(urlForSubmit);
-    fetch('http://172.20.10.3:8000/products?' + urlForSubmit)
+    fetch('http://172.20.10.4:8000/products?' + urlForSubmit)
       .then(response => response.json())
       .then(result => {
         const inputItemCount =
