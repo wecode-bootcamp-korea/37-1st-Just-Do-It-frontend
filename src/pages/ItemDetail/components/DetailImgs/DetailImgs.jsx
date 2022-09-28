@@ -16,20 +16,6 @@ function DetailImgs({ imageUrl, openShoesModal }) {
           </div>
         </li>
       ))}
-      {/* {product?.map(({ imageUrl }) => {
-        return (
-          <li className="detailProduct" key={imageUrl.product_id}>
-            <div className="detailImg">
-              <img
-                src={imageUrl.imageUrl}
-                alt="나이키"
-                className="shoesImg"
-                onClick={openShoesModal}
-              />
-            </div>
-          </li>
-        );
-      })} */}
     </ul>
   );
 }

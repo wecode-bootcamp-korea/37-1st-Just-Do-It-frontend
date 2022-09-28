@@ -2,6 +2,7 @@ import React from 'react';
 import './ModalContentBox.scss';
 
 function ModalContentBox({
+  cartId,
   product,
   getThumbnail,
   shooseSize,
@@ -10,6 +11,19 @@ function ModalContentBox({
   styleCode,
   discountPrice,
 }) {
+  const deleteShoesItem = event => {
+    event.nativeEvent.path[5].innerHTML = '';
+    // const deleteCartId = event.target.title;
+    // fetch(`http://10.10.10.10/carts/${deleteCartId}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     authorization: localStorage.getItem('token'),
+    //   },
+    // })
+    //   .then(response => response.json())
+    //   .then(result => console.log(result));
+  };
+
   return (
     <div>
       <ul className="modalContentBox">
@@ -20,7 +34,13 @@ function ModalContentBox({
           <div className="modal">
             <p className="productName">{product}</p>
             <button>
-              <img src="/image/x.png" className="modalDelete" alt="삭제" />
+              <img
+                src="/image/x.png"
+                className="modalDelete"
+                alt="삭제"
+                title={cartId}
+                onClick={deleteShoesItem}
+              />
             </button>
           </div>
           <div>스타일 : {styleCode}</div>

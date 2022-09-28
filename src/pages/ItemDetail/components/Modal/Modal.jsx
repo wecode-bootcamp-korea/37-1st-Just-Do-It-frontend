@@ -1,18 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
 function Modal({
   closeModal,
   modal,
-  product,
-  getThumbnail,
-  shooseSize,
+
   quantity,
   result,
 }) {
-  console.log('resultInModal : ', result);
-  console.log(result, 'dd');
   return (
     <div>
       {modal && (
@@ -26,6 +22,7 @@ function Modal({
                 {result.map(cartItem => {
                   return (
                     <ModalContentBox
+                      cartId={cartItem.cartId}
                       key={cartItem.productId}
                       product={cartItem.productName}
                       getThumbnail={cartItem.thumbnail}
@@ -42,9 +39,7 @@ function Modal({
               <div className="modalPurchase">
                 <div className="modalPrice">
                   <div className="modaItemPrice">총 상품금액</div>
-                  <div className="modalShoesPrice">
-                    {result.retailPrice * quantity}원
-                  </div>
+                  <div className="modalShoesPrice">원</div>
                 </div>
                 <div className="modaItemPrice">
                   배송비는 주문서에서 확인이 가능합니다.

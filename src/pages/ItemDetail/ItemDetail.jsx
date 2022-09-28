@@ -8,6 +8,7 @@ import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { useParams } from 'react-router-dom';
+
 // import ShoesModal from './components/ShoesModal/ShoesModal';
 /* eslint-disable */
 
@@ -19,7 +20,7 @@ function ItemDetail() {
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
-  const [deleteItem, setDeleteItem] = useState();
+
   const [selectedId, setSelectedId] = useState('');
   const { stock } = product;
 
@@ -32,21 +33,12 @@ function ItemDetail() {
       .then(data => setProduct(...data));
   }, []);
 
-  const deleteShoesItem = () => {
-    fetch('삭제 API 주소', {
-      method: 'DELETE',
-      headers: {},
-    });
-  };
-
   const params = useParams();
   const { productId } = params;
 
   const accessToken = localStorage.getItem('accessToken');
 
   const openModal = () => {
-    console.log(selectedId);
-    console.log(quantity);
     if (accessToken === null) {
       alert('로그인하세요');
     } else {
@@ -124,7 +116,6 @@ function ItemDetail() {
         productId: 19,
       }),
     })
-      .catch(alert('에러!'))
       .then(response => response.json())
       .then(
         result.message === 'ALREADY_EXIST'
@@ -140,15 +131,7 @@ function ItemDetail() {
 
   return (
     <section className="itemDetail">
-      <Modal
-        closeModal={closeModal}
-        modal={modal}
-        // product={product}
-        // getThumbnail={product.getThumbnail}
-        // shooseSize={shooseSize}
-        // quantity={quantity}
-        result={result}
-      />
+      <Modal closeModal={closeModal} modal={modal} result={result} />
       <ShoesModal
         closeShoesModal={closeShoesModal}
         shoesModal={shoesModal}
@@ -275,8 +258,9 @@ function ItemDetail() {
             </div>
 
             <div className="itemSide">
-              <span>배송</span>
-              <span className="itemShip">일반배송/오늘도착</span>
+              <div>배송</div>
+              <div className="itemShip">일반배송/오늘도착</div>
+
               <img src="/image/open.png" alt="open" className="open" />
             </div>
             <div className="itemSide">
