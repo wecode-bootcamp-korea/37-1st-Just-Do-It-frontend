@@ -8,20 +8,20 @@ import { useEffect } from 'react';
 function SearchModal({ closeTargetModal }) {
   const [comment, setComment] = useState('');
   const [recentHistoryList, setRecentHistoryList] = useState([]);
-  const [recommendations, setRecommendations] = useState([]);
+  const [initialRecommendations, setInitialRecommendations] = useState([]);
   const [recommendationsForView, setRecommendationsForView] = useState([]);
-  const [test, setTest] = useState([]);
+  const [searchItemView, setSearchItemView] = useState([]);
 
   useEffect(() => {
     fetch(`${SEARCH_CONFIG}`)
       .then(response => response.json())
-      .then(result => setTest(result.list));
+      .then(result => setSearchItemView(result.list));
   }, []);
 
   useEffect(() => {
-    setRecommendationsForView(test);
-    setRecommendations(test);
-  }, [comment]);
+    setRecommendationsForView(searchItemView);
+    setInitialRecommendations(searchItemView);
+  }, [searchItemView]);
 
   useEffect(() => {
     const localStorageItem = localStorage.getItem('recentHistory');
@@ -41,8 +41,8 @@ function SearchModal({ closeTargetModal }) {
 
   const inputComment = e => {
     const currentComment = e.target.value;
-    const filteredRecommendations = recommendations.filter(({ productName }) =>
-      productName.includes(currentComment)
+    const filteredRecommendations = initialRecommendations.filter(
+      ({ productName }) => productName.toLowerCase().includes(currentComment)
     );
 
     setRecommendationsForView(filteredRecommendations);
@@ -89,8 +89,8 @@ function SearchModal({ closeTargetModal }) {
   const handleCloseModal = () => closeTargetModal('search');
 
   return (
-    <div className="searchModalWrapper" onClick={() => handleCloseModal()}>
-      <div className="searchModal" onClick={e => e.stopPropagation()}>
+    <div className="searchModal" onClick={() => handleCloseModal()}>
+      <div className="searchModalContainer" onClick={e => e.stopPropagation()}>
         <div className="header">
           <div>
             <Link to="/" className="headerLeft">
@@ -119,7 +119,7 @@ function SearchModal({ closeTargetModal }) {
           {recentHistoryList.map((value, idx) => {
             return (
               <div key={idx} className="recommend">
-                <Link to="/item-list" className="recommends">
+                <Link to="/item-list" className="recommendItem">
                   {value}
                 </Link>
                 <button
@@ -131,24 +131,21 @@ function SearchModal({ closeTargetModal }) {
               </div>
             );
           })}
-          {!!recommendationsForView.length ? (
-            <div className="recommendationContainer">
-              <p className="recommendTitle">추천 검색어</p>
-              {recommendationsForView.map(({ productName, id }) => {
-                return (
-                  <div key={id} className="recommendationItem">
-                    <Link
-                      to="/item-list"
-                      className="recommendationName recommendName"
-                    >
-                      {productName}
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          ) : null}
         </div>
+        {!!recommendationsForView.length ? (
+          <div className="recommendationContainer">
+            <p className="recommendationTitle">추천 검색어</p>
+            {recommendationsForView.map(({ productName, id }) => {
+              return (
+                <div key={id} className="recommendationItem">
+                  <Link to="/item-list" className="recommendationName">
+                    {productName}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );
