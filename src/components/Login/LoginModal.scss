@@ -2,9 +2,9 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
 
 .loginWrapper {
+  @include flexCenter;
   position: fixed;
   inset: 0;
-  @include flexCenter;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease-in-out;

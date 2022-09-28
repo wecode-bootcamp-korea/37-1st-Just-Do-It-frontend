@@ -50,12 +50,7 @@ function Login({ closeTargetModal }) {
   const handleCloseModal = () => closeTargetModal('login');
 
   return (
-    <div
-      className="loginWrapper"
-      onClick={() => {
-        handleCloseModal();
-      }}
-    >
+    <div className="loginWrapper" onClick={handleCloseModal}>
       <div
         className="login"
         onClick={e => {
@@ -63,12 +58,7 @@ function Login({ closeTargetModal }) {
         }}
       >
         <div>
-          <button
-            className="loginModalDelete"
-            onClick={() => {
-              handleCloseModal();
-            }}
-          >
+          <button className="loginModalDelete" onClick={handleCloseModal}>
             <i className="fa-solid fa-x" />
           </button>
           <p className="loginIcon">나이키</p>
@@ -112,13 +102,7 @@ function Login({ closeTargetModal }) {
           </button>
           <p className="signInCheck">
             회원이 아니신가요?
-            <Link
-              to="/sign-up"
-              className="signIn"
-              onClick={() => {
-                handleCloseModal();
-              }}
-            >
+            <Link to="/sign-up" className="signIn" onClick={handleCloseModal}>
               회원가입
             </Link>
           </p>
