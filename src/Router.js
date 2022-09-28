@@ -10,6 +10,8 @@ import SignUp from './pages/SignUp/SignUp';
 import LoginModal from './components/Login/LoginModal';
 import SearchModal from './components/SearchModal/SearchModal';
 import ViewItemModal from './components/ViewItem/ViewItemModal';
+import Main from './pages/Main/Main';
+import Cart from './pages/Cart/Cart';
 
 function Router() {
   const [modalState, setModalState] = useState({
@@ -61,8 +63,11 @@ function Router() {
       <Nav showTargetModal={showTargetModal} />
       <Routes>
         <Route path="/" element={<Main />} />
+
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
+
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </BrowserRouter>
