@@ -20,14 +20,13 @@ function ListContent({
     >
       <ContentHeader />
       <ContentList products={products} itemListCount={itemListCount} />
-      {nextHider && (
-        <ContentNext
-          products={products}
-          setProducts={setProducts}
-          setOffset={setOffset}
-          setLimit={setLimit}
-        />
-      )}
+
+      <ContentNext
+        products={products}
+        setProducts={setProducts}
+        setOffset={setOffset}
+        setLimit={setLimit}
+      />
     </div>
   );
 }

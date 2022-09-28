@@ -14,7 +14,7 @@ function ContentItem({
   const navigate = useNavigate();
 
   const goToItemDetail = () => {
-    navigate(`/item-dtail/productId=${id}`);
+    navigate(`/item-dtail/${id}`);
   };
 
   return (

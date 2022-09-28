@@ -15,5 +15,6 @@
     display: flex;
     position: relative;
     margin-left: $mainLeftMargin;
+    min-height: 100vh;
   }
 }

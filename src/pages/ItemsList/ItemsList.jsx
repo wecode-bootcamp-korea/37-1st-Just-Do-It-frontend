@@ -16,7 +16,6 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState([]);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
-  const [nextHider, setNextHider] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const itemListCount = useRef();
@@ -38,12 +37,12 @@ function ItemList() {
     }
 
     setSearchParams(urlForSubmit);
-    fetch('http://172.20.10.12:8000/products/?' + urlForSubmit)
+    fetch('http://172.20.10.3:8000/products?' + urlForSubmit)
       .then(response => response.json())
       .then(result => {
         const inputItemCount =
           result.list.length - itemListCount.current.children.length;
-        if (inputItemCount < 4) setNextHider(false);
+
         setProducts(prev => result.list);
       });
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
@@ -76,7 +75,6 @@ function ItemList() {
           setOffset={setOffset}
           setLimit={setLimit}
           itemListCount={itemListCount}
-          nextHider={nextHider}
         />
       </div>
     </section>
