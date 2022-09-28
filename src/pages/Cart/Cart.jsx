@@ -8,12 +8,11 @@ function Cart() {
 
   //통신용
   // useEffect(() => {
-  //   fetch('http://192.168.243.221:8000/carts/', {
+  //   fetch('http://192.168.243.221:8000/carts', {
   //     mehtod: 'GET',
   //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
   //       authorization:
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY0MjQwNzI2LCJleHAiOjE2NjUwMTgzMjZ9.4q9S_mW3KnqXinRL0N_0uMQHdMyZSc-IJbj8ERkzo4c',
+  //          localStorage.getItem('token'),
   //     },
   //   })
   //     .then(response => {
@@ -23,12 +22,10 @@ function Cart() {
   //       throw new Error('에러발생');
   //     })
   //     .catch(error => console.log(error))
-  //     .then(data =>
-  //       // setCartItems(data.result));
-  //       console.log(data.result)
-  //     );
+  //     .then(data => setCartItems(data.result));
   // }, []);
-  //Mock data
+
+  // Mock data
   useEffect(() => {
     fetch('data/cart.json')
       .then(res => res.json())
@@ -40,7 +37,7 @@ function Cart() {
       <div className="cartHeader">
         <h2 className="cartTitle">장바구니</h2>
         <p className="cartItemsCount">
-          <span>0</span>개 상품
+          <span>{cartItems.length}</span>개 상품
         </p>
       </div>
       {cartItems[0]?.cartId ? (

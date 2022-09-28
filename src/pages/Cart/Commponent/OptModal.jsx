@@ -1,21 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './OptModal.scss';
 
-function OptModal({ setIsOpenModal, cartItems, setCartItems }) {
-  const { quantity, productName, size, retailPrice } = cartItems;
-  const [optCount, setOptCount] = useState(1);
+function OptModal({ setIsOpenModal, productId, optItemInfo }) {
+  const { retailPrice, discountPrice, quantity, productName } = optItemInfo[0];
+  const [cartOptItems, setCartOptItems] = useState('');
+  const [optCount, setOptCount] = useState(quantity);
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(optCount);
+  // useEffect(() => {
+  //   fetch('data/cartOpt.json', {
+  //     headers: {
+  //       authorization: localStorage.getItem('token'),
+  //     },
+  //   })
+  //     .then(res => {
+  //       if (res === true) {
+  //         return res.json();
+  //       }
+  //       throw new Error('에러가 발생했습니다');
+  //     })
+  //     .catch(error => console.log(error))
+  //     .then(data => setCartOptItems(data));
+  // }, []);
+  useEffect(() => {
+    fetch('data/cartOpt.json')
+      .then(res => res.json())
+      .then(res => setCartOptItems(res));
+  }, []);
 
   const handleOptInputCount = e => {
+    e.preventDefault();
     const toNum = Number(e.target.value);
     if (Number.isNaN(toNum)) return;
     setOptCount(toNum);
   };
-
-  const handleOptPulsBtn = () => {
+  const handleOptPulsBtn = optCount => {
+    console.log(optCount);
     setOptCount(optCount + 1);
   };
 
-  const handleOptMinusBtn = () => {
+  const handleOptMinusBtn = optCount => {
     setOptCount(optCount - 1);
   };
 
@@ -26,61 +51,57 @@ function OptModal({ setIsOpenModal, cartItems, setCartItems }) {
   return (
     <div className="optContainer">
       <section className="optImgsContainer">
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
-        <img
-          className="optImg"
-          alt="신발"
-          src="https://cdn.pixabay.com/photo/2021/04/13/19/41/elephants-6176590_1280.jpg"
-        />
+        {cartOptItems &&
+          cartOptItems.images.map((cartOptItem, idx) => {
+            return (
+              <img
+                key={idx}
+                className="optImg"
+                alt="신발"
+                src={cartOptItem.imageUrl}
+              />
+            );
+          })}
       </section>
       <article className="optRight">
         <div className="optRightHeder">
-          <span className="optItem">남성신발</span>
-          <span className="optPrice">{retailPrice}원</span>
+          <span className="optItem">{cartOptItems.brandName}</span>
+          <span className="optPrice">
+            <p
+              className={
+                Number(discountPrice) === 0 ? 'cartRetailPrice' : 'beforePrice'
+              }
+            >
+              {Number(retailPrice).toLocaleString()}원
+            </p>
+            <p
+              className={
+                Number(discountPrice) !== 0
+                  ? 'cartRetailPrice'
+                  : 'cartPriceNone'
+              }
+            >
+              {Number(discountPrice).toLocaleString()}
+            </p>
+            원
+          </span>
         </div>
         <div className="optItemTitle">{productName}</div>
         <div>
-          <div className="optSeletSize">사{size}</div>
+          <div className="optSeletSize">사이즈</div>
           <div className="optSizeContainer">
-            <button className="optSizeValue">245</button>
-            <button className="optSizeValue">250</button>
-            <button className="optSizeValue">240</button>
-            <button className="optSizeValue">255</button>
-            <button className="optSizeValue">260</button>
-            <button className="optSizeValue">265</button>
-            <button className="optSizeValue">270</button>
-            <button className="optSizeValue">275</button>
-            <button className="optSizeValue">280</button>
-            <button className="optSizeValue">285</button>
-            <button className="optSizeValue">290</button>
-            <button className="optSizeValue">295</button>
-            <button className="optSizeValue">300</button>
-            <button className="optSizeValue">305</button>
-            <button className="optSizeValue">310</button>
+            {cartOptItems &&
+              cartOptItems.productOptions.map(cartOptItem => {
+                return (
+                  <button
+                    key={cartOptItem.productOptionId}
+                    className="optSizeValue {cartOptItem.productOptionId}
+                  "
+                  >
+                    {cartOptItem.size}
+                  </button>
+                );
+              })}
           </div>
         </div>
         <div className="optChangeCount">
@@ -89,7 +110,7 @@ function OptModal({ setIsOpenModal, cartItems, setCartItems }) {
             className="itemCount"
             type="text"
             name="itemCount"
-            value={quantity}
+            value={optCount}
             onChange={handleOptInputCount}
           />
           <button className="cartCountDown" onClick={handleOptMinusBtn}>

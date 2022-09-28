@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import OptModal from './OptModal';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './CartItem.scss';
 
-function CartItem({ cartItems, setCartItems, setIsOpenModal }) {
+function CartItem({ cartItems, setCartItems }) {
   const [cartIdParams, setCartIdParams] = useSearchParams();
   const [detailPage, setDetailPage] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [optItemInfo, setOptItemInfo] = useState('');
+
+  const getSeletedCartId = id => {
+    const optInfo = [cartItems].filter(cartItem => cartItem.cartId === id);
+    setOptItemInfo(optInfo);
+  };
   const navigate = useNavigate();
   const {
     productId,
@@ -17,28 +25,27 @@ function CartItem({ cartItems, setCartItems, setIsOpenModal }) {
     retailPrice,
     styleCode,
   } = cartItems;
-
-  const setDelParams = e => {
-    const delItem = e.target.id;
-    console.log(delItem);
-    cartIdParams.set('sort', `'${delItem}'`);
+  async function delCartItem(id) {
     setCartIdParams(cartIdParams);
-  };
-
-  useEffect(() => {
-    fetch(`http://127.0.0.1:8000/carts/${cartIdParams}`, {
+    const response = await fetch(`http://192.168.243.221:8000/carts/${id}`, {
       method: 'DELETE',
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY0MjQwNzI2LCJleHAiOjE2NjUwMTgzMjZ9.4q9S_mW3KnqXinRL0N_0uMQHdMyZSc-IJbj8ERkzo4c',
+        authorization: localStorage.getItem('token'),
       },
-    })
-      .then(res => {
-        if (res.ok === true) return res.json();
-        throw new Error('에러가 발생했습니다');
+    });
+
+    const data = await response.json();
+    if (data.message === 'Cart is deleted') {
+      console.log('삭제되었습니다.');
+      fetch('http://192.168.243.221:8000/carts', {
+        headers: {
+          authorization: localStorage.getItem('token'),
+        },
       })
-      .catch(error => alert(error));
-  }, [setDelParams]);
+        .then(response => response.json())
+        .then(response => setCartItems(response.result));
+    }
+  }
 
   const toDetailPage = e => {
     setDetailPage('e.target.id');
@@ -66,7 +73,10 @@ function CartItem({ cartItems, setCartItems, setIsOpenModal }) {
       </div>
       <button
         className="cartOptChange"
-        onClick={() => setIsOpenModal(prev => !prev)}
+        onClick={() => {
+          setIsOpenModal(prev => !prev);
+          getSeletedCartId(cartId);
+        }}
       >
         옵션 변경
       </button>
@@ -86,14 +96,23 @@ function CartItem({ cartItems, setCartItems, setIsOpenModal }) {
           {Number(discountPrice).toLocaleString()}
         </p>
       </div>
-      <button>
-        <i
-          className="fa-regular fa-trash-can del cartDelItem"
-          id={cartId}
-          onClick={setDelParams}
-        />
+      <button onClick={() => delCartItem(cartId)}>
+        <i className="fa-regular fa-trash-can del cartDelItem" />
       </button>
       <button className="addWishBtn">위시리스트에 추가</button>
+      {isOpenModal && (
+        <>
+          <div className="optOverlay" onClick={() => setIsOpenModal(false)} />
+          <OptModal
+            cartItems={cartItems}
+            isOpenModal={isOpenModal}
+            setIsOpenModal={setIsOpenModal}
+            setCartItems={setCartItems}
+            productId={productId}
+            optItemInfo={optItemInfo}
+          />
+        </>
+      )}
     </li>
   );
 }

@@ -31,14 +31,35 @@
     .optRightHeder {
       display: flex;
       justify-content: space-between;
-      font-size: $font-size-lg;
+      font-size: 16px;
 
       .optItem {
         color: $font-color-black;
       }
 
       .optPrice {
-        font-weight: $font-weight-semibold;
+        font-size: 1em;
+
+        .cartRetailPrice {
+          color: $font-color-red;
+          font-weight: $font-weight-semibold;
+        }
+
+        .beforePrice {
+          display: flex;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            border-bottom: 1px solid $background-color-black;
+            width: 3.6em;
+          }
+        }
+        .cartPriceNone {
+          display: none;
+        }
       }
     }
 
