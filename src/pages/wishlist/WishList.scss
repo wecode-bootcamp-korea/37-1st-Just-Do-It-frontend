@@ -3,44 +3,102 @@
 
 .wishList {
   .wishTitle {
+    margin: 50px 50px;
     font-size: 60px;
     font-weight: $font-weight-bold;
   }
-  .wishListContainer {
+  .wishContainer {
+    margin: 50px;
     display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    position: relative;
-
-    .deleteButton {
-      .deleteIcon {
-        position: absolute;
-        font-size: 20px;
-        margin: 8px;
-        background-color: rgba(255, 255, 255, 0.865);
-        &:hover {
-          border-radius: 50%;
-          background-color: $background-color-white;
+    justify-content: space-between;
+    .wishMenu {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      .menuList {
+        width: 250px;
+        padding: 10px;
+        border-right: 3px solid grey;
+        font-size: $font-size-lg;
+        color: $font-color-grey;
+        &:first-child {
+          font-size: $font-size-xl;
+          color: $font-color-black;
+          font-weight: $font-weight-bold;
+          margin-bottom: 15px;
+        }
+        &:nth-child(8) {
+          font-size: $font-size-xl;
+          color: $font-color-black;
+          font-weight: $font-weight-bold;
+          margin: 15px 0;
+        }
+        &:nth-child(12) {
+          font-size: $font-size-xl;
+          color: $font-color-black;
+          font-weight: $font-weight-bold;
+          margin: 15px 0;
+        }
+        &:nth-child(17) {
+          font-size: $font-size-xl;
+          color: $font-color-black;
+          font-weight: $font-weight-bold;
+          margin: 15px 0;
         }
       }
     }
-    .wishItem {
-      margin: 10px 30px;
+    .wishListContainer {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+
       .wishImg {
-        width: 400px;
-        height: 600px;
-        margin-bottom: 20px;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
       }
-      .wishName {
-        border-top: 1px solid black;
-        padding-top: 20px;
-        margin-bottom: 20px;
+      .deleteButton {
+        position: relative;
+        .deleteIcon {
+          position: absolute;
+          font-size: 20px;
+          top: 3px;
+          padding: 10px;
+          background-color: rgba(255, 255, 255, 0.865);
+          &:hover {
+            padding: 10px;
+            background-color: lightgrey;
+          }
+        }
       }
-      .wishPrice {
-        margin-bottom: 20px;
-      }
-      .wishMove {
-        color: $background-color-black;
+      .wishItem {
+        margin: 10px 30px;
+        .wishImg {
+          width: 300px;
+          height: 400px;
+          margin-bottom: 20px;
+        }
+        .wishName {
+          border-top: 1px solid black;
+          padding-top: 20px;
+          margin-bottom: 20px;
+          font-size: $font-size-xl;
+          color: $font-color-black;
+          font-weight: $font-weight-bold;
+        }
+        .wishPrice {
+          margin-bottom: 20px;
+          font-size: $font-size-lg;
+          color: $font-color-grey;
+        }
+        .wishMove {
+          font-size: $font-size-lg;
+          color: $font-color-black;
+          &:hover {
+            background-color: $background-color-white;
+          }
+        }
       }
     }
   }
