@@ -4,7 +4,7 @@
       "cartId": 31,
       "userId": 3,
       "styleCode": "921826-001",
-      "quantity": 1,
+      "quantity": 4,
       "productOptionId": 26,
       "productId": 2,
       "productName": "나이키 에어맥스 97",
@@ -12,7 +12,7 @@
       "size": "225",
       "stock": 5,
       "retailPrice": "199000",
-      "discountPrice": "179100",
+      "discountPrice": "0",
       "thumbnail": "https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_1.jpg"
     },
     {

@@ -12,3 +12,7 @@ export const MAIN_CONFIG = {
 export const WISH_CONFIG = {
   api: 'http://172.20.10.3:8000/wishlist',
 };
+
+export const CART_ORDER = {
+  api: 'https://jsonplaceholder.typicode.com/posts',
+};
