@@ -24,8 +24,6 @@ function ItemDetail() {
   const [selectedId, setSelectedId] = useState('');
   const { stock } = product;
 
-  console.log('result : ', result);
-
   useEffect(() => {
     // fetch(`http://10.10.10.10/product/${productId}`)
     fetch('./data/Mock.json')
@@ -92,11 +90,10 @@ function ItemDetail() {
         : null
     );
 
-    console.log(selectdSizesStock);
     if (quantity < selectdSizesStock) {
       setquantity(prevquantity => prevquantity + 1);
     } else {
-      alert('수량이 부족합니다.');
+      alert('최대 구매 수량은 5개 입니다.');
     }
   };
   const onDecrease = () => {
@@ -252,7 +249,10 @@ function ItemDetail() {
               </div>
               <div className="reviewContents">
                 {reviewOpen && (
-                  <Review product={product.review} styleCode={product} />
+                  <Review
+                    review={product.review}
+                    styleCode={product.styleCode}
+                  />
                 )}
               </div>
             </div>

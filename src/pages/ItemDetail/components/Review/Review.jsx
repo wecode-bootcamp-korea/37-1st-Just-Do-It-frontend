@@ -1,21 +1,25 @@
 import React from 'react';
 
 import './Review.scss';
-function Review({ product, reviewOpen, styleCode }) {
+function Review({ review, styleCode }) {
   return (
     <div>
-      {!reviewOpen && (
-        <div>
-          <div>{}</div>
+      {review?.map(item => (
+        <div key={item.id}>
+          {/* <div>
+          {Array(item.starScore)
+          .fill()
+          .map(_, i) => {<p>★</p>}}
+          </div> */}
           <div className="reviewBox">
-            <div>{product.fullName}</div>
-            <div>{product.createdAt}</div>
-            <div>{styleCode.styleCode}</div>
+            <div>{item.fullName}</div>
+            <div>{item.createdAt}</div>
+            <div>{styleCode}</div>
           </div>
-          {product.content}
+          {item.content}
           <div />
         </div>
-      )}
+      ))}
     </div>
   );
 }

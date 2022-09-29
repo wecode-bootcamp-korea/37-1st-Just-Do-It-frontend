@@ -9,6 +9,17 @@ function Modal({
   quantity,
   result,
 }) {
+  let totalPrice = 0;
+
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].discountPrice) {
+      totalPrice += result[i].discountPrice * result[i].quantity;
+    } else {
+      totalPrice += result[i].retailPrice * result[i].quantity;
+    }
+    console.log(totalPrice);
+  }
+
   return (
     <div>
       {modal && (
@@ -39,7 +50,7 @@ function Modal({
               <div className="modalPurchase">
                 <div className="modalPrice">
                   <div className="modaItemPrice">총 상품금액</div>
-                  <div className="modalShoesPrice">원</div>
+                  <div className="modalShoesPrice">{totalPrice}원</div>
                 </div>
                 <div className="modaItemPrice">
                   배송비는 주문서에서 확인이 가능합니다.
