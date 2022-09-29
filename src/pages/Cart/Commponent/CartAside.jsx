@@ -2,7 +2,6 @@ import React from 'react';
 import './CartAside.scss';
 
 function CartAside({ cartItems, setCartItems }) {
-  console.log(cartItems);
   const cartOrder = () => {
     fetch('http://127.0.0.1:8000/checkout/carts', {
       method: 'PATCH',
@@ -38,7 +37,10 @@ function CartAside({ cartItems, setCartItems }) {
           <div className="detail">
             <span>상품 할인 금액</span>
             <span className="cartPrice">
-              {(sumCartRetailPrice - calCartDiscountedPrice).toLocaleString()}원
+              {calCartDiscountedPrice
+                ? calCartDiscountedPrice.toLocaleString()
+                : sumCartRetailPrice.toLocaleString()}
+              원
             </span>
           </div>
           <div className="checkoutDiscountedPrice detail">
@@ -48,10 +50,7 @@ function CartAside({ cartItems, setCartItems }) {
           <div className="totalPrice detail">
             <span>총 결제 예정 금액</span>
             <span className="cartPrice">
-              {calCartDiscountedPrice
-                ? calCartDiscountedPrice.toLocaleString()
-                : sumCartRetailPrice.toLocaleString()}
-              원
+              {(sumCartRetailPrice - calCartDiscountedPrice).toLocaleString()}원
             </span>
           </div>
           <button className="checkoutOrderBtn" onClick={cartOrder}>

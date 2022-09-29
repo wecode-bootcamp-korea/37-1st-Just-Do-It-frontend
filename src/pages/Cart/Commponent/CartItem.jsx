@@ -87,9 +87,6 @@ function CartItem({ cartItems, setCartItems }) {
     const optInfo = [cartItems].filter(cartItem => cartItem.cartId === id);
     setOptItemInfo(optInfo);
   };
-  //데이터 삭제하기
-
-  // 데이터 받아오기
 
   const toDetailPage = id => {
     navigate('/item-detail', {
@@ -154,6 +151,7 @@ function CartItem({ cartItems, setCartItems }) {
             optItemInfo={optItemInfo}
             cartOptItems={cartOptItems}
             setCartItems={setCartItems}
+            cartDiscountRate={cartDiscountRate}
           />
         </>
       )}

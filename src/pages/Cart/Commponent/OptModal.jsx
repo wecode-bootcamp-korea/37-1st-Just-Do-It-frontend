@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './OptModal.scss';
 
-function OptModal({ setIsOpenModal, optItemInfo, cartOptItems }) {
+function OptModal({
+  setIsOpenModal,
+  optItemInfo,
+  cartOptItems,
+  cartDiscountRate,
+}) {
   const { retailPrice, discountPrice, quantity, productName, size, cartId } =
     optItemInfo[0];
   const { productOptions } = cartOptItems;
@@ -9,7 +14,6 @@ function OptModal({ setIsOpenModal, optItemInfo, cartOptItems }) {
   const [optCount, setOptCount] = useState(Number(quantity));
   const [minusDisabled, setMinusDisabled] = useState(false);
   const [plusDisabled, setplusDisabled] = useState(false);
-
   let selctedOptId = 0;
 
   productOptions &&
@@ -109,7 +113,16 @@ function OptModal({ setIsOpenModal, optItemInfo, cartOptItems }) {
             </p>
           </span>
         </div>
-        <div className="optItemTitle">{productName}</div>
+        <div className="optItemTitle">
+          <div className="optItemName">{productName}</div>
+          <div
+            className={
+              cartDiscountRate < 100 ? 'optDiscountRate' : 'optDiscountNone'
+            }
+          >
+            {cartDiscountRate}%
+          </div>
+        </div>
         <div>
           <div className="optSeletSize">사이즈</div>
           <div className="optSizeContainer">
