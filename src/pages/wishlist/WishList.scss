@@ -1,0 +1,47 @@
+@import '/src/styles/variables.scss';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css';
+
+.wishList {
+  .wishTitle {
+    font-size: 60px;
+    font-weight: $font-weight-bold;
+  }
+  .wishListContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+
+    .deleteButton {
+      .deleteIcon {
+        position: absolute;
+        font-size: 20px;
+        margin: 8px;
+        background-color: rgba(255, 255, 255, 0.865);
+        &:hover {
+          border-radius: 50%;
+          background-color: $background-color-white;
+        }
+      }
+    }
+    .wishItem {
+      margin: 10px 30px;
+      .wishImg {
+        width: 400px;
+        height: 600px;
+        margin-bottom: 20px;
+      }
+      .wishName {
+        border-top: 1px solid black;
+        padding-top: 20px;
+        margin-bottom: 20px;
+      }
+      .wishPrice {
+        margin-bottom: 20px;
+      }
+      .wishMove {
+        color: $background-color-black;
+      }
+    }
+  }
+}
