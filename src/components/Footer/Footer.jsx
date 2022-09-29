@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { TOP_DATA, TOP_ITEM_DATA } from './FOOTER_DATA';
-
 import './Footer.scss';
 
 function Footer() {

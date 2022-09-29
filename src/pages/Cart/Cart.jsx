@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CartIsNull from './Commponent/CartIsNull';
+// import CartIsNull from './Commponent/CartIsNull';
 import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
 

@@ -35,7 +35,6 @@ function ItemList() {
           (urlForSubmit = urlForSubmit + `${checkListName}=${checkedList}&`)
       );
     }
-
     setSearchParams(urlForSubmit);
     fetch('http://172.20.10.4:8000/products?' + urlForSubmit)
       .then(response => response.json())
