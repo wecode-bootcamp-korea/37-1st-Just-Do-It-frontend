@@ -18,11 +18,11 @@ function ItemDetail() {
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
   const [productOptionId, setProductOptionId] = useState();
-  const [isWished, setIsWished] = useState();
+  const [isWished, setIsWished] = useState(product.isWished);
 
   const iswished = product.isWished;
-
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
+  const [accessToken, setAccessToken] = useState(token);
 
   const [selectedId, setSelectedId] = useState('');
   const { stock } = product;
@@ -35,6 +35,7 @@ function ItemDetail() {
     })
       .then(res => res.json())
       .then(data => {
+        setIsWished(data.isWished);
         console.log(data);
         setProduct(data);
       });
@@ -44,11 +45,14 @@ function ItemDetail() {
   const params = useParams();
   const { productId } = params;
 
+  console.log('quantity : ', quantity);
+  console.log('productOptionId : ', productOptionId);
+
   const orderSubmit = () => {
     fetch(`http://192.168.243.200:8000/orders`, {
       method: 'POST',
       headers: {
-        authorization: accessToken,
+        authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
@@ -133,11 +137,11 @@ function ItemDetail() {
       }),
     })
       .then(response => response.json())
-      .then(result =>
+      .then(result => {
         result.message === 'ALREADY_EXIST'
           ? alert('이미 wishList에 있는 항목입니다.')
-          : setIsWished(true)
-      );
+          : setIsWished(true);
+      });
   };
 
   return (
@@ -204,6 +208,8 @@ function ItemDetail() {
                 setShooseSize={setShooseSize}
                 stock={product.productOptions}
                 setSelectedId={setSelectedId}
+                setProductOptionId={setProductOptionId}
+                product={product}
               />
             </div>
             <p>
@@ -233,7 +239,7 @@ function ItemDetail() {
                   <div className="text">위시리스트</div>
                   {accessToken && (
                     <div className="heart">
-                      {iswished === true ? '♥️' : '♡'}
+                      {isWished === true ? '♥️' : '♡'}
                     </div>
                   )}
                 </button>

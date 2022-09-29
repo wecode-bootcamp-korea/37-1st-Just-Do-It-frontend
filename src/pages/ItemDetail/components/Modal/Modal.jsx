@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
@@ -9,6 +10,7 @@ function Modal({
   quantity,
 }) {
   let totalPrice = 0;
+  const navigate = useNavigate();
 
   const accessToken = localStorage.getItem('token');
   const [result, setResult] = useState([]);
@@ -71,7 +73,9 @@ function Modal({
                 배송비는 주문서에서 확인이 가능합니다.
               </div>
               <div className="modalBasketBuy">
-                <button className="modalBasket">장바구니 가기</button>
+                <button className="modalBasket">
+                  <Link to="/cart">장바구니 가기</Link>
+                </button>
                 <button className="modalBuy">바로 구매</button>
               </div>
             </div>
