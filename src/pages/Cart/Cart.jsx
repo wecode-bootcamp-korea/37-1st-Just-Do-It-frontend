@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import CartIsNull from './Commponent/CartIsNull';
+import CartIsNull from './Commponent/CartIsNull';
 import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
 
@@ -30,6 +30,7 @@ function Cart() {
       .then(res => res.json())
       .then(res => setCartItems(res.result));
   }, []);
+  console.log(cartItems);
 
   return (
     <div className="cart">

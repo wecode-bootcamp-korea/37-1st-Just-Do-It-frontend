@@ -9,9 +9,6 @@ import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { useParams } from 'react-router-dom';
 
-// import ShoesModal from './components/ShoesModal/ShoesModal';
-/* eslint-disable */
-
 function ItemDetail() {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState({});
@@ -38,8 +35,8 @@ function ItemDetail() {
 
   const openModal = () => {
     if (accessToken === null) {
-      alert('로그인하세요');
-    } else {
+      //   alert('로그인하세요');
+      // } else {
       setModal(prev => !prev);
       document.body.style.overflow = 'hidden';
       window.scroll(0, 15);
@@ -153,12 +150,12 @@ function ItemDetail() {
               <div className="namePrice">
                 <div>{product.brandName}</div>
                 <div className="discounted">
-                  {Number(product.retailPrice)}원
+                  {Number(product.retailPrice).toLocaleString()}원
                 </div>
               </div>
               <div>
                 <div className="discountPrice">
-                  {Number(product.discountPrice)}원
+                  {Number(product.discountPrice).toLocaleString()}원
                 </div>
               </div>
               <div className="discountPercent">
@@ -259,14 +256,18 @@ function ItemDetail() {
 
             <div className="itemSide">
               <div>배송</div>
-              <div className="itemShip">일반배송/오늘도착</div>
+              <div className="itemdetailRight">
+                <div className="itemShip">일반배송/오늘도착</div>
 
-              <img src="/image/open.png" alt="open" className="open" />
+                <img src="/image/open.png" alt="open" className="open" />
+              </div>
             </div>
             <div className="itemSide">
               <span>반품/AS</span>
-              <span className="itemShip">온라인 접수/매장 접수</span>
-              <img src="/image/open.png" alt="open" className="open" />
+              <div className="itemdetailRight">
+                <span className="itemShip">온라인 접수/매장 접수</span>
+                <img src="/image/open.png" alt="open" className="open" />
+              </div>
             </div>
           </div>
         </div>

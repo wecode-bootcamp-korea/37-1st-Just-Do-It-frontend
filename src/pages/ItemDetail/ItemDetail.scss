@@ -33,8 +33,7 @@
     padding-top: 50px;
 
     .detailInfo {
-      width: 449px;
-      // height: 1790px;
+      width: 30%;
 
       .shoesImg {
         width: 435px;
@@ -47,7 +46,7 @@
         margin-top: 30px;
       }
       .detailOption {
-        width: 385px;
+        width: 400px;
         position: absolute;
 
         .itemCount {
@@ -168,8 +167,8 @@
         }
       }
       .itemPickUp {
-        width: 80%;
-        transform: translate(10%, 0);
+        // width: 100%;
+        // transform: translate(10%, 0);
         display: flex;
         justify-content: space-between;
         padding-top: 15px;
@@ -193,6 +192,8 @@
       .reviewContents {
         padding-top: 20px;
         width: 100%;
+        max-height: 200px;
+        overflow-y: scroll;
       }
 
       .shoesInfo {
@@ -220,13 +221,20 @@
         }
       }
       .itemSide {
+        display: flex;
+        justify-content: space-between;
         padding: 27px 0 28px 6px;
         border-bottom: 1px solid lightgray;
+      }
+      .itemdetailRight {
         display: flex;
         justify-content: space-between;
       }
+
       .itemShip {
-        padding-left: 40%;
+        display: flex;
+        justify-self: end;
+        margin-right: 10px;
         color: gray;
       }
 

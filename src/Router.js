@@ -21,12 +21,11 @@ function Router() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
-        <Route path="/wish-list" element={<WishList />} />
-        <Route path="/item-list" element={<ItemList />} />
         <Route path="/item-detail" element={<ItemDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wish-list" element={<WishList />} />
       </Routes>
       <Footer />
     </BrowserRouter>
