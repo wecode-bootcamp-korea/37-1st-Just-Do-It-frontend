@@ -20,6 +20,8 @@ function ItemList() {
 
   const itemListCount = useRef();
 
+  console.log('products : ', products);
+
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
     let urlForSubmit = `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
@@ -36,7 +38,7 @@ function ItemList() {
       );
     }
     setSearchParams(urlForSubmit);
-    fetch('http://172.20.10.4:8000/products?' + urlForSubmit)
+    fetch('http://192.168.243.200:8000/products?' + urlForSubmit)
       .then(response => response.json())
       .then(result => {
         const inputItemCount =

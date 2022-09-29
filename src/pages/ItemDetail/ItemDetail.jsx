@@ -17,46 +17,73 @@ function ItemDetail() {
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
+  const [productOptionId, setProductOptionId] = useState();
+  const [isWished, setIsWished] = useState(product.isWished);
+
+  const iswished = product.isWished;
+  const token = localStorage.getItem('token');
+  const [accessToken, setAccessToken] = useState(token);
 
   const [selectedId, setSelectedId] = useState('');
   const { stock } = product;
-
   useEffect(() => {
-    // fetch(`http://10.10.10.10/product/${productId}`)
-    fetch('./data/Mock.json')
+    fetch(`http://192.168.243.200:8000/product/${productId}`, {
+      method: 'GET',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
-      .then(data => setProduct(...data));
+      .then(data => {
+        setIsWished(data.isWished);
+        console.log(data);
+        setProduct(data);
+      });
+    // .then(result => console.log(result));
   }, []);
 
   const params = useParams();
   const { productId } = params;
 
-  const accessToken = localStorage.getItem('accessToken');
+  console.log('quantity : ', quantity);
+  console.log('productOptionId : ', productOptionId);
+
+  const orderSubmit = () => {
+    fetch(`http://192.168.243.200:8000/orders`, {
+      method: 'POST',
+      headers: {
+        authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        productOptionId: productOptionId,
+        quantity: quantity,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => alert(result.message));
+  };
 
   const openModal = () => {
     if (accessToken === null) {
-      //   alert('로그인하세요');
-      // } else {
+      alert('로그인하세요');
+    } else if (selectedId == '') {
+      alert('size를 선택하세요');
+    } else {
       setModal(prev => !prev);
       document.body.style.overflow = 'hidden';
-      window.scroll(0, 15);
-      fetch('http://192.168.243.221:8000/carts', {
+      window.scroll(0, 165);
+      fetch('http://192.168.243.200:8000/carts', {
         method: 'POST',
         headers: {
+          authorization: accessToken,
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({
           productOptionId: selectedId,
           quantity: quantity,
         }),
-      })
-        .then(response => response.json())
-        .then(result => console.log(result));
-
-      fetch('./data/MockTwo.json')
-        .then(response => response.json())
-        .then(data => setResult(data));
-      // .then(data => console.log(data));
+      }).then(response => response.json());
     }
   };
 
@@ -81,11 +108,12 @@ function ItemDetail() {
   const onIncrease = () => {
     let selectdSizesStock = 0;
 
-    product.productOptions.map(item =>
-      Number(item.size) === Number(shooseSize)
-        ? (selectdSizesStock = item.stock)
-        : null
-    );
+    product.productOptions.map(item => {
+      if (Number(item.size) === Number(shooseSize)) {
+        selectdSizesStock = item.stock;
+        setProductOptionId(item.productOptionId);
+      }
+    });
 
     if (quantity < selectdSizesStock) {
       setquantity(prevquantity => prevquantity + 1);
@@ -98,44 +126,37 @@ function ItemDetail() {
   };
 
   const wishSubmit = event => {
-    // fetch('http://172.20.10.9:8000/wishlist/create/19', {
-    fetch('123123123', {
+    fetch(`http://192.168.243.200:8000/wishlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTY2NDMzMDIxMSwiZXhwIjoxNjY1MTA3ODExfQ.toFARFL-oMK7aJhd4p1UbEFE4cbMH50tsu-6uZTF-iQ',
+        authorization: accessToken,
       },
       body: JSON.stringify({
-        productId: 19,
+        productId: productId,
       }),
     })
       .then(response => response.json())
-      .then(
+      .then(result => {
         result.message === 'ALREADY_EXIST'
           ? alert('이미 wishList에 있는 항목입니다.')
-          : null
-      );
+          : setIsWished(true);
+      });
   };
-
-  // const params = usePrams();
-  // const userId = params.id;
-
-  // const [user, setUser] = useState();
 
   return (
     <section className="itemDetail">
-      <Modal closeModal={closeModal} modal={modal} result={result} />
+      {modal && <Modal closeModal={closeModal} />}
       <ShoesModal
         closeShoesModal={closeShoesModal}
         shoesModal={shoesModal}
-        imageUrl={product.imageUrl}
+        imageUrl={product.imageURL}
       />
 
       <article className="detailSection">
         <div className="detailContent">
           <DetailImgs
-            imageUrl={product.imageUrl}
+            imageUrl={product.imageURL}
             openShoesModal={openShoesModal}
           />
         </div>
@@ -144,7 +165,7 @@ function ItemDetail() {
           <div className="detailOption">
             <div
               className={`detailName ${
-                product.discountPrice === '' ? 'price0' : ''
+                product.discountPrice === null ? 'price0' : ''
               }`}
             >
               <div className="namePrice">
@@ -187,6 +208,8 @@ function ItemDetail() {
                 setShooseSize={setShooseSize}
                 stock={product.productOptions}
                 setSelectedId={setSelectedId}
+                setProductOptionId={setProductOptionId}
+                product={product}
               />
             </div>
             <p>
@@ -204,14 +227,21 @@ function ItemDetail() {
               </span>
             </div>
             <div className="itemPurchaseWrap">
-              <button className="itemPurchase">바로구매</button>
+              <button className="itemPurchase" onClick={orderSubmit}>
+                바로구매
+              </button>
               <div className="itemBasketWish">
                 <button onClick={openModal} className="btn-modal">
                   장바구니
                 </button>
 
                 <button className="itemWish" onClick={wishSubmit}>
-                  위시리스트
+                  <div className="text">위시리스트</div>
+                  {accessToken && (
+                    <div className="heart">
+                      {isWished === true ? '♥️' : '♡'}
+                    </div>
+                  )}
                 </button>
               </div>
             </div>

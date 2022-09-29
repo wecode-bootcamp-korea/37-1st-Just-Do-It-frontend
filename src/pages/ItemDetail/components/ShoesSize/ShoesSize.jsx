@@ -2,7 +2,13 @@ import React from 'react';
 import SizeButton from './components/SizeButton';
 import './ShoesSize.scss';
 
-function ShoesSize({ footSize, setShooseSize, setSelectedId }) {
+function ShoesSize({
+  footSize,
+  setShooseSize,
+  setSelectedId,
+  setProductOptionId,
+  product,
+}) {
   return (
     <div className="shoesSize">
       <ul className="shoesSizeWrap">
@@ -13,6 +19,8 @@ function ShoesSize({ footSize, setShooseSize, setSelectedId }) {
             setShooseSize={setShooseSize}
             itemstock={data.stock}
             setSelectedId={setSelectedId}
+            setProductOptionId={setProductOptionId}
+            product={product}
           />
         ))}
       </ul>

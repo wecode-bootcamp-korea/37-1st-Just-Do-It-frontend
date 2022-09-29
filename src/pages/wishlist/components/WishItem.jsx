@@ -4,24 +4,29 @@ import { useNavigate } from 'react-router-dom';
 
 function WishItem({ productId, thumbnail, name, price, userId }) {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
   const moveItemDetail = () => {
-    navigate('/item-detail', { state: { productId: productId } });
+    navigate(`/item-detail/${productId}`, { state: { productId: productId } });
   };
-  const handleDeleteCheck = async () => {
-    // try {
-    //   // const token = localStorage.getItem('token');
-    //   if (window.confirm('삭제 하시겠습니까?')) {
-    //     await fetch(`http://172.20.10.3:8000/wishlist/${productId}`, {
-    //       method: 'DELETE',
-    //       headers: {
-    //         authorization:
-    //           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImlhdCI6MTY2NDQxNjUzNywiZXhwIjoxNjY1MTk0MTM3fQ.Lbkhw3B0kg7dKdXskMP1OvUk_gX2K8SLPn1mU8-duBI',
-    //       },
-    //     });
-    //   }
-    // } catch (e) {
-    //   console.error(e);
-    // }
+  const handleDeleteCheck = async event => {
+    try {
+      if (window.confirm('삭제 하시겠습니까?')) {
+        await fetch(`http://192.168.243.200:8000/wishlist/${productId}`, {
+          method: 'DELETE',
+          headers: {
+            authorization: token,
+          },
+        })
+          .then(response => response.json())
+          .then(result => {
+            if (result.message === 'delete complete') {
+              event.nativeEvent.path[2].innerHTML = '';
+            }
+          });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

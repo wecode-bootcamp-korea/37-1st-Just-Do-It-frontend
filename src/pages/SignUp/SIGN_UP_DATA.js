@@ -39,6 +39,6 @@ export const SIGN_UP_INPUT_DATA = [
     className: 'signUpInput',
     name: 'birth',
     type: 'text',
-    placeholder: '생년월일 예)2020.02.02',
+    placeholder: '생년월일 예)2020-02-02',
   },
 ];

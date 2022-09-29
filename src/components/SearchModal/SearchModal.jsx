@@ -13,7 +13,7 @@ function SearchModal({ closeTargetModal }) {
   const [searchItemView, setSearchItemView] = useState([]);
 
   useEffect(() => {
-    fetch(`${SEARCH_CONFIG}`)
+    fetch('http://192.168.243.200:8000/products?offset=0&limit=19')
       .then(response => response.json())
       .then(result => setSearchItemView(result.list));
   }, []);

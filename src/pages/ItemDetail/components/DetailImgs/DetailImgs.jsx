@@ -5,10 +5,10 @@ function DetailImgs({ imageUrl, openShoesModal }) {
   return (
     <ul className="detailImgs">
       {imageUrl?.map(url => (
-        <li className="detailProduct" key={url.product_id}>
+        <li className="detailProduct" key={url}>
           <div className="detailImg">
             <img
-              src={url.imageUrl}
+              src={url}
               alt="나이키"
               className="shoesImg"
               onClick={openShoesModal}

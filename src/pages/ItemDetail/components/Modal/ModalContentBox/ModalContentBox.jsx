@@ -13,15 +13,15 @@ function ModalContentBox({
 }) {
   const deleteShoesItem = event => {
     event.nativeEvent.path[5].innerHTML = '';
-    // const deleteCartId = event.target.title;
-    // fetch(`http://10.10.10.10/carts/${deleteCartId}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     authorization: localStorage.getItem('token'),
-    //   },
-    // })
-    //   .then(response => response.json())
-    //   .then(result => console.log(result));
+    const deleteCartId = event.target.title;
+    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(result => console.log(result));
   };
 
   return (
@@ -48,7 +48,7 @@ function ModalContentBox({
           <div>수량: {quantity}</div>
           <div
             className={`modalDetailName ${
-              discountPrice === '' ? 'price0' : ''
+              discountPrice === null ? 'price0' : ''
             }`}
           >
             <div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SIGN_UP_CONFIG } from '../../config';
 import { SIGN_UP_INPUT_DATA } from './SIGN_UP_DATA';
 import './SignUp.scss';
@@ -14,6 +15,8 @@ function SignUp() {
     birth: '',
     gender: '2',
   });
+
+  const navigate = useNavigate();
 
   const handleChangeRadio = ({ target: { value } }) =>
     setInputs(prev => ({ ...prev, gender: value }));
@@ -68,7 +71,7 @@ function SignUp() {
     }
 
     if (!birthReg.test(birth)) {
-      throw new Error('양식에 맞지 않습니다 예)2020.02.02');
+      throw new Error('양식에 맞지 않습니다 예)2020-02-02');
     }
 
     if (!isAllowedAge(birth)) {
@@ -84,14 +87,19 @@ function SignUp() {
     try {
       validateSignUp(value);
 
-      fetch(`${SIGN_UP_CONFIG.api}`, {
+      fetch('http://192.168.243.200:8000/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify(value),
       })
-        .then(response => {})
+        .then(response => response.json())
+        .then(result => {
+          if (result.message === 'userCreated') {
+            navigate('/');
+          }
+        })
         .catch(e => console.error(e));
     } catch (e) {
       alert(e.message);

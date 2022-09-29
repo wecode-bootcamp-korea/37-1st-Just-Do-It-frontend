@@ -11,8 +11,8 @@ function ContentList({ products, itemListCount }) {
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {CONTENTS_MOCK.length !== undefined
-          ? CONTENTS_MOCK.map(
+        {products.length !== undefined
+          ? products.map(
               ({
                 id,
                 thumbnail,
