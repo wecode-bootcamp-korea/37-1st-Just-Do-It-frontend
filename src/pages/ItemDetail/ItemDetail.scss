@@ -47,7 +47,6 @@
       }
       .detailOption {
         width: 400px;
-        position: absolute;
 
         .itemCount {
           display: flex;
@@ -192,8 +191,6 @@
       .reviewContents {
         padding-top: 20px;
         width: 100%;
-        max-height: 200px;
-        overflow-y: scroll;
       }
 
       .shoesInfo {

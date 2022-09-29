@@ -6,11 +6,6 @@ import Main from './pages/Main/Main';
 import SignUp from './pages/SignUp/SignUp';
 import ItemList from './pages/ItemsList/ItemsList';
 import Cart from '../src/pages/Cart/Cart';
-
-// import Main from './pages/Main/Main';
-// import Nav from './components/Nav/Nav';
-// import SignUp from './pages/SignUp/SignUp.jsx';
-//import WishList from './pages/wishlist/WishList';
 import WishList from './pages/wishlist/WishList';
 import ItemDetail from './pages/ItemDetail/ItemDetail';
 import './styles/reset.scss';

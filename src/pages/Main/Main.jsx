@@ -18,7 +18,7 @@ function Main() {
     <div className="main">
       <div className="video">
         <video muted autoPlay loop width="80%">
-          <source src="/videos/nikeRun.mp4" type="video/mp4" alt="Nike Run" />
+          <source src="/videos/nikeRun33.mp4" type="video/mp4" alt="Nike Run" />
         </video>
       </div>
       <div className="videoTextContainer">
@@ -43,14 +43,14 @@ function Main() {
         </div>
       </div>
       <div className="videoTextContainer">
-        <h1 className="infoHeader">JUST-DO-IT 팀원 사진</h1>
-        <p className="infoMain">뭐라고 쓸지 진짜 모르겠다 아.....</p>
+        <h1 className="infoHeader">JUST-DO-IT 가족 사진</h1>
+        <p className="infoMain">웃고 있지만 속은 울고 있다.</p>
         <div className="videoButton">
           <Link to="item-list" className="buyButton btn">
             구매하기
           </Link>
           <Link to="item-list" className="infoButton btn">
-            자세히 보기
+            상세보기
           </Link>
         </div>
       </div>
@@ -59,8 +59,8 @@ function Main() {
         <div className="secondImgBox" />
       </div>
       <div className="videoTextContainer">
-        <h1 className="infoHeader">JUST-DO-IT 팀원 사진</h1>
-        <p className="infoMain">뭐라고 쓸지 진짜 모르겠다 아.....</p>
+        <h1 className="infoHeader">37기 미남 쌍두마차</h1>
+        <p className="infoMain">좌경찬 우규남 우열을 가릴 수 없는 미모</p>
         <div className="videoButton">
           <Link to="item-list" className="buyButton btn">
             구매하기

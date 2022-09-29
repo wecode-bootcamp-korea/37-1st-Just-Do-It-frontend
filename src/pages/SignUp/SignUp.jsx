@@ -48,35 +48,35 @@ function SignUp() {
     const mobileReg = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/;
 
     if (!idReg.test(userName)) {
-      throw new Error('아이디 양식에 맞지 않음');
+      throw new Error('아이디 양식에 맞지 않습니다');
     }
 
     if (!(userName.length > 6)) {
-      throw new Error('ID가 짧음');
+      throw new Error('ID를 6자 이상 입력 해주세요');
     }
 
     if (!pwReg.test(password)) {
-      throw new Error('비밀번호가 잘못됨');
+      throw new Error('비밀번호가 잘못 되었습니다');
     }
 
     if (!(password === passwordForCheck)) {
-      throw new Error('비밀번호가 안같음');
+      throw new Error('비밀번호가 같지 않습니다');
     }
 
     if (!mobileReg.test(phoneNumber)) {
-      throw new Error('폰번호 똑바로');
+      throw new Error('핸드폰 번호를 "-"표 없이 입력해 주세요');
     }
 
     if (!birthReg.test(birth)) {
-      throw new Error('양식에 맞지 않아');
+      throw new Error('양식에 맞지 않습니다 예)2020.02.02');
     }
 
     if (!isAllowedAge(birth)) {
-      throw new Error('나이는 15살 이상~~');
+      throw new Error('15세 이상만 가입할 수 있습니다');
     }
 
     if (gender === '2') {
-      throw new Error('성별도 체크');
+      throw new Error('성별을 확인해 주세요');
     }
   };
 

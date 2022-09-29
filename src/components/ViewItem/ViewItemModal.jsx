@@ -12,14 +12,18 @@ import './ViewItemModal.scss';
 
 function ViewItem({ closeTargetModal }) {
   const handleMouseLeave = () => closeTargetModal('viewItem');
-
   return (
     <div className="viewItemWrapper" onMouseLeave={handleMouseLeave}>
       <div className="viewItem">
         <div>
           {NEW_FEATURED_DATA.map(({ featuredKey, name }) => {
             return (
-              <Link key={featuredKey} className="defaultText" to="/item-list">
+              <Link
+                key={featuredKey}
+                className="defaultText"
+                to="/item-list"
+                onClick={handleMouseLeave}
+              >
                 {name}
               </Link>
             );
@@ -28,7 +32,12 @@ function ViewItem({ closeTargetModal }) {
         <div>
           {SHOES_DATA.map(({ shoesKey, name }) => {
             return (
-              <Link key={shoesKey} className="defaultText" to="/item-list">
+              <Link
+                key={shoesKey}
+                className="defaultText"
+                to="/item-list"
+                onClick={handleMouseLeave}
+              >
                 {name}
               </Link>
             );
@@ -37,7 +46,12 @@ function ViewItem({ closeTargetModal }) {
         <div className="clothesBox">
           {CLOTHES_DATA.map(({ clothesKey, name }) => {
             return (
-              <Link key={clothesKey} className="defaultText" to="/item-list">
+              <Link
+                key={clothesKey}
+                className="defaultText"
+                to="/item-list"
+                onClick={handleMouseLeave}
+              >
                 {name}
               </Link>
             );
@@ -46,7 +60,12 @@ function ViewItem({ closeTargetModal }) {
         <div>
           {SPORTS_DATA.map(({ sportsKey, name }) => {
             return (
-              <Link key={sportsKey} className="defaultText" to="/item-list">
+              <Link
+                key={sportsKey}
+                className="defaultText"
+                to="/item-list"
+                onClick={handleMouseLeave}
+              >
                 {name}
               </Link>
             );
@@ -55,7 +74,12 @@ function ViewItem({ closeTargetModal }) {
         <div>
           {BRAND_DATA.map(({ brandKey, name }) => {
             return (
-              <Link key={brandKey} className="defaultText" to="/item-list">
+              <Link
+                key={brandKey}
+                className="defaultText"
+                to="/item-list"
+                onClick={handleMouseLeave}
+              >
                 {name}
               </Link>
             );
