@@ -3,13 +3,13 @@
 
 .navTop {
   @include flexSort(space-between, center);
-  background-color: $font-color-black;
+  background-color: black;
 
   .navTopLeft {
-    width: 150px;
+    width: 200px;
     height: 80px;
     margin-left: 70px;
-    // background-image: url(../../../public/image/navimage.png);
+    background-image: url(../../../public/image/main/logo.png);
     background-size: cover;
     background-position: center;
   }

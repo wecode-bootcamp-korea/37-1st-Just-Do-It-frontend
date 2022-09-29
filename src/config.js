@@ -16,3 +16,7 @@ export const WISH_CONFIG = {
 export const CART_ORDER = {
   api: 'https://jsonplaceholder.typicode.com/posts',
 };
+
+export const SEARCH_CONFIG = {
+  api: 'https://jsonplaceholder.typicode.com/posts',
+};

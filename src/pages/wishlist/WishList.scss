@@ -3,8 +3,11 @@
 
 .wishList {
   .wishTitle {
-    margin: 50px 50px;
-    font-size: 60px;
+    margin: 70px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: $font-weight-bold;
   }
   .wishContainer {
@@ -63,7 +66,6 @@
         .deleteIcon {
           position: absolute;
           font-size: 20px;
-          top: 3px;
           padding: 10px;
           background-color: rgba(255, 255, 255, 0.865);
           &:hover {

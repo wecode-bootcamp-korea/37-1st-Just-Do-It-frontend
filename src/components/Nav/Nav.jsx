@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LoginModal from '../Login/LoginModal';
 import SearchModal from '../SearchModal/SearchModal';
-import ViewItem from '../ViewItem/ViewItem';
+import ViewItemModal from '../ViewItem/ViewItemModal';
 import ModalPortal from '../../ModalPortal';
 
 import './Nav.scss';
@@ -58,10 +58,7 @@ function Nav() {
   return (
     <>
       <div className="navTop">
-        <div className="navTopLeft">
-          <p className="navTopLeftItem">조던</p>
-          <p className="navTopLeftItem">컨버스</p>
-        </div>
+        <Link to="/" className="navTopLeft" />
         <div className="navTopRight">
           <Link to="/item-list" className="navTopRightItem">
             고객센터
@@ -75,7 +72,7 @@ function Nav() {
             </>
           ) : (
             <>
-              <Link to="/sign-in" className="navTopRightItem">
+              <Link to="/sign-up" className="navTopRightItem">
                 멤버 가입
               </Link>
               <button
@@ -91,7 +88,7 @@ function Nav() {
       <div className="navBottom">
         <div className="navBottomLeft">
           <Link to="/" className="navBottomLeftItem">
-            나이키
+            JUST-DO-IT
           </Link>
         </div>
         <div
@@ -127,10 +124,10 @@ function Nav() {
             />
           </div>
           <div className="navBottomRightIcon">
-            <Link to="#">
+            <Link to="/wish-list">
               <i className="fa-regular fa-heart navBottomRightItem" />
             </Link>
-            <Link to="#">
+            <Link to="/cart">
               <i className="fa-solid fa-bag-shopping navBottomRightItem" />
             </Link>
           </div>
@@ -148,7 +145,7 @@ function Nav() {
       )}
       {modalState.viewItem && (
         <ModalPortal>
-          <ViewItem closeTargetModal={closeTargetModal} />
+          <ViewItemModal closeTargetModal={closeTargetModal} />
         </ModalPortal>
       )}
     </>

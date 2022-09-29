@@ -22,7 +22,7 @@ function FilterBar({
         filterHider !== true
           ? {
               transition: '0.4s',
-              transform: 'translateX(-100%)',
+              transform: 'translateX(-110%)',
               overflow: 'hidden',
             }
           : null

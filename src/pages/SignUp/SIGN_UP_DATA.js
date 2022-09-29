@@ -21,7 +21,7 @@ export const SIGN_UP_INPUT_DATA = [
     className: 'signUpInput',
     name: 'fullName',
     type: 'text',
-    placeholder: '이름을 입cs해 주세요.',
+    placeholder: '이름을 입력해 주세요.',
   },
   {
     className: 'signUpInput',

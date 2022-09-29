@@ -52,7 +52,9 @@ function ModalContentBox({
             }`}
           >
             <div>
-              <div className="retailPriceBox">{Number(retailPrice)}원</div>
+              <div className="retailPriceBox">
+                {Number(retailPrice).toLocaleString()}원
+              </div>
               <div className="modalDiscountRatio">
                 {Math.floor(
                   (1 - Number(discountPrice) / Number(retailPrice)) * 100
@@ -60,7 +62,10 @@ function ModalContentBox({
                 % off
               </div>
             </div>
-            <div className="modalDiscountPrice"> {Number(discountPrice)}원</div>
+            <div className="modalDiscountPrice">
+              {' '}
+              {Number(discountPrice).toLocaleString()}원
+            </div>
           </div>
         </div>
       </ul>

@@ -30,6 +30,7 @@ function Cart() {
       .then(res => res.json())
       .then(res => setCartItems(res.result));
   }, []);
+  console.log(cartItems);
 
   return (
     <div className="cart">

@@ -13,13 +13,13 @@ function CartAside({ cartItems, setCartItems }) {
       .then(data => setCartItems(data));
   };
 
-  const sumCartRetailPrice = cartItems.reduce((sum, num) => {
-    return (sum += num.quantity * Number(num.retailPrice));
-  }, 0);
+  // const sumCartRetailPrice = cartItems.reduce((sum, num) => {
+  //   return (sum += num.quantity * Number(num.retailPrice));
+  // }, 0);
 
-  const calCartDiscountedPrice = cartItems.reduce((sum, num) => {
-    return (sum += num.quantity * Number(num.discountPrice));
-  }, 0);
+  // const calCartDiscountedPrice = cartItems.reduce((sum, num) => {
+  //   return (sum += num.quantity * Number(num.discountPrice));
+  // }, 0);
 
   return (
     <aside className="cartAside">
@@ -28,7 +28,7 @@ function CartAside({ cartItems, setCartItems }) {
         <div className="checkoutDetail">
           <div className="checkoutPrice detail">
             <span>상품금액</span>
-            <span>{sumCartRetailPrice.toLocaleString()}원</span>
+            {/* <span>{sumCartRetailPrice.toLocaleString()}원</span> */}
           </div>
           <div className="detail">
             <span>예상배송비</span>
@@ -36,12 +36,12 @@ function CartAside({ cartItems, setCartItems }) {
           </div>
           <div className="detail">
             <span>상품 할인 금액</span>
-            <span className="cartPrice">
+            {/* <span className="cartPrice">
               {calCartDiscountedPrice
                 ? calCartDiscountedPrice.toLocaleString()
                 : sumCartRetailPrice.toLocaleString()}
               원
-            </span>
+            </span> */}
           </div>
           <div className="checkoutDiscountedPrice detail">
             <span>주문 할인 금액</span>
@@ -49,9 +49,9 @@ function CartAside({ cartItems, setCartItems }) {
           </div>
           <div className="totalPrice detail">
             <span>총 결제 예정 금액</span>
-            <span className="cartPrice">
+            {/* <span className="cartPrice">
               {(sumCartRetailPrice - calCartDiscountedPrice).toLocaleString()}원
-            </span>
+            </span> */}
           </div>
           <button className="checkoutOrderBtn" onClick={cartOrder}>
             주문하기

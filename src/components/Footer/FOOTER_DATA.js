@@ -59,4 +59,3 @@ export const TOP_ITEM_DATA = [
     name: '공개인정보처리방침지사항',
   },
 ];
-Footer;
