@@ -9,8 +9,8 @@ export const MAIN_CONFIG = {
   api: 'http://172.20.10.12:8000/products/?offset=0&limit=19',
 };
 
-export const SEARCH_CONFIG = {
-  api: '',
+export const WISH_CONFIG = {
+  api: 'http://172.20.10.3:8000/wishlist',
 };
 
 export const CART_ORDER = {

@@ -16,7 +16,32 @@
     margin-top: 5px;
     padding: 4px;
 
+    &:nth-child(2) {
+      .colorCircle {
+        .colorCheck {
+          color: white;
+        }
+      }
+    }
+
+    &:nth-child(9) {
+      .colorCircle {
+        .colorCheck {
+          color: white;
+        }
+      }
+    }
+
+    &:nth-child(12) {
+      .colorCircle {
+        .colorCheck {
+          color: white;
+        }
+      }
+    }
+
     .colorCircle {
+      @include flexCenter;
       width: 30px;
       height: 30px;
       border: 1px solid #d1d1d1;
@@ -25,6 +50,10 @@
       &:hover {
         border: 1px solid black;
         cursor: pointer;
+      }
+
+      .colorCheck {
+        font-size: 25px;
       }
     }
 

@@ -1,0 +1,18 @@
+.overlayWrap {
+  width: 100%;
+  .shoesImgs {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    .shoesProduct {
+      width: 100%;
+      .ShoesImgBox {
+        width: 100%;
+        .shoesBigImg {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

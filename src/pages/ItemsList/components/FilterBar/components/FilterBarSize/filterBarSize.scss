@@ -16,6 +16,10 @@
     .sizeIcon {
       margin-right: 9px;
       height: 14px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -23,6 +27,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 17px;
+    transition: 0.4s;
 
     .sizeNumber {
       @include flexCenter;

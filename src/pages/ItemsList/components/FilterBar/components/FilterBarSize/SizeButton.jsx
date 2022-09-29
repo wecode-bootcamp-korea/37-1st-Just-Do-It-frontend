@@ -20,7 +20,7 @@ function SizeButton({ size, selectedSize, setSelectedSize }) {
       onClick={sizeSelector}
       title={size}
     >
-      <div>{size}</div>
+      <div title={size}>{size}</div>
     </div>
   );
 }

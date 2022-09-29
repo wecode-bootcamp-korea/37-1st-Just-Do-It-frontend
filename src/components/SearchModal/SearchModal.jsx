@@ -1,31 +1,53 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { SEARCH_CONFIG } from '../../config';
-import { SEARCH_MODAL_DATA } from './SEARCH_MODAL_DATA';
+import { SEARCH_CONFIG } from '../../config';
+// import { SEARCH_MODAL_DATA } from './SEARCH_MODAL_DATA';
 import './SearchModal.scss';
+import { useEffect } from 'react';
 
 function SearchModal({ closeTargetModal }) {
   const [comment, setComment] = useState('');
+  const [recentHistoryList, setRecentHistoryList] = useState([]);
+  const [initialRecommendations, setInitialRecommendations] = useState([]);
+  const [recommendationsForView, setRecommendationsForView] = useState([]);
+  const [searchItemView, setSearchItemView] = useState([]);
 
-  const inputComment = event => {
-    setComment(event.target.value);
+  useEffect(() => {
+    fetch(`${SEARCH_CONFIG}`)
+      .then(response => response.json())
+      .then(result => setSearchItemView(result.list));
+  }, []);
+
+  useEffect(() => {
+    setRecommendationsForView(searchItemView);
+    setInitialRecommendations(searchItemView);
+  }, [searchItemView]);
+
+  useEffect(() => {
+    const localStorageItem = localStorage.getItem('recentHistory');
+    if (!localStorageItem) {
+      return;
+    }
+
+    try {
+      setRecentHistoryList(
+        localStorageItem ? JSON.parse(localStorageItem) : []
+      );
+    } catch (e) {
+      console.error(e);
+      localStorage.setItem('recentHistory', '[]');
+    }
+  }, []);
+
+  const inputComment = e => {
+    const currentComment = e.target.value;
+    const filteredRecommendations = initialRecommendations.filter(
+      ({ productName }) => productName.toLowerCase().includes(currentComment)
+    );
+
+    setRecommendationsForView(filteredRecommendations);
+    setComment(e.target.value);
   };
-
-  const [commentList, setCommentList] = useState([]);
-
-  // const addInputComment = e => {
-  //   e.preventDefault();
-  //   setId(prev => prev + 1);
-  //   setCommentList([...commentList, { id: id, content: comment }]);
-  //   commentList('');
-  // };
-  // const [comment, setComment] = useState('');
-
-  // const inputComment = e => {
-  //   setComment(e.target.value);
-  // };
-
-  // const [commentList, setCommentList] = useState([]);
 
   const inputKeyUp = e => {
     if (e.key !== 'Enter') {
@@ -38,26 +60,37 @@ function SearchModal({ closeTargetModal }) {
       return;
     }
 
-    setCommentList(prev => [...prev, inputComment]);
-    setComment('');
+    const localStorageItem = localStorage.getItem('recentHistory');
+    try {
+      const recentHistory = localStorageItem
+        ? JSON.parse(localStorageItem)
+        : [];
+
+      const updated = [...recentHistory, inputComment];
+      localStorage.setItem('recentHistory', JSON.stringify(updated));
+
+      setRecentHistoryList(updated);
+      setComment('');
+    } catch (e) {
+      console.error(e);
+      localStorage.setItem('recentHistory', '[]');
+    }
   };
-  const deleteChat = e => {
-    e.target.parentNode.remove();
+
+  const handleRemoveHistory = historyComment => {
+    const filtered = recentHistoryList.filter(
+      recentHistory => recentHistory !== historyComment
+    );
+
+    localStorage.setItem('recentHistory', JSON.stringify(filtered));
+    setRecentHistoryList(filtered);
   };
+
   const handleCloseModal = () => closeTargetModal('search');
 
-  // const [searchList, setSearchList] = useState([]);
-
-  // useEffect(() => {
-  //   fetch(`${SEARCH_CONFIG.api}`)
-  //     .then(response => response.json())
-  //     .then(({ list }) => setSearchList(list))
-  //     .catch(error => console.log(error));
-  // }, []);
-
   return (
-    <div className="searchModalWrapper" onClick={() => handleCloseModal()}>
-      <div className="searchModal" onClick={e => e.stopPropagation()}>
+    <div className="searchModal" onClick={() => handleCloseModal()}>
+      <div className="searchModalContainer" onClick={e => e.stopPropagation()}>
         <div className="header">
           <div>
             <Link to="/" className="headerLeft">
@@ -83,32 +116,36 @@ function SearchModal({ closeTargetModal }) {
         </div>
         <div className="recommendContainer">
           <p className="recommendTitle">최근 검색어</p>
-          {commentList.map((value, idx) => {
+          {recentHistoryList.map((value, idx) => {
             return (
-              <div key={idx}>
-                <Link to="/item-list" className="recommendName">
+              <div key={idx} className="recommend">
+                <Link to="/item-list" className="recommendItem">
                   {value}
                 </Link>
-                <button className="delateRecommend" onCLick={deleteChat}>
+                <button
+                  className="delateRecommend"
+                  onClick={() => handleRemoveHistory(value)}
+                >
                   <i className="fa-solid fa-x delateRecommendIcon" />
                 </button>
               </div>
             );
           })}
-          <p className="recommendTitle">추천 검색어</p>
-          {SEARCH_MODAL_DATA.map(({ productName, productId }) => {
-            return (
-              <div key={productId} className="recommendationItem">
-                <Link
-                  to="/item-list"
-                  className="recommendationName recommendName"
-                >
-                  {productName}
-                </Link>
-              </div>
-            );
-          })}
         </div>
+        {!!recommendationsForView.length ? (
+          <div className="recommendationContainer">
+            <p className="recommendationTitle">추천 검색어</p>
+            {recommendationsForView.map(({ productName, id }) => {
+              return (
+                <div key={id} className="recommendationItem">
+                  <Link to="/item-list" className="recommendationName">
+                    {productName}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );

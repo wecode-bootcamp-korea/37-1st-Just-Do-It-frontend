@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Main from './pages/Main/Main';
@@ -10,38 +11,22 @@ import ModalPortal from './ModalPortal';
 import SearchModal from './components/SearchModal/SearchModal';
 import ViewItem from './components/ViewItem/ViewItem';
 import Cart from '../src/pages/Cart/Cart';
+=======
+
+// import Main from './pages/Main/Main';
+import ItemList from './pages/ItemsList/ItemsList';
+// import Nav from './components/Nav/Nav';
+// import Footer from './components/Footer/Footer';
+// import SignUp from './pages/SignUp/SignUp.jsx';
+import WishList from './pages/wishlist/WishList';
+import ItemDetail from './pages/ItemDetail/ItemDetail';
+import './styles/reset.scss';
+>>>>>>> master
 
 function Router() {
-  const [modalState, setModalState] = useState({
-    login: false,
-    search: false,
-    viewItem: false,
-  });
-
-  const showTargetModal = modalName => {
-    if (!['login', 'search', 'viewItem'].includes(modalName)) {
-      return;
-    }
-
-    setModalState(prev => ({
-      ...prev,
-      [modalName]: true,
-    }));
-  };
-
-  const closeTargetModal = modalName => {
-    if (!['login', 'search', 'viewItem'].includes(modalName)) {
-      return;
-    }
-
-    setModalState(prev => ({
-      ...prev,
-      [modalName]: false,
-    }));
-  };
-
   return (
     <BrowserRouter>
+<<<<<<< HEAD
       {modalState.login && (
         <ModalPortal>
           <LoginModal closeTargetModal={closeTargetModal} />
@@ -64,6 +49,15 @@ function Router() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
+=======
+      <Nav />
+      <Routes>
+        {/* <Route path="/" element={<Main />} /> */}
+        <Route path="/wish-list" element={<WishList />} />
+        {/* <Route path="/sign-up" element={<SignUp />} /> */}
+        <Route path="/item-list" element={<ItemList />} />
+        <Route path="/item-detail" element={<ItemDetail />} />
+>>>>>>> master
       </Routes>
       <Footer />
     </BrowserRouter>
