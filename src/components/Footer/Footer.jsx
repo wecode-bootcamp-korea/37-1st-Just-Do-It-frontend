@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { TOP_DATA, TOP_ITEM_DATA } from './FOOTER_DATA';
-
 import './Footer.scss';
 
 function Footer() {
@@ -12,7 +10,12 @@ function Footer() {
         <div>
           {TOP_DATA.map(({ topKey, name }) => {
             return (
-              <Link key={topKey} to="/item-list" className="categoryText">
+              <Link
+                key={topKey}
+                to="/item-list"
+                className="categoryText
+              "
+              >
                 {name}
               </Link>
             );
