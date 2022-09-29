@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Main from './pages/Main/Main';
@@ -11,7 +10,6 @@ import ModalPortal from './ModalPortal';
 import SearchModal from './components/SearchModal/SearchModal';
 import ViewItem from './components/ViewItem/ViewItem';
 import Cart from '../src/pages/Cart/Cart';
-=======
 
 // import Main from './pages/Main/Main';
 import ItemList from './pages/ItemsList/ItemsList';
@@ -21,12 +19,10 @@ import ItemList from './pages/ItemsList/ItemsList';
 import WishList from './pages/wishlist/WishList';
 import ItemDetail from './pages/ItemDetail/ItemDetail';
 import './styles/reset.scss';
->>>>>>> master
 
 function Router() {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       {modalState.login && (
         <ModalPortal>
           <LoginModal closeTargetModal={closeTargetModal} />
@@ -49,7 +45,6 @@ function Router() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/item-list" element={<ItemList />} />
-=======
       <Nav />
       <Routes>
         {/* <Route path="/" element={<Main />} /> */}
@@ -57,7 +52,6 @@ function Router() {
         {/* <Route path="/sign-up" element={<SignUp />} /> */}
         <Route path="/item-list" element={<ItemList />} />
         <Route path="/item-detail" element={<ItemDetail />} />
->>>>>>> master
       </Routes>
       <Footer />
     </BrowserRouter>
