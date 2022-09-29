@@ -6,6 +6,9 @@ function OptModal({
   optItemInfo,
   cartOptItems,
   cartDiscountRate,
+  pageReloader,
+  setPageReloader,
+  itemInfoGetter,
 }) {
   const { retailPrice, discountPrice, quantity, productName, size, cartId } =
     optItemInfo[0];
@@ -14,6 +17,7 @@ function OptModal({
   const [optCount, setOptCount] = useState(Number(quantity));
   const [minusDisabled, setMinusDisabled] = useState(false);
   const [plusDisabled, setplusDisabled] = useState(false);
+
   let selctedOptId = 0;
 
   productOptions &&
@@ -23,7 +27,7 @@ function OptModal({
       }
     });
   const changeCartItemInfo = () => {
-    fetch(`http://192.168.243.221:8000/carts/${cartId}`, {
+    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -36,12 +40,14 @@ function OptModal({
     })
       .then(response => response.json())
       .then(result => {
-        if (result.messate === 'Cart was deleted') {
+        if (result.message === 'Cart was updated') {
+          alert('제품이 장바구니에서 잘 변경되었습니다');
           changeOpt();
+          setPageReloader(prev => !prev);
         }
         if (result.message === 'OUT_OF_STOCK') {
           alert('품절된 상품입니다');
-        } else if (result.message === 'CART_QUANTITY_MORE_THAN_STOCK') {
+        } else if (result.message === 'REQUEST_QUANTITY_MORE_THAN_STOCK') {
           alert('너무 많은 수량을 주문하였습니다');
         } else if (result.message === 'WRONG_INPUT_REQUEST')
           alert('잘못된 요청이 들어왔습니다');
@@ -80,15 +86,8 @@ function OptModal({
     <div className="optContainer">
       <section className="optImgsContainer">
         {cartOptItems &&
-          cartOptItems.images.map((cartOptItem, idx) => {
-            return (
-              <img
-                key={idx}
-                className="optImg"
-                alt="신발"
-                src={cartOptItem.imageUrl}
-              />
-            );
+          cartOptItems.images.map((images, idx) => {
+            return <img key={idx} className="optImg" alt="신발" src={images} />;
           })}
       </section>
       <article className="optRight">

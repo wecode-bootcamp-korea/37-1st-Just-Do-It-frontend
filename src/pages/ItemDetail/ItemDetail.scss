@@ -241,3 +241,15 @@
     }
   }
 }
+
+.itemWish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heart {
+    margin-left: 5px;
+    color: red;
+    font-size: 25px;
+  }
+}

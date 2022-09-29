@@ -3,11 +3,13 @@ import OptModal from './OptModal';
 import { useNavigate } from 'react-router-dom';
 import './CartItem.scss';
 
-function CartItem({ cartItems, setCartItems }) {
+function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [optItemInfo, setOptItemInfo] = useState('');
   const [cartOptItems, setCartOptItems] = useState('');
+
+  const accessToken = localStorage.getItem('token');
 
   const {
     productId,
@@ -21,18 +23,12 @@ function CartItem({ cartItems, setCartItems }) {
     styleCode,
   } = cartItems;
 
-  useEffect(() => {
-    fetch('data/cartOpt.json')
-      .then(res => res.json())
-      .then(res => setCartOptItems(res));
-  }, []);
-
   const itemInfoGetter = () => {
     setIsOpenModal(prev => !prev);
     getSeletedCartId(cartId);
-    fetch(`http://192.168.243.221:8000/carts/${cartId}`, {
+    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: accessToken,
       },
     })
       .then(res => {
@@ -46,7 +42,7 @@ function CartItem({ cartItems, setCartItems }) {
   };
 
   async function delCartItem(event) {
-    fetch(`http://192.168.243.221:8000/carts/${cartId}`, {
+    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
         authorization: localStorage.getItem('token'),
@@ -55,18 +51,18 @@ function CartItem({ cartItems, setCartItems }) {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'Cart was deleted') {
+          alert('선택하신 제품이 삭제되었습니다. ');
           event.nativeEvent.path[2].innerHTML = '';
         }
       });
   }
 
-  const postWish = () => {
-    fetch(`http://192.168.43.111:8000/wishlist/${productId}`, {
+  const postWish = event => {
+    fetch(`http://192.168.243.200:8000/wishlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTY2NDMzMDIxMSwiZXhwIjoxNjY1MTA3ODExfQ.toFARFL-oMK7aJhd4p1UbEFE4cbMH50tsu-6uZTF-iQss',
+        authorization: accessToken,
       },
       body: JSON.stringify({
         productId: productId,
@@ -76,7 +72,7 @@ function CartItem({ cartItems, setCartItems }) {
       .then(result =>
         result.message === 'ALREADY_EXIST'
           ? alert('이미 wishList에 있는 항목입니다.')
-          : null
+          : alert('wishList에 ZZIM')
       );
   };
 
@@ -88,10 +84,10 @@ function CartItem({ cartItems, setCartItems }) {
     setOptItemInfo(optInfo);
   };
 
-  const toDetailPage = id => {
-    navigate('/item-detail', {
+  const toDetailPage = () => {
+    navigate(`/item-detail/${productId}`, {
       state: {
-        productId: id,
+        productId: productId,
       },
     });
   };
@@ -152,6 +148,9 @@ function CartItem({ cartItems, setCartItems }) {
             cartOptItems={cartOptItems}
             setCartItems={setCartItems}
             cartDiscountRate={cartDiscountRate}
+            pageReloader={pageReloader}
+            setPageReloader={setPageReloader}
+            itemInfoGetter={itemInfoGetter}
           />
         </>
       )}

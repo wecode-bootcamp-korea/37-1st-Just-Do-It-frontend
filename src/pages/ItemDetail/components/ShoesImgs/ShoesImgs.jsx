@@ -4,9 +4,9 @@ function ShoesImgs({ imageUrl }) {
   return (
     <ul className="shoesImgs">
       {imageUrl?.map(e => (
-        <li className="shoesProduct" key={e.product_id}>
+        <li className="shoesProduct" key={e}>
           <div className="ShoesImgBox">
-            <img src={e.imageUrl} alt="나이키" className="shoesBigImg" />
+            <img src={e} alt="나이키" className="shoesBigImg" />
           </div>
         </li>
       ))}

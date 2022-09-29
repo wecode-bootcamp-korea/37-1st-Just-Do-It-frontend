@@ -13,7 +13,7 @@ function Login({ closeTargetModal }) {
     setInputs(prev => ({ ...prev, [name]: value }));
 
   const validateLogin = ({ userName, password }) => {
-    if (!(userName.length && password.length < 1)) {
+    if (userName.length === 0 && password.length === 0) {
       throw new Error('아이디 혹은 비밀번호를 입력해주세요. ');
     }
   };
@@ -22,7 +22,7 @@ function Login({ closeTargetModal }) {
     try {
       validateLogin(value);
 
-      fetch(`${LOGIN_CONFIG.api}`, {
+      fetch(`http://192.168.243.200:8000/users/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -43,7 +43,7 @@ function Login({ closeTargetModal }) {
         })
         .catch(e => console.error(e));
     } catch (e) {
-      alert('아이디 혹은 비밀번호를 확인해주세요.');
+      alert(e);
     }
   };
 

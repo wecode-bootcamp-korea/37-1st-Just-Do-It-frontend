@@ -5,32 +5,25 @@ import './Cart.scss';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const [pageReloader, setPageReloader] = useState(false);
 
   //통신용
-  // useEffect(() => {
-  //   fetch('http://192.168.243.221:8000/carts', {
-  //     mehtod: 'GET',
-  //     headers: {
-  //       authorization: localStorage.getItem('token'),
-  //     },
-  //   })
-  //     .then(response => {
-  //       if (response.ok === true) {
-  //         return response.json();
-  //       }
-  //       throw new Error('에러발생');
-  //     })
-  //     .catch(error => console.log(error))
-  //     .then(data => setCartItems(data.result));
-  // }, []);
-
-  // Mock data
   useEffect(() => {
-    fetch('data/cart.json')
-      .then(res => res.json())
-      .then(res => setCartItems(res.result));
-  }, []);
-  console.log(cartItems);
+    fetch('http://192.168.243.200:8000/carts', {
+      mehtod: 'GET',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('에러발생');
+      })
+      .catch(error => console.log(error))
+      .then(data => setCartItems(data.result));
+  }, [pageReloader]);
 
   return (
     <div className="cart">
@@ -41,7 +34,12 @@ function Cart() {
         </p>
       </div>
       {cartItems[0]?.cartId ? (
-        <CartIsNotNull cartItems={cartItems} setCartItems={setCartItems} />
+        <CartIsNotNull
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          pageReloader={pageReloader}
+          setPageReloader={setPageReloader}
+        />
       ) : (
         <CartIsNull />
       )}

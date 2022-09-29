@@ -9,20 +9,21 @@ function WishList() {
   const [addWish, setAddWish] = useState([]);
 
   useEffect(() => {
-    // const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
-    fetch('http://172.20.10.3:8000/wishlist', {
+    fetch('http://192.168.243.200:8000/wishlist', {
       method: 'GET',
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImlhdCI6MTY2NDQxNjUzNywiZXhwIjoxNjY1MTk0MTM3fQ.Lbkhw3B0kg7dKdXskMP1OvUk_gX2K8SLPn1mU8-duBI',
+        authorization: token,
       },
     })
       .then(response => response.json())
       .then(data => {
         setAddWish(data);
       });
-  }, [addWish]);
+  }, []);
+
+  console.log('addWish : ', addWish);
 
   return (
     <div className="wishList">
@@ -38,7 +39,7 @@ function WishList() {
           })}
         </div>
         <div className="wishListContainer">
-          {WISH_DATA.map(
+          {addWish.map(
             ({ productId, thumbnail, name, price, userId, setAddWish }) => {
               return (
                 <WishItem
