@@ -17,7 +17,6 @@ function Modal({
     } else {
       totalPrice += result[i].retailPrice * result[i].quantity;
     }
-    console.log(totalPrice);
   }
 
   return (

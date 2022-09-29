@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LoginModal from '../Login/LoginModal';
 import SearchModal from '../SearchModal/SearchModal';
-import ViewItem from '../ViewItem/ViewItem';
+import ViewItemModal from '../ViewItem/ViewItemModal';
 import ModalPortal from '../../ModalPortal';
 
 import './Nav.scss';
@@ -148,7 +148,7 @@ function Nav() {
       )}
       {modalState.viewItem && (
         <ModalPortal>
-          <ViewItem closeTargetModal={closeTargetModal} />
+          <ViewItemModal closeTargetModal={closeTargetModal} />
         </ModalPortal>
       )}
     </>

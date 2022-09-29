@@ -173,7 +173,7 @@ function OptModal({
         </div>
         <button
           className="optChangeBtn"
-          // onClick={changeOpt}
+          onClick={changeOpt}
           onClick={changeCartItemInfo}
         >
           옵션변경하기
